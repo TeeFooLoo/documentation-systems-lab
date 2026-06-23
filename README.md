@@ -1,4 +1,5 @@
 # Documentation Systems Lab
+> "Developers think in code. Great documentation meets them there."
 
 **Documentation Systems Lab** is an open-source collection of documentation architectures, reusable patterns, AI-assisted workflows, and engineering practices for building and maintaining high-quality developer documentation.
 
