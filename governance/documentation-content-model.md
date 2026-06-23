@@ -251,11 +251,142 @@ Explain how multiple concepts interact to accomplish a business objective.
 
 Workflow pages typically connect multiple APIs, concepts, and capabilities into a cohesive implementation journey.
 
-## Design Notes
+## Documentation Annotations
 
-Purpose:
+Documentation annotations provide supplemental information that improves understanding without interrupting the primary narrative of the page.
 
-Explain the architectural rationale behind significant API, workflow, navigation, or schema design decisions. Design Notes help developers understand not only how a system works, but why it was designed that way, reducing ambiguity and improving long-term maintainability.
+Annotations should be concise, visually distinct, and consistently applied throughout the documentation system. They capture architectural rationale, implementation guidance, operational recommendations, and environment-specific behavior that may not fit naturally into the surrounding content.
+
+The following annotation types are defined by the Atlas Commerce documentation system.
+
+### Design Note
+
+Explains **why** an API, schema, workflow, or architectural decision was made.
+
+Design Notes capture intent rather than implementation details. They help developers, architects, and future maintainers understand the reasoning behind the documentation or API design.
+
+Use Design Notes to explain:
+
+- Why a schema is organized a particular way
+- Why certain fields are grouped together
+- Why an API behaves differently than expected
+- Architectural trade-offs
+- Long-term design considerations
+
+> **Design Note**
+>
+> Atlas Commerce groups workflow metadata separately from business data so that operational concerns can evolve independently of payment schemas.
+
+### Implementation Note
+
+Provides practical guidance for successfully implementing a feature.
+
+Implementation Notes focus on operational behavior, common integration patterns, and recommendations that improve implementation success without changing the API contract.
+
+Use Implementation Notes to explain:
+
+- Recommended implementation strategies
+- Operational behavior
+- Performance considerations
+- Integration tips
+- Lifecycle expectations
+
+> **Implementation Note**
+>
+> Store the `paymentId` immediately after creating a payment. Most subsequent payment operations reference this identifier.
+
+### Best Practice
+
+Describes the recommended approach when multiple valid implementation options exist.
+
+Best Practices promote consistency, maintainability, security, and long-term operational success.
+
+Use Best Practices to recommend:
+
+- Naming conventions
+- Request construction
+- Workflow sequencing
+- Documentation organization
+- General implementation guidance
+
+> **Best Practice**
+>
+> Generate a new request identifier for every payment attempt rather than reusing identifiers across retries.
+
+### Security Note
+
+Highlights information that affects application security or protection of sensitive data.
+
+Security Notes should clearly identify practices that help protect credentials, customer information, or payment data.
+
+Use Security Notes to explain:
+
+- Credential handling
+- Secret storage
+- Authentication
+- Encryption
+- Sensitive data handling
+- Operational security
+
+> **Security Note**
+>
+> Never embed Client Secrets in browser applications, mobile applications, or publicly accessible source code repositories.
+
+
+### Sandbox Only
+
+Identifies functionality, credentials, endpoints, or data that apply exclusively to non-production environments.
+
+Sandbox annotations prevent developers from accidentally using development guidance in production environments.
+
+Use Sandbox Only annotations for:
+
+- Test payment cards
+- Sample credentials
+- Sandbox-only endpoints
+- Simulated responses
+- Development workflows
+
+> **Sandbox Only**
+>
+> The payment card values shown throughout this guide are intended exclusively for the Atlas Commerce Sandbox environment.
+
+---
+
+### Production Consideration
+
+Highlights operational guidance that becomes important when moving from development into production.
+
+Production Considerations help developers prepare their integrations for real-world deployment.
+
+Use Production Considerations to explain:
+
+- Monitoring
+- Logging
+- Scaling
+- Retry behavior
+- Credential rotation
+- Production readiness
+
+> **Production Consideration**
+>
+> Monitor repeated authentication failures and implement automated credential rotation as part of your operational security strategy.
+
+---
+
+## Annotation Principles
+
+Annotations should supplement—not replace—the primary documentation narrative.
+
+Effective annotations should:
+
+- Explain *why*, not simply repeat *what*.
+- Add context without interrupting the reading flow.
+- Be concise and immediately actionable.
+- Follow a consistent visual style across the documentation.
+- Reinforce architectural understanding rather than duplicate reference material.
+
+Documentation should remain readable even when annotations are ignored, while annotations should provide additional value for readers seeking deeper understanding.
 
 ---
 # 6. Canonical Examples
