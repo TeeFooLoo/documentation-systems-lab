@@ -251,6 +251,12 @@ Explain how multiple concepts interact to accomplish a business objective.
 
 Workflow pages typically connect multiple APIs, concepts, and capabilities into a cohesive implementation journey.
 
+## Design Notes
+
+Purpose:
+
+Explain the architectural rationale behind significant API, workflow, navigation, or schema design decisions. Design Notes help developers understand not only how a system works, but why it was designed that way, reducing ambiguity and improving long-term maintainability.
+
 ---
 # 6. Canonical Examples
 
