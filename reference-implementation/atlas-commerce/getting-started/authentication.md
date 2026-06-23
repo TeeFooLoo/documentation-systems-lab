@@ -587,3 +587,53 @@ Authentication establishes the trusted relationship between your application and
 Using the OAuth 2.1 Client Credentials flow, your application exchanges its client credentials for a short-lived bearer token, which is then used to authenticate API requests. By separating long-lived credentials from day-to-day API traffic, Atlas Commerce improves security while providing a familiar and standards-based developer experience.
 
 With authentication configured, you're ready to make your first API request and begin integrating with the Atlas Commerce platform.
+
+---
+
+# Frequently Asked Questions
+
+## How often should I request a new access token?
+
+Request an access token once and reuse it until it expires. Do not request a new token before every API call unless your application architecture specifically requires it.
+
+---
+
+## Should I cache access tokens?
+
+Yes.
+
+Applications should securely cache access tokens until they expire. Reusing tokens reduces unnecessary network traffic and improves application performance.
+
+---
+
+## Can multiple services share one access token?
+
+They can, provided they belong to the same trusted application and security boundary. However, Atlas Commerce recommends issuing separate credentials for independent applications whenever practical to simplify auditing and credential rotation.
+
+---
+
+## Can I use sandbox credentials in production?
+
+No.
+
+Sandbox and production environments are completely isolated. Each environment requires its own application registration and credentials.
+
+---
+
+## Can I include my Client Secret in browser or mobile applications?
+
+No.
+
+Client Secrets must never be distributed to untrusted environments. Browser-based applications and native mobile applications should use authentication flows specifically designed for public clients.
+
+---
+
+## What happens when an access token expires?
+
+The API returns a `401 Unauthorized` response indicating that the supplied token is no longer valid. Your application should request a new access token from the authorization server before retrying the request.
+
+---
+
+## Why doesn't Atlas Commerce accept Client Secrets on every request?
+
+Separating authentication from API requests reduces the exposure of long-lived credentials and aligns with modern OAuth security practices. Only the authorization server receives your Client Secret. Business APIs accept only bearer access tokens.
