@@ -65,5 +65,18 @@ Over time, Documentation Systems Lab will expand to include:
 * Documentation automation pipelines
 * A fictional developer platform used consistently throughout the repository for realistic examples
 
+## Current Progress
+
+✓ Documentation Principles
+✓ Documentation Style Guide
+✓ Content Model
+✓ Annotation Taxonomy
+✓ Documentation Maturity Model
+✓ Publication Review Framework
+✓ Authentication Guide
+✓ Accept Your First Payment
+✓ Payments API Reference
+✓ Documentation Delivery Architecture (In Progress)
+
 Contributions, discussions, and feedback are always welcome.
 
