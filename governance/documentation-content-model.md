@@ -252,8 +252,49 @@ Explain how multiple concepts interact to accomplish a business objective.
 Workflow pages typically connect multiple APIs, concepts, and capabilities into a cohesive implementation journey.
 
 ---
+# 6. Canonical Examples
 
-# 6. Relationships Between Page Types
+Example payloads are among the most valuable assets in API documentation. While descriptive text explains concepts, working examples demonstrate how those concepts are applied in practice.
+
+For many developers, code and JSON examples become the primary mechanism for understanding an API. A complete example can often communicate an implementation more effectively than several paragraphs of prose because it shows how individual fields, objects, and workflows interact within a realistic request or response.
+
+Whenever practical, documentation should include canonical examples for every significant capability, workflow, and API operation.
+
+Examples should represent realistic implementations rather than artificially simplified snippets.
+
+Examples should be:
+
+- Complete enough to illustrate an entire workflow.
+- Syntactically valid.
+- Consistent across the documentation set.
+- Representative of production usage whenever practical.
+- Kept synchronized with the accompanying reference documentation.
+
+Avoid examples that omit important fields simply for brevity. While partial snippets may occasionally help illustrate an isolated concept, developers generally benefit more from seeing complete requests and responses that can be adapted directly into their own implementations.
+
+Example payloads should evolve alongside the documentation. When new capabilities, workflows, or options are introduced, their corresponding examples should be updated at the same time to preserve consistency.
+
+Whenever multiple implementation paths exist, provide examples for each supported pattern rather than expecting readers to infer the differences.
+
+Examples may include:
+
+- Request payloads
+- Response payloads
+- Error responses
+- Webhook events
+- Callback payloads
+- OpenAPI examples
+- SDK examples
+- Command-line examples
+- Sequence diagrams illustrating request flow
+
+Examples are not supplemental documentation.
+
+For many readers, they *are* the documentation.
+
+---
+
+# 7. Relationships Between Page Types
 
 Documentation should behave like a network rather than a hierarchy.
 
@@ -271,7 +312,7 @@ This layered structure allows readers to enter the documentation at different le
 
 ---
 
-# 7. Metadata
+# 8. Metadata
 
 Every page should expose metadata beyond its visible content.
 
@@ -292,7 +333,7 @@ Structured metadata improves navigation, search, automation, and future AI-assis
 
 ---
 
-# 8. Reuse Strategy
+# 9. Reuse Strategy
 
 Documentation should reuse information rather than duplicate it.
 
@@ -310,7 +351,7 @@ Duplication should be treated as technical debt.
 
 ---
 
-# 9. AI and Content Models
+# 10. AI and Content Models
 
 Modern documentation increasingly serves two audiences:
 
@@ -332,7 +373,7 @@ In this sense, a content model serves not only as guidance for authors but also 
 
 ---
 
-# 10. Future Evolution
+# 11. Future Evolution
 
 This content model represents the initial architectural framework for Documentation Systems Lab.
 
