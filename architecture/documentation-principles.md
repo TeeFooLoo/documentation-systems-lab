@@ -187,6 +187,46 @@ Governance is not intended to restrict contributors. Its purpose is to ensure th
 
 ---
 
+# 19. Abstract Internal Complexity
+
+Documentation should present the platform through the interface experienced by the developer, not through the internal implementation of the platform.
+
+Modern APIs often orchestrate requests across multiple internal services, processors, gateways, or third-party providers. While these implementation details are essential for platform engineering, they are frequently irrelevant to integrators whose responsibility begins and ends with the public API contract.
+
+Whenever possible, documentation should abstract away internal processing that does not affect implementation. Developers should understand:
+
+- What they need to send.
+- What they can expect to receive.
+- What decisions they need to make.
+- What errors they need to handle.
+
+They generally do **not** need to understand:
+
+- Internal service-to-service communication.
+- Processor routing decisions.
+- Vendor-specific orchestration.
+- Internal callback sequences.
+- Platform implementation details that never surface through the public API.
+
+For example, a payment platform may internally coordinate requests across fraud engines, payment processors, digital wallet providers, risk services, and settlement systems. If these interactions do not change the developer's implementation or the observable API behavior, they should remain implementation details rather than documentation topics.
+
+Implementation details should only be documented when they materially affect the developer's integration. Examples include:
+
+- Additional requests that the developer must perform.
+- Redirects requiring developer participation.
+- Webhooks or callbacks that the developer must receive.
+- Asynchronous workflows requiring polling or status monitoring.
+- Configuration choices that change application behavior.
+- Error conditions that originate from observable platform behavior.
+
+When internal processing helps explain observable behavior, describe it at a conceptual level rather than documenting every implementation step.
+
+The goal of documentation is not to expose every operation performed by the platform. The goal is to provide developers with the information necessary to build reliable integrations confidently and efficiently.
+
+> **Example**
+>
+> Instead of describing how Atlas Commerce internally communicates with multiple payment processors before returning a response, explain that Atlas Commerce validates the request, routes it appropriately, and returns a normalized response. The developer benefits from understanding the overall workflow without being burdened by implementation details that do not affect their integration.
+
 # Conclusion
 
 These principles are intentionally technology-agnostic. They apply equally to API documentation, developer portals, SDK documentation, internal knowledge bases, and AI-assisted documentation systems.
