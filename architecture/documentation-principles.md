@@ -38,7 +38,19 @@ Whenever documenting an API, configuration option, or workflow, explain the purp
 
 ---
 
-# 5. Design for Humans First, AI Second
+# 5. Examples Are First-Class Documentation
+
+For API documentation, examples are not supplemental material—they are one of the primary ways developers understand and implement an integration. A well-designed example demonstrates how concepts, fields, workflows, and relationships fit together in a way that descriptive text alone cannot.
+
+Whenever practical, every significant capability, workflow, or API operation should include at least one canonical example. Complete request and response payloads, error responses, webhook events, SDK snippets, and command-line examples allow developers to recognize patterns quickly and adapt them to their own implementations with confidence.
+
+Examples should be realistic, complete, syntactically valid, and maintained with the same rigor as the accompanying reference documentation. Simplified examples may be appropriate when illustrating a single concept, but they should not replace comprehensive examples that demonstrate real-world usage. If the documentation changes, the examples should be reviewed and updated as part of the same change.
+
+Documentation should assume that many developers will read the example before they read the explanation. Examples should therefore reinforce the intended implementation, demonstrate best practices, and reflect the recommended approach rather than merely illustrating what is technically possible.
+
+---
+
+# 6. Design for Humans First, AI Second
 
 Documentation is written for people, but modern documentation systems should also support AI-assisted search, summarization, and question answering.
 
@@ -46,7 +58,7 @@ AI systems rely on semantically rich documentation that explains relationships, 
 
 ---
 
-# 6. Navigation Should Reflect Mental Models
+# 7. Navigation Should Reflect Mental Models
 
 Users think in terms of problems, workflows, and business goals rather than object hierarchies or API schemas. Documentation should reflect those mental models whenever possible.
 
@@ -54,7 +66,7 @@ Reference documentation may expose the underlying data model, but navigation sho
 
 ---
 
-# 7. Documentation Is a Product
+# 8. Documentation Is a Product
 
 Documentation deserves the same level of architectural thinking as the software it describes. It has users, requirements, ownership, quality standards, release cycles, and technical debt.
 
@@ -62,7 +74,7 @@ Treating documentation as a product encourages continuous improvement, user-cent
 
 ---
 
-# 8. Design for Scalability
+# 9. Design for Scalability
 
 Every new page should strengthen the documentation system rather than increasing its complexity. Content structures, templates, metadata, and navigation should be designed so that future growth remains predictable and manageable.
 
@@ -70,7 +82,7 @@ Scalable documentation minimizes one-off decisions by relying on reusable patter
 
 ---
 
-# 9. Prefer Text and Generated Diagrams Over Screenshots
+# 10. Prefer Text and Generated Diagrams Over Screenshots
 
 Screenshots are valuable when visual context is essential, but they should support written documentation rather than replace it. Text remains the most maintainable documentation format because it is searchable, accessible, translatable, reviewable, version-controlled, and easily updated as products evolve.
 
@@ -93,7 +105,7 @@ The guiding principle is to create documentation artifacts that remain accurate,
 
 ---
 
-# 10. Treat Examples as First-Class Documentation
+# 11. Treat Examples as First-Class Documentation
 
 Examples are often the fastest path to understanding. High-quality examples demonstrate workflows, illustrate relationships between concepts, and reduce ambiguity.
 
@@ -101,7 +113,7 @@ Examples should be realistic, complete, and representative of production usage w
 
 ---
 
-# 11. Reference Documentation Is Not Implementation Guidance
+# 12. Reference Documentation Is Not Implementation Guidance
 
 Reference material answers the question "What exists?" Implementation guidance answers the question "What should I do?"
 
@@ -109,7 +121,7 @@ Both forms of documentation are essential, but they serve different purposes. Ef
 
 ---
 
-# 12. Use Progressive Disclosure
+# 13. Use Progressive Disclosure
 
 Documentation should introduce concepts gradually, revealing increasing levels of detail as readers progress. Most users begin by seeking understanding before they need comprehensive reference information.
 
@@ -125,7 +137,7 @@ This structure reduces cognitive load while preserving access to detailed inform
 
 ---
 
-# 13. Optimize for Support Reduction
+# 14. Optimize for Support Reduction
 
 One measure of documentation quality is whether it reduces recurring questions from users. Every page should be written with the goal of preventing future support requests by addressing common points of confusion before they become problems.
 
@@ -133,7 +145,7 @@ Documentation should answer not only expected questions but also the follow-up q
 
 ---
 
-# 14. Prefer Reuse Over Duplication
+# 15. Prefer Reuse Over Duplication
 
 Reusable content is easier to maintain than duplicated content. Shared concepts, reusable snippets, templates, and modular documentation reduce inconsistency while simplifying updates.
 
@@ -141,7 +153,7 @@ Duplication increases maintenance effort and creates opportunities for documenta
 
 ---
 
-# 15. Documentation Must Answer Real Questions
+# 16. Documentation Must Answer Real Questions
 
 Documentation should answer the questions users actually ask rather than simply describing the product's internal implementation.
 
@@ -159,7 +171,7 @@ Documentation that consistently answers these questions empowers readers to make
 
 ---
 
-# 16. Optimize for Discovery Before Efficiency
+# 17. Optimize for Discovery Before Efficiency
 
 Authors already know where information lives; readers do not. A documentation system should prioritize discoverability by making relevant information easy to locate through navigation, search, metadata, and meaningful cross-links.
 
@@ -167,7 +179,7 @@ Reducing clicks is valuable, but reducing uncertainty is even more important. A 
 
 ---
 
-# 17. Governance Enables Scale
+# 18. Governance Enables Scale
 
 Consistency does not happen automatically as documentation grows. Sustainable documentation systems rely on clearly defined standards, templates, terminology, ownership, review processes, and publishing workflows.
 
