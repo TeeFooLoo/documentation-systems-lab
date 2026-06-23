@@ -65,6 +65,35 @@ For most integrations, authentication becomes a small part of the overall implem
 
 ---
 
+# Choosing the Right Authentication Flow
+
+OAuth defines several authentication flows, each designed for different types of applications.
+
+Atlas Commerce uses the **OAuth 2.1 Client Credentials** flow because it is designed specifically for trusted server-to-server communication. In this model, your backend application authenticates directly with the Atlas Commerce authorization server using credentials issued during application registration.
+
+This approach is appropriate for services that securely store application credentials and communicate with Atlas Commerce without direct user interaction.
+
+Examples include:
+
+- Backend web applications
+- Payment gateways
+- Server-side integrations
+- Enterprise middleware
+- Scheduled jobs
+- Internal business services
+
+Client Credentials is **not** appropriate for applications that execute entirely on a user's device, such as browser-based JavaScript applications, native mobile applications, or desktop clients.
+
+These application types cannot adequately protect a Client Secret because users can potentially inspect the application or its network traffic. Instead, applications that authenticate individual users should use an interactive OAuth flow, such as the Authorization Code flow with Proof Key for Code Exchange (PKCE).
+
+Atlas Commerce intentionally separates application authentication from user authentication.
+
+Applications authenticate using the Client Credentials flow to obtain access tokens for server-to-server communication. User identity, if required by a business workflow, is handled independently of the application's authentication to the platform.
+
+This distinction simplifies integrations while ensuring that long-lived application credentials remain protected within trusted server environments.
+
+---
+
 # How Authentication Works
 
 At a high level, authentication follows a simple four-step process.
