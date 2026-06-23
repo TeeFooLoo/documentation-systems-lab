@@ -70,11 +70,26 @@ Scalable documentation minimizes one-off decisions by relying on reusable patter
 
 ---
 
-# 9. Prefer Text Over Screenshots
+# 9. Prefer Text and Generated Diagrams Over Screenshots
 
-Screenshots are valuable when visual context is essential, but they should support written documentation rather than replace it.
+Screenshots are valuable when visual context is essential, but they should support written documentation rather than replace it. Text remains the most maintainable documentation format because it is searchable, accessible, translatable, reviewable, version-controlled, and easily updated as products evolve.
 
-Text is searchable, accessible, translatable, reviewable, and significantly easier to maintain. Screenshots become outdated quickly and increase long-term maintenance costs because they require manual updates whenever interfaces change.
+Whenever possible, prefer diagrams that can be generated from text rather than manually created graphics. Technologies such as Mermaid allow flowcharts, sequence diagrams, state diagrams, entity relationship diagrams, and other visualizations to be stored as plain text alongside documentation. These diagrams can be reviewed through source control, updated incrementally, and regenerated automatically as documentation evolves.
+
+Similarly, favor graphical representations that can be generated from structured descriptions or AI-assisted tooling over screenshots of user interfaces or manually drawn illustrations. AI-generated diagrams, Mermaid, PlantUML, Graphviz, and other text-based visualization tools are easier to maintain because the underlying source remains editable rather than requiring complete image recreation.
+
+Screenshots should generally be reserved for situations where the appearance of the user interface itself is the subject being documented, such as demonstrating the location of a setting, illustrating a visual state, or explaining a user interaction that cannot be communicated effectively through text or diagrams.
+
+When choosing between documentation formats, prefer them in roughly this order:
+
+1. Written explanation
+2. Tables
+3. Mermaid or other text-based diagrams
+4. AI-generated conceptual illustrations from reusable prompts
+5. Screenshots of user interfaces
+6. Manually created graphics that cannot be regenerated
+
+The guiding principle is to create documentation artifacts that remain accurate, maintainable, reviewable, and automatable throughout the documentation lifecycle.
 
 ---
 
