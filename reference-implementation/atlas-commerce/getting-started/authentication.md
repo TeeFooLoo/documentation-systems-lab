@@ -147,3 +147,414 @@ Sandbox credentials cannot be used against production APIs, and production crede
 This separation helps prevent accidental use of live systems during development and allows integrations to be thoroughly tested before deployment.
 
 Throughout this guide, examples use sandbox endpoints and sample credentials.
+
+# Register Your Application
+
+Before your application can authenticate with Atlas Commerce, it must be registered with the platform.
+
+Application registration establishes a trusted identity for your integration and generates the credentials required to request OAuth access tokens.
+
+Each registered application receives:
+
+- A Client ID
+- A Client Secret
+- One or more authorized scopes
+- Environment-specific credentials
+- Access to the Atlas Commerce Developer Portal
+
+Applications should use separate credentials for each environment. Sandbox credentials are intended exclusively for development and testing, while production credentials are reserved for live transactions.
+
+> **Best Practice**
+>
+> Register separate applications for development, staging, and production environments. Using independent credentials simplifies troubleshooting, supports credential rotation, and reduces the risk of accidental production access during development.
+
+---
+
+# Application Credentials
+
+Atlas Commerce uses two long-lived credentials to identify your application.
+
+| Credential | Purpose |
+|------------|---------|
+| **Client ID** | Public identifier for your application. |
+| **Client Secret** | Private credential used to request OAuth access tokens. |
+
+The Client Secret functions much like a password.
+
+Unlike an access token, it should never be transmitted when calling business APIs and should never be embedded in client-side applications, mobile applications, browser-based JavaScript, or source code repositories.
+
+Instead, store the Client Secret in a secure secrets management system such as a cloud secrets manager, encrypted configuration store, or environment variable managed by your deployment platform.
+
+---
+
+# Environment Credentials
+
+Atlas Commerce issues separate credentials for each environment.
+
+| Environment | Authorization Server | Intended Use |
+|-------------|---------------------|--------------|
+| Sandbox | `https://auth.sandbox.atlas-commerce.example` | Development and testing |
+| Production | `https://auth.atlas-commerce.example` | Live production traffic |
+
+Sandbox credentials cannot authenticate against production APIs.
+
+Likewise, production credentials cannot be used within the sandbox environment.
+
+Using separate credentials helps isolate development from production and prevents accidental processing of live customer transactions during testing.
+
+---
+
+# Request an Access Token
+
+Atlas Commerce uses the OAuth 2.1 Client Credentials flow for server-to-server integrations.
+
+Your application exchanges its Client ID and Client Secret for a short-lived access token by sending a request to the authorization server.
+
+The access token is then included in the `Authorization` header of subsequent API requests.
+
+The Client Secret is used only during this exchange.
+
+---
+
+## Token Request
+
+```http
+POST /oauth/token HTTP/1.1
+Host: auth.sandbox.atlas-commerce.example
+Content-Type: application/json
+Accept: application/json
+```
+
+```json
+{
+  "clientId": "atlas_demo_application",
+  "clientSecret": "atlas_demo_secret",
+  "grantType": "client_credentials",
+  "scope": "payments:read payments:write customers:read"
+}
+```
+
+### Request Fields
+
+| Field | Required | Description |
+|--------|:--------:|-------------|
+| `clientId` | Yes | The Client ID assigned during application registration. |
+| `clientSecret` | Yes | The Client Secret associated with the registered application. |
+| `grantType` | Yes | OAuth grant type. Atlas Commerce currently supports `client_credentials` for server-to-server integrations. |
+| `scope` | No* | Optional list of requested scopes. If omitted, the authorization server issues the default scopes assigned to the application. |
+
+---
+
+# Successful Response
+
+If the request succeeds, the authorization server returns a bearer access token.
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+
+```json
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example-token",
+  "tokenType": "Bearer",
+  "expiresIn": 3600,
+  "scope": "payments:read payments:write customers:read"
+}
+```
+
+### Response Fields
+
+| Field | Description |
+|--------|-------------|
+| `accessToken` | OAuth bearer token used to authenticate API requests. |
+| `tokenType` | Authentication scheme. Always `Bearer`. |
+| `expiresIn` | Number of seconds until the token expires. |
+| `scope` | Scopes granted to the issued token. |
+
+Applications should cache the access token and reuse it until it expires rather than requesting a new token before every API request.
+
+---
+
+# Access Token Lifecycle
+
+Access tokens are intentionally short-lived.
+
+Short-lived tokens reduce security risk by limiting the amount of time a compromised token remains valid.
+
+The recommended lifecycle is:
+
+1. Request an access token.
+2. Cache the token securely.
+3. Use the token for subsequent API requests.
+4. Request a new token when the existing token expires.
+
+Applications should avoid requesting a new token before every API call unless specifically required by their architecture.
+
+Excessive token requests increase unnecessary network traffic and may be subject to rate limiting.
+
+---
+
+# Understanding Scopes
+
+Scopes define which Atlas Commerce capabilities an application is permitted to access.
+
+When an access token is issued, it contains one or more scopes assigned to the application during registration.
+
+Typical scopes include:
+
+| Scope | Description |
+|---------|-------------|
+| `payments:read` | Retrieve payment information. |
+| `payments:write` | Create or modify payment transactions. |
+| `customers:read` | Retrieve customer records. |
+| `customers:write` | Create or update customer records. |
+| `refunds:write` | Issue refunds for eligible transactions. |
+| `webhooks:read` | Retrieve webhook endpoint configuration. |
+
+Applications should request only the scopes necessary for their intended functionality.
+
+Following the principle of least privilege limits the potential impact of compromised credentials while simplifying operational security.
+
+---
+
+# What's Next?
+
+At this point your application has successfully authenticated with the Atlas Commerce authorization server and obtained an OAuth access token.
+
+In the next section you'll use that access token to make your first authenticated API request and learn how Atlas Commerce secures every request using the standard HTTP `Authorization` header.
+
+# Make an Authenticated Request
+
+Once your application has obtained an access token, it can begin calling Atlas Commerce APIs.
+
+Every protected API request must include the access token in the HTTP `Authorization` header using the Bearer authentication scheme.
+
+Atlas Commerce validates the token before processing the request. If the token is valid and includes the required scopes, the request proceeds normally. Otherwise, the request is rejected with an authentication or authorization error.
+
+---
+
+## Authorization Header
+
+Include the access token in the following format:
+
+```http
+Authorization: Bearer <access_token>
+```
+
+For example:
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example-token
+```
+
+The `Bearer` keyword is case-sensitive and must be included exactly as shown.
+
+---
+
+# Example Request
+
+The following example retrieves a payment using an authenticated request.
+
+```bash
+curl --request GET \
+  --url https://api.sandbox.atlas-commerce.example/v1/payments/pay_123456789 \
+  --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example-token" \
+  --header "Accept: application/json"
+```
+
+---
+
+# Example Response
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+
+```json
+{
+  "paymentId": "pay_123456789",
+  "status": "authorized",
+  "amount": {
+    "currency": "USD",
+    "value": 42.50
+  },
+  "created": "2026-06-23T14:05:17Z"
+}
+```
+
+This example demonstrates a successful authenticated request. The authorization server is no longer involved once the access token has been issued. Instead, the Payments API validates the bearer token before processing the request.
+
+---
+
+# Authentication vs. Authorization
+
+Authentication and authorization are closely related, but they solve different problems.
+
+Authentication answers the question:
+
+> **Who is making this request?**
+
+Authorization answers the question:
+
+> **Is this application allowed to perform this action?**
+
+Atlas Commerce performs both checks before processing every protected request.
+
+For example:
+
+- A valid access token successfully authenticates the application.
+- The token's scopes determine which API operations are permitted.
+- If the token lacks the required scope, the request is rejected even though authentication succeeded.
+
+Understanding this distinction helps diagnose common integration issues and prevents unnecessary troubleshooting.
+
+---
+
+# Common Authentication Errors
+
+Authentication failures generally occur before business logic is executed.
+
+## Missing Authorization Header
+
+```http
+HTTP/1.1 401 Unauthorized
+```
+
+```json
+{
+  "error": {
+    "code": "missing_authorization",
+    "message": "Authorization header is required."
+  }
+}
+```
+
+Verify that every protected request includes the `Authorization` header using the Bearer format.
+
+---
+
+## Expired Access Token
+
+```http
+HTTP/1.1 401 Unauthorized
+```
+
+```json
+{
+  "error": {
+    "code": "token_expired",
+    "message": "The supplied access token has expired."
+  }
+}
+```
+
+Request a new access token from the authorization server and retry the request.
+
+---
+
+## Invalid Access Token
+
+```http
+HTTP/1.1 401 Unauthorized
+```
+
+```json
+{
+  "error": {
+    "code": "invalid_token",
+    "message": "The supplied access token is invalid."
+  }
+}
+```
+
+Ensure that:
+
+- The token was issued by the correct Atlas Commerce environment.
+- The token has not expired.
+- The Authorization header is correctly formatted.
+- The token has not been modified.
+
+---
+
+## Insufficient Scope
+
+```http
+HTTP/1.1 403 Forbidden
+```
+
+```json
+{
+  "error": {
+    "code": "insufficient_scope",
+    "message": "The access token does not include the required scope: payments:write."
+  }
+}
+```
+
+Authentication succeeded, but the application is not authorized to perform the requested operation.
+
+Review the application's assigned scopes and request additional permissions if necessary.
+
+---
+
+# Troubleshooting Authentication
+
+Most authentication issues can be resolved by verifying a few common conditions.
+
+| Problem | Possible Cause | Recommended Action |
+|----------|----------------|--------------------|
+| 401 Unauthorized | Missing bearer token | Verify the Authorization header. |
+| 401 Unauthorized | Expired access token | Request a new access token. |
+| 401 Unauthorized | Invalid token | Confirm the token was issued by the correct environment. |
+| 403 Forbidden | Missing scope | Review the application's assigned scopes. |
+| Token request fails | Incorrect Client Secret | Verify your application credentials. |
+| Authentication succeeds but API calls fail | Sandbox/Production mismatch | Ensure credentials and API endpoints belong to the same environment. |
+
+When troubleshooting authentication, begin by confirming that the correct credentials, authorization server, and API endpoint all belong to the same environment. Environment mismatches are among the most common causes of authentication failures during initial integration.
+
+---
+
+# Security Best Practices
+
+Authentication credentials are among the most sensitive assets in an API integration. Protecting them should be considered part of the application's security architecture.
+
+Atlas Commerce recommends the following practices:
+
+- Store Client Secrets in a secure secrets manager.
+- Never embed Client Secrets in browser or mobile applications.
+- Never commit credentials to source control.
+- Use HTTPS for every request.
+- Rotate credentials periodically.
+- Request only the scopes your application requires.
+- Cache access tokens until expiration instead of requesting a new token for every API call.
+- Use separate credentials for each environment.
+- Monitor authentication failures for unusual activity.
+
+Following these recommendations improves operational security while reducing the likelihood of authentication-related outages.
+
+---
+
+# Related Topics
+
+After successfully authenticating with Atlas Commerce, continue your integration with the following guides:
+
+- **Make Your First API Call**
+- **Process Your First Payment**
+- **Payments**
+- **Error Handling**
+- **Webhooks**
+- **Authorization and Scopes**
+
+These guides build upon the authentication model introduced in this document and demonstrate how authentication integrates with the broader Atlas Commerce platform.
+
+---
+
+# Summary
+
+Authentication establishes the trusted relationship between your application and Atlas Commerce.
+
+Using the OAuth 2.1 Client Credentials flow, your application exchanges its client credentials for a short-lived bearer token, which is then used to authenticate API requests. By separating long-lived credentials from day-to-day API traffic, Atlas Commerce improves security while providing a familiar and standards-based developer experience.
+
+With authentication configured, you're ready to make your first API request and begin integrating with the Atlas Commerce platform.
