@@ -75,13 +75,11 @@ Notice what **does not** happen. The taxonomy does not suddenly classify the dog
 * Popularity
 * Geographic location
 
-Every level answers the same question:
+The dog does not fall under multiple categories (a dog is not classified as a canine, feline and human). Also, every level answers the same question:
 
 > **What broader biological group does this organism belong to?**
 
-Because the organizing principle remains consistent, every scientist immediately understands the meaning of every level of the hierarchy.
-
-This is one of the defining characteristics of an effective taxonomy.
+Because the organizing principle remains consistent, every scientist immediately understands the meaning of every level of the hierarchy. This is one of the defining characteristics of an effective taxonomy.
 
 ---
 
