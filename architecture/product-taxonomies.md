@@ -33,12 +33,6 @@ The result is predictable:
 
 A product taxonomy provides the common language that prevents this drift. Rather than documenting products independently, every team describes the same concepts using the same vocabulary and the same conceptual model.
 
-## Why Product Taxonomies Matter
-
-A product taxonomy provides much more than a way to organize documentation. It establishes the conceptual boundaries that define how an organization understands its products.
-
-As software platforms evolve, products naturally acquire new capabilities, legacy technologies remain in use, terminology changes, and different teams begin describing the same concepts in different ways. Without a shared taxonomy, Documentation, Product, Engineering, Marketing, Sales, and Customer Support gradually develop their own vocabulary. The result is predictable: duplicate content, conflicting terminology, unclear ownership, inconsistent navigation, and documentation that becomes increasingly difficult to maintain.
-
 ### AI and Product Taxonomies
 
 The importance of a well-defined taxonomy extends beyond documentation. Modern AI systems—including developer copilots, retrieval-augmented generation (RAG) systems, intelligent search, and documentation assistants—depend on clear semantic boundaries to distinguish one concept from another. Unlike human readers, AI systems do not interpret documentation by browsing pages or understanding organizational context. Instead, they retrieve fragments of information and infer relationships between concepts based on how those concepts are described throughout the documentation.
