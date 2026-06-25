@@ -4,7 +4,7 @@ Information architecture is the discipline of designing the structure of a docum
 
 As documentation platforms continue to grow in complexity, information architecture has become increasingly important. Modern documentation must support not only human readers but also automated publishing systems, intelligent search, AI-assisted documentation, developer copilots, and retrieval-augmented generation (RAG) systems. A well-designed information architecture improves discoverability, reduces duplication, enables consistent governance, and provides the semantic structure necessary for both human understanding and machine reasoning.
 
-This paper examines information architecture as a foundational discipline within documentation engineering. It explains why information architecture matters, how it complements documentation engineering, and the architectural components that enable documentation systems to scale while remaining coherent, maintainable, and understandable.
+"Poor information architecture teaches AI the wrong conceptual model." Note that AI often reflects the conceptual model encoded in the documentation. If that model is inconsistent, the retrieval errors are not random—they're architectural.
 
 # What is Information Architecture?
 
