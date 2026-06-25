@@ -1,7 +1,5 @@
 # Documentation Style Guide
 
-## Purpose
-
 This guide defines the writing and formatting conventions used throughout Documentation Systems Lab.
 
 The objective is to produce documentation that is:
