@@ -32,18 +32,6 @@ Documentation engineering builds and operates documentation systems through auto
 
 Neither discipline is sufficient in isolation. A sophisticated documentation pipeline cannot compensate for an inconsistent knowledge model, just as a well-designed information architecture cannot remain effective without the engineering practices required to sustain it. Together, they form the architectural foundation of a modern documentation system.
 
-# Information Architecture as a Documentation Discipline
-
-Documentation engineering answers the question:
-
-> **How is documentation created, maintained, validated, and published?**
-
-Information architecture answers a different question:
-
-> **How should knowledge itself be organized?**
-
-These disciplines are complementary. Documentation engineering builds and operates documentation systems. Information architecture designs the knowledge model that those systems represent. Without a coherent information architecture, even well-written documentation becomes difficult to navigate, difficult to govern, and increasingly difficult for AI systems to interpret accurately.
-
 # Components of Information Architecture
 
 Information architecture is not a single artifact. It is composed of several related disciplines, each addressing a different aspect of knowledge organization.
