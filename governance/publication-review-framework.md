@@ -1,13 +1,5 @@
 # Publication Review Framework
 
-**Version:** 1.0  
-**Status:** Draft  
-**Repository:** Documentation Systems Lab
-
----
-
-# Purpose
-
 Publishing documentation should be a deliberate quality decision rather than the final step in an editing process.
 
 This framework provides a repeatable review process that helps documentation teams evaluate whether content is accurate, complete, maintainable, and ready for publication.
