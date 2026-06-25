@@ -57,10 +57,10 @@ One of the most common mistakes when designing a product taxonomy is allowing it
 **A product taxonomy should remain stable even as the organization changes around it.** Consider a company with separate teams responsible for Payments, Fraud, Identity, and Developer Experience. An organizational chart might look like this:
 
 Engineering
-├── Payments Team
-├── Fraud Team
-├── Identity Team
-└── Developer Experience Team
+-->Payments Team
+-->Fraud Team
+-->Identity Team
+-->Developer Experience Team
 
 This hierarchy is useful for assigning ownership and accountability, but it provides little guidance for someone attempting to understand the platform. A developer is not interested in which vice president owns Tokenization or which engineering team maintains the Java SDK. They are trying to answer questions such as:
 
