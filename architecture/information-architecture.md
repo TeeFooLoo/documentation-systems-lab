@@ -1,7 +1,5 @@
 # Information Architecture
 
-## Abstract
-
 Information architecture is the discipline of designing the structure of a documentation system so that information can be consistently discovered, understood, governed, and maintained. While often associated with navigation or documentation hierarchies, information architecture is fundamentally concerned with modeling knowledge. It defines the relationships between products, capabilities, features, workflows, audiences, and implementation guidance, establishing the semantic framework upon which documentation systems are built.
 
 As documentation platforms continue to grow in complexity and AI increasingly becomes a primary consumer of technical content, information architecture has evolved from a navigation problem into a knowledge engineering discipline. A well-designed information architecture improves discoverability, reduces duplication, enables consistent governance, and provides the semantic structure necessary for both human understanding and machine reasoning.
