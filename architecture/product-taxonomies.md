@@ -48,13 +48,13 @@ Suppose the documentation repeatedly describes Hosted Checkout as simply another
 
 Instead of returning a Payments API example, the AI retrieves a Hosted Checkout payload because the documentation has taught it that the two concepts are interchangeable. The AI has not hallucinated. Rather, it has inferred the relationship established by the documentation itself. This is why semantic boundaries matter. A well-designed taxonomy distinguishes products, capabilities, infrastructure, and integration patterns before describing how they relate to one another. Related concepts remain connected, but they are not conflated.
 
-As AI becomes an increasingly common interface to technical documentation, taxonomy is no longer simply a navigation exercise. It has become the semantic model that determines how both humans and machines understand a product portfolio.
+As AI becomes an increasingly common interface to technical documentation, taxonomy is no longer simply a documentation exercise. It has become the semantic model that determines how both humans and machines understand a product portfolio.
 
 # Taxonomy versus Organizational Structure
 
 One of the most common mistakes when designing a product taxonomy is allowing it to mirror the organization's reporting structure. Organizational structures change frequently. Teams are reorganized, products move between business units, departments merge, and ownership shifts as companies evolve. These changes reflect how an organization operates, not how customers understand the platform.
 
-A product taxonomy should remain stable even as the organization changes around it. Consider a company with separate teams responsible for Payments, Fraud, Identity, and Developer Experience. An organizational chart might look like this:
+**A product taxonomy should remain stable even as the organization changes around it.** Consider a company with separate teams responsible for Payments, Fraud, Identity, and Developer Experience. An organizational chart might look like this:
 
 Engineering
 ├── Payments Team
@@ -110,8 +110,6 @@ The dog does not fall under multiple categories (a dog is not classified as a ca
 > **What broader biological group does this organism belong to?**
 
 Because the organizing principle remains consistent, every scientist immediately understands the meaning of every level of the hierarchy. This is one of the defining characteristics of an effective taxonomy. The same principles that make biological classification successful also apply to software platforms. The goal is not to classify organisms, but to classify products, capabilities, infrastructure, and integration mechanisms using equally consistent rules.
-
----
 
 # Consistent Classification
 
@@ -207,7 +205,23 @@ You immediately know where they belong: *Integration Patterns*. Likewise:
 
 become new *Capabilities*. The taxonomy is no longer just organizing today's products, it is providing classification rules for tomorrow's products. It is able to scale as the company scales without requiring constant reorganization.
 
-Overall, a taxonomy should classify concepts, not perspectives. The first example classifies by perspective: channel, market, business function, software type. The second classifies by ontology, or what the thing is: Product, Capability, Infrastructure, Integration Pattern.
+Overall, **a taxonomy should classify concepts, not perspectives.** 
+
+**Perspective**
+- Online
+- Ecommerce
+- Utilities
+- Reporting
+
+...becomes...
+
+**Classification**
+- Products
+- Capabilities
+- Infrastructure
+- Integration Patterns
+
+The first example classifies by perspective: channel, market, business function, software type. The second classifies by ontology, or what the thing is: Product, Capability, Infrastructure, Integration Pattern.
 
 # Principles of Taxonomic Classification
 
@@ -225,8 +239,6 @@ Successful product taxonomies share several common characteristics. A good taxon
 
 Ultimately, a product taxonomy is not a navigation menu or an organizational chart. It is the conceptual model that defines how an organization understands its own products. Every documentation system, developer portal, search engine, and AI assistant built on top of that taxonomy inherits its strengths—or its weaknesses.
 
-## Cheat Sheet
-
 1. **Classify by ontology, not perspective.** Ask what the thing is, not where it's used or who uses it.
 2. **Every level should answer the same question.** If one branch classifies products and another classifies business functions, the taxonomy has lost consistency.
 3. **Every concept has one canonical classification.** Navigation may expose multiple paths to discover a concept, but the concept itself belongs to one place in the taxonomy.
@@ -235,17 +247,6 @@ Ultimately, a product taxonomy is not a navigation menu or an organizational cha
 > ### The Future Product Test
 >
 > A well-designed taxonomy should allow an independent reviewer to classify a newly introduced concept without consulting the original designers. If two knowledgeable reviewers consistently place a new product in different locations, the taxonomy's classification rules are ambiguous.
-
-# Canonical Ownership
-
-Every important concept should have one authoritative home. Consider Tokenization. A payment platform might discuss tokenization in:
-
-* Hosted Checkout
-* Mobile SDK
-* Payments API
-* Merchant Portal
-
-Each product implements tokenization differently. However, the conceptual explanation of **what tokenization is**, why it exists, and how token lifecycles work should be written once. Implementation-specific guidance belongs with each product. Conceptual guidance belongs in its canonical location. Separating conceptual ownership from implementation guidance reduces duplication while preserving usability.
 
 # Canonical Classification versus Navigation
 
@@ -270,3 +271,14 @@ For example, OAuth authentication might reasonably appear under:
 * API Reference
 
 Each location helps users discover the topic. However, there should be one canonical page explaining OAuth. The remaining pages should reference that source rather than creating competing definitions.
+
+# Canonical Ownership
+
+Every important concept should have one authoritative home. Consider Tokenization. A payment platform might discuss tokenization in:
+
+* Hosted Checkout
+* Mobile SDK
+* Payments API
+* Merchant Portal
+
+Each product implements tokenization differently. However, the conceptual explanation of **what tokenization is**, why it exists, and how token lifecycles work should be written once. Implementation-specific guidance belongs with each product. Conceptual guidance belongs in its canonical location. Separating conceptual ownership from implementation guidance reduces duplication while preserving usability.
