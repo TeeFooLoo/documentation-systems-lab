@@ -35,20 +35,22 @@ A product taxonomy provides the common language that prevents this drift. Rather
 
 ### AI and Product Taxonomies
 
-The importance of a well-designed taxonomy extends far beyond documentation. Modern AI systems—including developer copilots, retrieval-augmented generation (RAG) systems, intelligent search, and documentation assistants—depend on clear semantic boundaries to distinguish one concept from another.
+For decades, product taxonomies existed primarily to help people organize and navigate documentation. As AI becomes an increasingly common interface to technical documentation, they now serve another purpose: they help AI understand it. Developer copilots, retrieval-augmented generation (RAG) systems, intelligent search, and documentation assistants do not browse documentation the way people do. Instead, they retrieve fragments of information and infer relationships between concepts based on the semantic structure of the documentation corpus.
 
-Unlike human readers, AI systems do not understand products by browsing documentation. They retrieve fragments of information and infer relationships based on how concepts are described throughout the documentation body. Consider two related products:
+This makes product taxonomies more important than ever. A well-designed taxonomy establishes clear semantic boundaries between products, capabilities, infrastructure, and integration patterns. It gives every concept a canonical place within the knowledge model and clearly defines how related concepts should—and should not—be associated. When those semantic boundaries become blurred, AI systems can build **false semantic bridges** between concepts that were never intended to be interchangeable.
+
+Consider two related products:
 
 * **Payments API**
 * **Hosted Checkout**
 
-Suppose the documentation repeatedly describes Hosted Checkout as simply another way of using the Payments API, even though the two products still expose different request payloads, APIs, and implementation workflows. A developer asks an AI assistant:
+Suppose the documentation repeatedly describes Hosted Checkout as simply another way of using the Payments API, even though the two products expose different request payloads, APIs, and implementation workflows. A developer asks an AI assistant:
 
 > *"Show me an example Payments API request."*
 
-Instead of returning a Payments API example, the AI retrieves a Hosted Checkout payload because the documentation has taught it that the two concepts are interchangeable. The AI has not hallucinated. Rather, it has inferred the relationship established by the documentation itself. This is why semantic boundaries matter. A well-designed taxonomy distinguishes products, capabilities, infrastructure, and integration patterns before describing how they relate to one another. Related concepts remain connected, but they are not conflated.
+Instead of returning a Payments API example, the AI retrieves a Hosted Checkout payload because the documentation has taught it that the two products are conceptually interchangeable. The AI has not hallucinated. It has inferred the relationships established by the documentation itself.
 
-As AI becomes an increasingly common interface to technical documentation, taxonomy is no longer simply a documentation exercise. It has become the semantic model that determines how both humans and machines understand a product portfolio.
+As AI becomes an increasingly common consumer of technical documentation, product taxonomies are no longer simply a navigation or documentation exercise. They have become part of the semantic architecture of a documentation system, shaping how both humans and machines understand a product portfolio.
 
 # Taxonomy versus Organizational Structure
 
