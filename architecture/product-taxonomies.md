@@ -171,7 +171,7 @@ You immediately know where they belong: *Integration Patterns*. Likewise:
 
 become new *Capabilities*. The taxonomy is no longer just organizing today's products—it is providing classification rules for tomorrow's products.
 
-Overall, a taxonomy should classify concepts, not perspectives. The first example classifies by perspective: channel, market, business function, software type. The second classifies by ontology—what the thing is: Product, Capability, Infrastructure, Integration Pattern.
+Overall, a taxonomy should classify concepts, not perspectives. The first example classifies by perspective: channel, market, business function, software type. The second classifies by ontology, or what the thing is: Product, Capability, Infrastructure, Integration Pattern.
 
 # Principles of Taxonomic Classification
 1. Classify by ontology, not perspective. Ask what the thing is, not where it's used or who uses it.
