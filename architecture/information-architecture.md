@@ -6,15 +6,11 @@ As documentation platforms continue to grow in complexity, information architect
 
 This paper examines information architecture as a foundational discipline within documentation engineering. It explains why information architecture matters, how it complements documentation engineering, and the architectural components that enable documentation systems to scale while remaining coherent, maintainable, and understandable.
 
----
-
 # What is Information Architecture?
 
 Information architecture is the practice of organizing knowledge so that it can be consistently understood, navigated, maintained, and extended over time. Within technical documentation, it provides the conceptual framework that determines where information belongs, how concepts relate to one another, which sources are authoritative, and how documentation evolves as products and platforms grow.
 
 Although information architecture is frequently associated with navigation menus or documentation hierarchies, these represent only the visible expression of a much deeper architectural model. Navigation is how users experience information architecture; the architecture itself is the underlying system of classification, relationships, ownership, and organization that gives the documentation its structure.
-
----
 
 # Why Information Architecture Matters
 
@@ -24,9 +20,7 @@ A well-designed information architecture provides the organizational model that 
 
 # Information Architecture as a Documentation Discipline
 
-Documentation engineering and information architecture address different but complementary concerns.
-
-Documentation engineering answers the question:
+Documentation engineering and information architecture address different but complementary concerns. Documentation engineering answers the question:
 
 > **How is documentation created, maintained, validated, and published?**
 
