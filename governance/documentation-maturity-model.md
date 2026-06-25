@@ -1,13 +1,5 @@
 # Documentation Maturity Model
 
-**Version:** 1.0  
-**Status:** Draft  
-**Repository:** Documentation Systems Lab
-
----
-
-# Abstract
-
 Documentation maturity is not measured by the number of pages a team produces. It is measured by how effectively documentation enables users to accomplish their goals while remaining accurate, maintainable, discoverable, and scalable over time.
 
 Many organizations evaluate documentation primarily through page counts, completion percentages, or subjective assessments of writing quality. While these metrics have value, they do not measure whether documentation functions as an integrated system that supports product adoption, reduces support burden, and scales alongside engineering.
