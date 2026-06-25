@@ -2,7 +2,7 @@
 
 The Governance section defines the standards, policies, review processes, and quality frameworks that ensure documentation remains accurate, consistent, maintainable, and scalable as it evolves.
 
-While the Architecture section defines **how a documentation system should be designed**, Governance defines **how that system is maintained over time**. It establishes the rules, processes, and quality gates that preserve architectural integrity as documentation grows.
+While the Architecture section defines how a documentation system should be designed, Governance defines how that system is maintained over time. It establishes the rules, processes, and quality gates that preserve architectural integrity as documentation grows.
 
 Modern documentation governance extends beyond editorial standards. It includes documentation quality, content modeling, publication readiness, documentation maturity, AI-assisted review, and increasingly, automated governance through intelligent tooling.
 
