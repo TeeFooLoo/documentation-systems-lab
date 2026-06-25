@@ -2,7 +2,7 @@
 
 ```yaml
 ---
-name: update-reference-oas-from-json
+name: update-reference-specification
 description: Reviews JSON payloads and proposes updates to the Documentation Reference OAS, Schema Inventory, and Provenance Matrix based on newly observed schema behavior.
 when_to_use: Use ONLY when explicitly asked to update, extend, compare, analyze, or maintain a Documentation Reference OAS using new JSON request, response, callback, webhook, introspect, wallet, tokenization, APM, 3DS, or other API payloads.
 argument-hint: "<json payload>"
