@@ -35,15 +35,51 @@ A product taxonomy provides the common language that prevents this drift. Rather
 
 ### AI and Product Taxonomies
 
-The importance of a well-defined taxonomy extends beyond documentation. Modern AI systems—including developer copilots, retrieval-augmented generation (RAG) systems, intelligent search, and documentation assistants—depend on clear semantic boundaries to distinguish one concept from another. Unlike human readers, AI systems do not interpret documentation by browsing pages or understanding organizational context. Instead, they retrieve fragments of information and infer relationships between concepts based on how those concepts are described throughout the documentation.
+The importance of a well-designed taxonomy extends far beyond documentation. Modern AI systems—including developer copilots, retrieval-augmented generation (RAG) systems, intelligent search, and documentation assistants—depend on clear semantic boundaries to distinguish one concept from another.
 
-When the documentation consistently distinguishes between products, capabilities, infrastructure, and implementation patterns, AI systems can accurately determine which examples, workflows, APIs, and implementation guidance belong together. However, when those semantic boundaries become blurred, AI systems begin making incorrect associations.
+Unlike human readers, AI systems do not understand products by browsing documentation. They retrieve fragments of information and infer relationships based on how concepts are described throughout the documentation body. Consider two related products:
 
-Consider two related payment products that share similar business goals but expose different request payloads, APIs, and implementation workflows. If the documentation prematurely describes those products as interchangeable, an AI retrieval system may infer that their implementation artifacts are also interchangeable. A developer requesting an API example for one product may instead receive request payloads, parameters, or workflows belonging to the other.
+* **Payments API**
+* **Hosted Checkout**
 
-Importantly, this is not an AI hallucination. The AI is reasoning from the relationships established by the documentation itself. In other words, poor information architecture teaches AI the wrong conceptual model. A well-designed product taxonomy prevents these failures by establishing explicit semantic boundaries between concepts. Every product, capability, service, and implementation pattern occupies a clearly defined conceptual space. Related concepts remain connected, but they are not conflated. This enables both human readers and AI systems to retrieve information with greater accuracy while preserving the integrity of implementation guidance.
+Suppose the documentation repeatedly describes Hosted Checkout as simply another way of using the Payments API, even though the two products still expose different request payloads, APIs, and implementation workflows. A developer asks an AI assistant:
 
-As AI becomes an increasingly common interface to technical documentation, product taxonomy is no longer simply an exercise in organizing content. It has become a foundational component of documentation quality, directly influencing search accuracy, developer experience, knowledge retrieval, and the reliability of AI-generated responses.
+> *"Show me an example Payments API request."*
+
+Instead of returning a Payments API example, the AI retrieves a Hosted Checkout payload because the documentation has taught it that the two concepts are interchangeable. The AI has not hallucinated. Rather, it has inferred the relationship established by the documentation itself. This is why semantic boundaries matter. A well-designed taxonomy distinguishes products, capabilities, infrastructure, and integration patterns before describing how they relate to one another. Related concepts remain connected, but they are not conflated.
+
+As AI becomes an increasingly common interface to technical documentation, taxonomy is no longer simply a navigation exercise. It has become the semantic model that determines how both humans and machines understand a product portfolio.
+
+# Taxonomy versus Organizational Structure
+
+One of the most common mistakes when designing a product taxonomy is allowing it to mirror the organization's reporting structure. Organizational structures change frequently. Teams are reorganized, products move between business units, departments merge, and ownership shifts as companies evolve. These changes reflect how an organization operates, not how customers understand the platform.
+
+A product taxonomy should remain stable even as the organization changes around it. Consider a company with separate teams responsible for Payments, Fraud, Identity, and Developer Experience. An organizational chart might look like this:
+
+Engineering
+├── Payments Team
+├── Fraud Team
+├── Identity Team
+└── Developer Experience Team
+
+This hierarchy is useful for assigning ownership and accountability, but it provides little guidance for someone attempting to understand the platform. A developer is not interested in which vice president owns Tokenization or which engineering team maintains the Java SDK. They are trying to answer questions such as:
+
+- Which product should I integrate?
+- What capabilities does the platform provide?
+- How do I authenticate?
+- Which SDK should I use?
+
+These questions are independent of the company's internal reporting structure. Likewise, organizations frequently reorganize around strategic initiatives. A Fraud team may become part of Risk Management. Developer Experience may move from Engineering to Product. Hosted Checkout may become part of a Digital Commerce organization. None of these changes should require documentation to be reorganized.
+
+A well-designed product taxonomy is intentionally decoupled from organizational structure. It classifies products according to what they are rather than who owns them. This separation provides several important benefits:
+
+- Documentation remains stable during organizational changes.
+- Product names remain consistent across departments.
+- Ownership can change without affecting navigation.
+- AI systems learn stable semantic relationships rather than temporary reporting structures.
+- Users build a consistent mental model that survives internal reorganizations.
+
+Ultimately, organizational structures describe how a company is managed. Product taxonomies describe how a platform is understood. Although the two influence one another, they should never become the same thing.
 
 # An Example of a Successful Classification
 
@@ -73,7 +109,7 @@ The dog does not fall under multiple categories (a dog is not classified as a ca
 
 > **What broader biological group does this organism belong to?**
 
-Because the organizing principle remains consistent, every scientist immediately understands the meaning of every level of the hierarchy. This is one of the defining characteristics of an effective taxonomy.
+Because the organizing principle remains consistent, every scientist immediately understands the meaning of every level of the hierarchy. This is one of the defining characteristics of an effective taxonomy. The same principles that make biological classification successful also apply to software platforms. The goal is not to classify organisms, but to classify products, capabilities, infrastructure, and integration mechanisms using equally consistent rules.
 
 ---
 
@@ -99,7 +135,7 @@ Consider a payment platform that contains the following:
 
     Tokenization
     Identity Service
-    Hosted Payment Links
+    Payment Links
 
 ## Reporting
 
@@ -169,156 +205,13 @@ You immediately know where they belong: *Integration Patterns*. Likewise:
 - Fraud Detection
 - Buy Now, Pay Later
 
-become new *Capabilities*. The taxonomy is no longer just organizing today's products—it is providing classification rules for tomorrow's products.
+become new *Capabilities*. The taxonomy is no longer just organizing today's products, it is providing classification rules for tomorrow's products. It is able to scale as the company scales without requiring constant reorganization.
 
 Overall, a taxonomy should classify concepts, not perspectives. The first example classifies by perspective: channel, market, business function, software type. The second classifies by ontology, or what the thing is: Product, Capability, Infrastructure, Integration Pattern.
 
 # Principles of Taxonomic Classification
-1. Classify by ontology, not perspective. Ask what the thing is, not where it's used or who uses it.
-2. Every level should answer the same question. If one branch classifies products and another classifies business functions, the taxonomy has lost consistency.
-3. Every concept has one canonical classification. Navigation may expose multiple paths to discover a concept, but the concept itself belongs to one place in the taxonomy.
-4. Taxonomies should predict the future. A good taxonomy tells you where tomorrow's product belongs without redesigning the hierarchy.
 
-> ### The Future Product Test
->
-> A well-designed taxonomy should allow an independent reviewer to classify a newly introduced concept without consulting the original designers. If two knowledgeable reviewers consistently place a new product in different locations, the taxonomy's classification rules are ambiguous.
-
-# Canonical Classification versus Navigation
-
-One of the most common misunderstandings is treating taxonomy and navigation as the same thing.
-
-Consider a customer shopping for a laptop.
-
-Amazon may allow the same MacBook to be discovered through multiple navigation paths:
-
-Electronics
-
-→ Laptops
-
-→ Apple
-
-Best Sellers
-
-Student Essentials
-
-Business Laptops
-
-Search
-
-These are navigation paths.
-
-However, they all lead to the same product.
-
-Amazon does **not** maintain four separate MacBook products.
-
-It maintains one canonical product record.
-
-Navigation is many-to-one.
-
-Taxonomy is one-to-one.
-
-Documentation systems should behave the same way.
-
-For example, OAuth authentication might reasonably appear under:
-
-* Getting Started
-* Authentication
-* Security
-* API Reference
-
-Each location helps users discover the topic.
-
-However, there should be one canonical page explaining OAuth.
-
-The remaining pages should reference that source rather than creating competing definitions.
-
----
-
-# Canonical Ownership
-
-Every important concept should have one authoritative home.
-
-Consider Tokenization.
-
-A payment platform might discuss tokenization in:
-
-* Hosted Checkout
-* Mobile SDK
-* Payments API
-* Merchant Portal
-
-Each product implements tokenization differently.
-
-However, the conceptual explanation of **what tokenization is**, why it exists, and how token lifecycles work should be written once.
-
-Implementation-specific guidance belongs with each product.
-
-Conceptual guidance belongs in its canonical location.
-
-Separating conceptual ownership from implementation guidance reduces duplication while preserving usability.
-
----
-
-# Taxonomies Must Scale
-
-A successful taxonomy should accommodate growth without requiring continual reorganization.
-
-Imagine introducing a new payment capability such as Buy Now, Pay Later.
-
-If the taxonomy already distinguishes between:
-
-Products
-
-Capabilities
-
-Infrastructure
-
-Integration Patterns
-
-the new capability naturally joins the existing Capability category.
-
-Nothing else changes.
-
-Conversely, if the taxonomy mixes products, customer journeys, technical architecture, business value, and infrastructure within the same hierarchy, every new product forces another structural decision.
-
-Over time the taxonomy becomes increasingly inconsistent.
-
-The quality of a taxonomy is therefore measured not only by how well it organizes today's products, but by how easily it accommodates tomorrow's.
-
----
-
-# Product Taxonomies and AI
-
-Historically, product taxonomies existed primarily to help people understand a product portfolio.
-
-Today they also teach AI systems how products relate to one another.
-
-Consider two products:
-
-* Hosted Checkout
-* Payments API
-
-Suppose the documentation repeatedly describes Hosted Checkout as simply another name for the Payments API before the two products actually share the same request models, payloads, and workflows.
-
-An AI retrieval system may begin returning Hosted Checkout request examples when a developer asks for Payments API documentation.
-
-The AI has not hallucinated.
-
-It has inferred the relationship the documentation established.
-
-Poor semantic boundaries produce poor retrieval.
-
-A well-designed taxonomy establishes clear conceptual boundaries while allowing products to evolve over time.
-
-This distinction is becoming increasingly important as AI-assisted documentation becomes a primary interface to developer platforms.
-
----
-
-# Characteristics of an Effective Product Taxonomy
-
-Successful product taxonomies share several common characteristics.
-
-A good taxonomy:
+Successful product taxonomies share several common characteristics. A good taxonomy:
 
 * Uses one consistent organizing principle at each level of the hierarchy.
 * Clearly distinguishes products, capabilities, infrastructure, features, and integration patterns.
@@ -331,3 +224,49 @@ A good taxonomy:
 * Serves as the architectural foundation for documentation governance.
 
 Ultimately, a product taxonomy is not a navigation menu or an organizational chart. It is the conceptual model that defines how an organization understands its own products. Every documentation system, developer portal, search engine, and AI assistant built on top of that taxonomy inherits its strengths—or its weaknesses.
+
+## Cheat Sheet
+
+1. **Classify by ontology, not perspective.** Ask what the thing is, not where it's used or who uses it.
+2. **Every level should answer the same question.** If one branch classifies products and another classifies business functions, the taxonomy has lost consistency.
+3. **Every concept has one canonical classification.** Navigation may expose multiple paths to discover a concept, but the concept itself belongs to one place in the taxonomy.
+4. **Taxonomies should predict the future.** A good taxonomy tells you where tomorrow's product belongs without redesigning the hierarchy.
+
+> ### The Future Product Test
+>
+> A well-designed taxonomy should allow an independent reviewer to classify a newly introduced concept without consulting the original designers. If two knowledgeable reviewers consistently place a new product in different locations, the taxonomy's classification rules are ambiguous.
+
+# Canonical Ownership
+
+Every important concept should have one authoritative home. Consider Tokenization. A payment platform might discuss tokenization in:
+
+* Hosted Checkout
+* Mobile SDK
+* Payments API
+* Merchant Portal
+
+Each product implements tokenization differently. However, the conceptual explanation of **what tokenization is**, why it exists, and how token lifecycles work should be written once. Implementation-specific guidance belongs with each product. Conceptual guidance belongs in its canonical location. Separating conceptual ownership from implementation guidance reduces duplication while preserving usability.
+
+# Canonical Classification versus Navigation
+
+One of the most common misunderstandings is treating taxonomy and navigation as the same thing. Consider a customer shopping for a laptop. Amazon may allow the same MacBook to be discovered through multiple navigation paths:
+
+## Electronics
+
+- Laptops
+- Apple
+- Best Sellers
+- Student Essentials
+- Business Laptops
+- Search
+
+These are navigation paths. However, they all lead to the same product. Amazon does **not** maintain four separate MacBook products. It maintains one canonical product record. Navigation is many-to-one, and taxonomy is one-to-one. Documentation systems should behave the same way.
+
+For example, OAuth authentication might reasonably appear under:
+
+* Getting Started
+* Authentication
+* Security
+* API Reference
+
+Each location helps users discover the topic. However, there should be one canonical page explaining OAuth. The remaining pages should reference that source rather than creating competing definitions.
