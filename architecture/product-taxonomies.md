@@ -125,7 +125,7 @@ That's the architectural problem. A developer has no consistent mental model. Su
 
 Now contrast that with a taxonomy organized by classification:
 
-Products
+## Products
 
     Payments API
         REST API for accepting online payments.
@@ -136,7 +136,7 @@ Products
     Merchant Portal
         Administrative interface for merchants.
 
-Capabilities
+## Capabilities
 
     Tokenization
         Replace sensitive payment data with reusable tokens.
@@ -147,12 +147,12 @@ Capabilities
     Reporting
         Transaction reporting and analytics.
 
-Infrastructure
+## Infrastructure
 
     Identity Service
         OAuth authentication and authorization.
 
-Integration Patterns
+## Integration Patterns
 
     JavaScript SDK
         Browser-based integration library.
@@ -169,7 +169,7 @@ Now every top-level node answers the same question: *What kind of thing is this?
 - .NET SDK
 - Magento Plugin
 
-You immediately know where they belong:*Integration Patterns*. Likewise:
+You immediately know where they belong: *Integration Patterns*. Likewise:
 
 - Loyalty
 - Fraud Detection
