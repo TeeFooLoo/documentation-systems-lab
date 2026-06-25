@@ -1,4 +1,4 @@
-# API Provenance Matrix
+# Provenance Matrix
 
 ## Purpose
 
