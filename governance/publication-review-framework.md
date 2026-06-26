@@ -8,9 +8,7 @@ Rather than focusing exclusively on grammar or formatting, the framework evaluat
 
 The goal is to establish a consistent definition of publication readiness that can be applied by human reviewers, AI-assisted review systems, and automated documentation pipelines.
 
----
-
-# How to Use This Framework
+## How to Use This Framework
 
 Each section contains a series of review questions.
 
@@ -25,9 +23,7 @@ The framework is intended for:
 - Product managers
 - AI-assisted documentation review systems
 
----
-
-# 1. Purpose Review
+## 1. Purpose Review
 
 The reviewer should first determine whether the page exists for a clear reason.
 
@@ -38,9 +34,7 @@ The reviewer should first determine whether the page exists for a clear reason.
 - [ ] Does the introduction explain what the reader will accomplish?
 - [ ] Is this the correct page type according to the Documentation Content Model?
 
----
-
-# 2. Audience Review
+## 2. Audience Review
 
 Documentation should match the knowledge level and goals of its intended audience.
 
@@ -50,9 +44,7 @@ Documentation should match the knowledge level and goals of its intended audienc
 - [ ] Are internal implementation details excluded unless necessary?
 - [ ] Does the documentation focus on customer goals rather than organizational structure?
 
----
-
-# 3. Architectural Review
+## 3. Architectural Review
 
 Architecture reviews evaluate how the page fits within the overall documentation system.
 
@@ -65,9 +57,7 @@ Architecture reviews evaluate how the page fits within the overall documentation
 - [ ] Are related topics linked appropriately?
 - [ ] Does this page strengthen the documentation system rather than fragment it?
 
----
-
-# 4. Content Completeness Review
+## 4. Content Completeness Review
 
 Documentation should enable readers to complete their task without unnecessary external assistance.
 
@@ -80,9 +70,7 @@ Documentation should enable readers to complete their task without unnecessary e
 - [ ] Does it answer common implementation questions?
 - [ ] Does it describe important limitations or constraints?
 
----
-
-# 5. Workflow Review
+## 5. Workflow Review
 
 Documentation should describe complete implementation journeys rather than isolated fragments.
 
@@ -93,9 +81,7 @@ Documentation should describe complete implementation journeys rather than isola
 - [ ] Can the reader complete the workflow without making assumptions?
 - [ ] Are decision points explained?
 
----
-
-# 6. Canonical Example Review
+## 6. Canonical Example Review
 
 Examples are first-class documentation.
 
@@ -108,9 +94,7 @@ Examples are first-class documentation.
 - [ ] Are examples synchronized with the accompanying documentation?
 - [ ] Could a developer implement the feature using the examples alone?
 
----
-
-# 7. Technical Accuracy Review
+## 7. Technical Accuracy Review
 
 Technical correctness is essential.
 
@@ -123,9 +107,7 @@ Technical correctness is essential.
 - [ ] Are references current?
 - [ ] Does the documentation match product behavior?
 
----
-
-# 8. AI Readiness Review
+## 8. AI Readiness Review
 
 Modern documentation should support both human readers and AI-assisted systems.
 
@@ -138,9 +120,7 @@ Modern documentation should support both human readers and AI-assisted systems.
 - [ ] Is terminology used consistently?
 - [ ] Are examples complete enough to reduce hallucination risk?
 
----
-
-# 9. Support Burden Review
+## 9. Support Burden Review
 
 Documentation should reduce support requests.
 
@@ -151,9 +131,7 @@ Documentation should reduce support requests.
 - [ ] Could an engineer complete this task without contacting Support?
 - [ ] Could Sales or Customer Success answer common customer questions using this page?
 
----
-
-# 10. Style Review
+## 10. Style Review
 
 The page should conform to the Documentation Style Guide.
 
@@ -166,9 +144,7 @@ The page should conform to the Documentation Style Guide.
 - [ ] Unnecessary repetition has been removed.
 - [ ] Explanations are concise without becoming overly terse.
 
----
-
-# 11. Accessibility Review
+## 11. Accessibility Review
 
 Documentation should be accessible to the widest possible audience.
 
@@ -179,9 +155,7 @@ Documentation should be accessible to the widest possible audience.
 - [ ] Color is not the sole means of conveying information.
 - [ ] Content remains understandable without images.
 
----
-
-# 12. Technical Validation Review
+## 12. Technical Validation Review
 
 Review all technical artifacts associated with the page.
 
@@ -194,9 +168,7 @@ Review all technical artifacts associated with the page.
 - [ ] Images are current.
 - [ ] Downloads are available.
 
----
-
-# 13. Publishing Review
+## 13. Publishing Review
 
 Before publication:
 
@@ -208,8 +180,6 @@ Before publication:
 - [ ] Release notes updated (if required).
 - [ ] Metadata completed.
 - [ ] Ownership assigned.
-
----
 
 # Definition of Done
 
@@ -225,8 +195,6 @@ Documentation is considered ready for publication when:
 - AI readiness has been evaluated.
 - Required approvals have been received.
 - The documentation enables readers to complete their task confidently without unnecessary external assistance.
-
----
 
 # Future Evolution
 
