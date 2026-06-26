@@ -239,7 +239,7 @@ Successful product taxonomies share several common characteristics. A good taxon
 * Establishes the semantic boundaries required for effective AI retrieval.
 * Serves as the architectural foundation for documentation governance.
 
-Ultimately, a product taxonomy is not a navigation menu or an organizational chart. It is the conceptual model that defines how an organization understands its own products. Every documentation system, developer portal, search engine, and AI assistant built on top of that taxonomy inherits its strengths—or its weaknesses.
+Ultimately, a product taxonomy is not a navigation menu or an organizational chart. It is the conceptual model that defines how an organization understands its own products. Every documentation system, developer portal, search engine, and AI assistant built on top of that taxonomy inherits its strengths, or its weaknesses.
 
 1. **Classify by ontology, not perspective.** Ask what the thing is, not where it's used or who uses it.
 2. **Every level should answer the same question.** If one branch classifies products and another classifies business functions, the taxonomy has lost consistency.
