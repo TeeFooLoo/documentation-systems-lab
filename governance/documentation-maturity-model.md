@@ -200,7 +200,7 @@ Each dimension is evaluated independently using five maturity levels.
 
 A page does not need every category to reach the same level. Reviewers should score each dimension independently and provide recommendations for improvement.
 
-# Evaluation Dimensions
+## Evaluation Dimensions
 
 ### 1. Purpose
 
