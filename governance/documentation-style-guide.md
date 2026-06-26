@@ -214,14 +214,14 @@ Images should support the text rather than replace it. Prefer diagrams that expl
 
 Link to related concepts rather than repeating information. Documentation should form a connected system rather than isolated pages.
 
-# Accessibility
+## Accessibility
 
 - Use descriptive headings.
 - Avoid relying solely on color.
 - Provide meaningful alt text for images.
 - Use descriptive link text.
 
-# Inclusive Language
+## Inclusive Language
 
 Prefer:
 
@@ -234,7 +234,7 @@ Prefer:
 
 Avoid language that excludes readers or assumes background knowledge.
 
-## AI-Assisted Authoring
+# AI-Assisted Authoring
 
 AI can accelerate documentation but should not replace technical review.
 
@@ -249,7 +249,7 @@ When using AI:
 
 AI should improve author productivity—not replace editorial judgment.
 
-## Documentation Review Checklist
+# Documentation Review Checklist
 
 Before publishing:
 
