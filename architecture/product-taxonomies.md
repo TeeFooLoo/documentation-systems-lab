@@ -37,7 +37,7 @@ A product taxonomy provides the common language that prevents this drift. Rather
 
 For decades, product taxonomies existed primarily to help people organize and navigate documentation. As AI becomes an increasingly common interface to technical documentation, they now serve another purpose: they help AI understand it. Developer copilots, retrieval-augmented generation (RAG) systems, intelligent search, and documentation assistants do not browse documentation the way people do. Instead, they retrieve fragments of information and infer relationships between concepts based on the semantic structure of the documentation body.
 
-This makes product taxonomies more important than ever. A well-designed taxonomy establishes clear semantic boundaries between products, capabilities, infrastructure, and integration patterns. It gives every concept a canonical place within the knowledge model and clearly defines how related concepts should—and should not—be associated. When those semantic boundaries become blurred, AI systems can build **false semantic bridges** between concepts that were never intended to be interchangeable.
+This makes product taxonomies more important than ever. A well-designed taxonomy establishes clear semantic boundaries between products, capabilities, infrastructure, and integration patterns. It gives every concept a canonical place within the knowledge model and clearly defines how related concepts should-and should not-be associated. When those semantic boundaries become blurred, AI systems can build **false semantic bridges** between concepts that were never intended to be interchangeable.
 
 Consider two related products:
 
