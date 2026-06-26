@@ -15,8 +15,6 @@ These guidelines apply to all documentation in this repository, including archit
 
 This repository favors complete, context-rich documentation over overly compressed content, especially when the documentation may be used by AI assistants, search systems, or downstream documentation automation.
 
----
-
 # Guiding Principles
 
 Good documentation should prioritize understanding over completeness.
@@ -30,8 +28,6 @@ When writing documentation:
 - Remove unnecessary complexity.
 - Avoid duplication whenever possible.
 - Keep examples realistic and complete.
-
----
 
 # Voice and Tone
 
@@ -51,8 +47,6 @@ Avoid:
 - Humor that may not translate
 - Internal jargon
 - Assumptions about reader expertise
-
----
 
 ## Explain Enough Context
 
@@ -78,7 +72,7 @@ Avoid documentation that only lists fields, parameters, or steps without explain
 Concise documentation removes clutter.
 
 Terse documentation removes meaning.
----
+
 # Document Types
 
 Documentation generally falls into four categories.
@@ -94,8 +88,6 @@ Characteristics:
 - Explains why
 - Assumes little prior knowledge
 
----
-
 ## How-to Guides
 
 Help users complete a task.
@@ -106,8 +98,6 @@ Characteristics:
 - Practical
 - Assumes basic familiarity
 - Focuses on successful completion
-
----
 
 ## Reference
 
@@ -127,8 +117,6 @@ Examples include:
 - Error codes
 - Configuration options
 
----
-
 ## Concepts
 
 Explain ideas.
@@ -140,52 +128,29 @@ Characteristics:
 - Explains relationships
 - Supports deeper understanding
 
----
-
 # Document Structure
 
 Most documents should follow this structure:
 
-Overview
+- Overview
+- Prerequisites
+- Concepts
+- Procedure
+- Examples
+- Related Topics
 
-Prerequisites
-
-Concepts
-
-Procedure
-
-Examples
-
-Related Topics
-
----
-
-# Headings
-
+## Headings
 Use sentence case.
 
-Good
+Good: ## Configure authentication
+Avoid: ## Configuring Authentication
 
-## Configure authentication
-
-Avoid
-
-## Configuring Authentication
-
----
-
-# Lists
-
+## Lists
 Use numbered lists when order matters.
-
 Use bullets when order does not matter.
-
 Keep list items parallel.
 
----
-
-# Code Blocks
-
+## Code Blocks
 Always specify a language.
 
 Good
@@ -200,15 +165,14 @@ Prefer complete examples over fragments.
 
 Examples should be executable whenever practical.
 
----
-
-# JSON Examples
+## JSON Examples
 
 Examples should:
 
 - Be syntactically valid
 - Include realistic values
 - Use consistent formatting
+- Represent a full, working API call
 - Avoid placeholders unless necessary
 
 Prefer
@@ -227,83 +191,50 @@ instead of
 }
 ```
 
----
-
-# API Examples
+## API Examples
 
 Every endpoint should include:
 
-Purpose
+- Purpose
+- Request
+- Response
+- Field explanations
+- Common errors
+- Related endpoints
 
-Request
+## Tables
 
-Response
+Use tables for structured comparisons. Avoid tables containing large paragraphs.
 
-Field explanations
+## Images
 
-Common errors
+Images should support the text rather than replace it. Prefer diagrams that explain workflows over screenshots of interfaces. Use mermaid to generate sequence diagrams and flowcharts and graphical representations wherever possible, as those can be generated and maintained by AI rather than a human.
 
-Related endpoints
+## Cross-linking
 
----
-
-# Tables
-
-Use tables for structured comparisons.
-
-Avoid tables containing large paragraphs.
-
----
-
-# Images
-
-Images should support the text rather than replace it.
-
-Prefer diagrams that explain workflows over screenshots of interfaces.
-
----
-
-# Cross-linking
-
-Link to related concepts rather than repeating information.
-
-Documentation should form a connected system rather than isolated pages.
-
----
+Link to related concepts rather than repeating information. Documentation should form a connected system rather than isolated pages.
 
 # Accessibility
 
-Use descriptive headings.
-
-Avoid relying solely on color.
-
-Provide meaningful alt text for images.
-
-Use descriptive link text.
-
----
+- Use descriptive headings.
+- Avoid relying solely on color.
+- Provide meaningful alt text for images.
+- Use descriptive link text.
 
 # Inclusive Language
 
 Prefer:
 
-allowlist
-
-denylist
-
-primary
-
-secondary
-
-they
-
-their
+- allowlist (avoid: whitelist)
+- denylist (avoid: blacklist)
+- primary (avoid: master)
+- secondary (avoid: slave)
+- they (avoid: gender, he/she)
+- their (avoid: gender, he/she)
 
 Avoid language that excludes readers or assumes background knowledge.
 
----
-
-# AI-Assisted Authoring
+## AI-Assisted Authoring
 
 AI can accelerate documentation but should not replace technical review.
 
@@ -314,12 +245,11 @@ When using AI:
 - Review examples manually.
 - Confirm workflows with subject matter experts.
 - Ensure generated content aligns with repository standards.
+- When AI "errors" are noted, engineer should provide new instructions to the skill, to improve the documentation.
 
 AI should improve author productivity—not replace editorial judgment.
 
----
-
-# Documentation Review Checklist
+## Documentation Review Checklist
 
 Before publishing:
 
@@ -331,8 +261,6 @@ Before publishing:
 - Accessibility reviewed
 - Grammar checked
 - Cross-links added
-
----
 
 # Future Improvements
 
