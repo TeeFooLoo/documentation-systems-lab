@@ -7,8 +7,6 @@
 **Version:** 2  
 **Primary page type:** Capability guide  
 
----
-
 ## Overview
 
 Authentication documentation explains how developers prove the identity of an application, user, service, or integration before accessing an API.
@@ -29,8 +27,6 @@ The goal is to help readers answer practical implementation questions quickly:
 
 In v2, this pattern also treats authentication as a first-use guide. A strong authentication page should not only describe the authentication mechanism. It should lead a developer from initial readiness through a successful authenticated request, then provide lifecycle, troubleshooting, and security guidance that supports real implementation.
 
----
-
 ## Pattern Intent
 
 Use this pattern to create an authentication page that functions as a canonical capability page, onboarding guide, and implementation bridge.
@@ -49,13 +45,9 @@ The page should help a developer:
 
 The page should be written for a developer who may be new to the platform but is capable of using HTTP, JSON, a REST client, and API reference documentation.
 
----
-
 ## Problem Statement
 
-Authentication is frequently documented either too narrowly or too abstractly.
-
-Some documentation only describes the authentication scheme, such as OAuth 2.0, API keys, bearer tokens, mutual TLS, or signed requests. Other documentation explains individual credential fields but does not show how those fields are used in a complete request. In both cases, readers are left to infer the implementation path from fragments.
+Authentication is frequently documented either too narrowly or too abstractly. Some documentation only describes the authentication scheme, such as OAuth 2.0, API keys, bearer tokens, mutual TLS, or signed requests. Other documentation explains individual credential fields but does not show how those fields are used in a complete request. In both cases, readers are left to infer the implementation path from fragments.
 
 Authentication also tends to become fragmented across product areas. One API may document access tokens in one section, another may document API keys elsewhere, and a third may explain permissions or scopes in a separate onboarding guide. This forces developers to assemble the full picture themselves, often before they understand the platform well enough to know what they are looking for.
 
@@ -70,8 +62,6 @@ In addition, a good authentication page should reduce cognitive load by presenti
 5. How to request the token or credential artifact.
 6. How to use it in a real API request.
 7. How to handle errors and lifecycle behavior.
-
----
 
 ## Design Principles
 
@@ -103,8 +93,6 @@ Developer-facing authentication documentation should explain the external contra
 
 Authentication documentation should help a new developer succeed and help support teams diagnose common failures. Include expected errors, troubleshooting steps, and common mistakes.
 
----
-
 ## When to Use This Pattern
 
 Use this pattern when documenting any API or developer platform that requires credentials, tokens, signatures, certificates, or other proof of identity.
@@ -122,8 +110,6 @@ This pattern is especially useful when:
 
 Use this pattern for platform-level authentication pages, API-specific authentication guides, SDK authentication examples, and onboarding flows that require a successful first authenticated request.
 
----
-
 ## When Not to Use This Pattern
 
 Do not use this pattern as a substitute for full security architecture documentation.
@@ -135,8 +121,6 @@ Do not duplicate a full authentication explanation on every API page. If authent
 Do not mix unrelated authorization policy details into the authentication page unless they directly affect how a developer obtains or uses credentials. Authentication answers the question, “Who or what is making the request?” Authorization answers the question, “What is that identity allowed to do?”
 
 Do not use this pattern to document user login, identity federation, consent screens, or account recovery unless those concepts are part of the developer-facing API authentication contract. For user-facing identity flows, use a dedicated identity or authorization-code-flow pattern.
-
----
 
 ## Recommended Page Metadata
 
@@ -155,21 +139,13 @@ Recommended metadata:
 
 Use metadata sparingly. The goal is to orient the reader, not to create administrative overhead.
 
----
-
 ## Recommended Structure
 
-An authentication page should include the following sections.
-
-The exact order can vary by product, but the structure should preserve the implementation journey: orient, explain, prepare, authenticate, call, secure, troubleshoot, and continue.
-
----
+An authentication page should include the following sections. The exact order can vary by product, but the structure should preserve the implementation journey: orient, explain, prepare, authenticate, call, secure, troubleshoot, and continue.
 
 ### 1. Title and Page Type
 
-Use a direct title such as `Authentication`.
-
-If the documentation system supports page metadata, identify the page as a capability page.
+Use a direct title such as `Authentication`. If the documentation system supports page metadata, identify the page as a capability page.
 
 Example:
 
@@ -181,13 +157,9 @@ Example:
 
 The page should feel like the authoritative home for authentication, not a narrow reference fragment.
 
----
-
 ### 2. Overview
 
-Explain the authentication model in plain language.
-
-The overview should state what method the API uses and what developers must provide with each request. Avoid beginning with protocol details before explaining the practical implementation path.
+Explain the authentication model in plain language. The overview should state what method the API uses and what developers must provide with each request. Avoid beginning with protocol details before explaining the practical implementation path.
 
 Example:
 
@@ -201,8 +173,6 @@ The overview should answer:
 - What is the shortest path to a successful authenticated request?
 
 A strong overview also explains why the model exists in implementation terms. For example, if the platform uses short-lived access tokens, explain that this avoids sending long-lived secrets with every API request.
-
----
 
 ### 3. Estimated Time
 
@@ -219,8 +189,6 @@ Example:
 This helps readers understand whether the page is a quick setup guide, a deep conceptual article, or a longer implementation walkthrough.
 
 Use estimated time for guide-style pages. It is optional for pure reference pages.
-
----
 
 ### 4. Prerequisites
 
@@ -243,8 +211,6 @@ Prerequisites may include:
 Keep this section practical. A developer should be able to look at the list and know whether they are ready to proceed.
 
 Do not bury prerequisites after implementation examples. Authentication pages often fail when readers reach an example and only then discover they are missing credentials, scopes, or environment access.
-
----
 
 ### 5. When to Use This Guide
 
@@ -271,13 +237,9 @@ Example:
 
 > If you are looking for endpoint-specific authentication requirements, refer to the API Reference documentation.
 
----
-
 ### 6. Learning Objectives
 
-For onboarding-oriented authentication pages, include learning objectives.
-
-Learning objectives should describe what the reader will be able to do after completing the page.
+For onboarding-oriented authentication pages, include learning objectives. Learning objectives should describe what the reader will be able to do after completing the page.
 
 Example:
 
@@ -296,8 +258,6 @@ After completing this guide, you will be able to:
 
 Learning objectives are optional, but they help clarify scope and prevent the page from drifting into unrelated security topics.
 
----
-
 ### 7. Authentication at a Glance
 
 Provide a compact summary of the authentication model before diving into details.
@@ -307,7 +267,7 @@ This section should identify the major components and their purposes.
 Example table:
 
 | Component | Purpose |
-|-----------|---------|
+|         --|         |
 | Client ID | Identifies the registered application. |
 | Client Secret | Authenticates the application when requesting an access token. |
 | Access Token | Short-lived bearer token used to authenticate API requests. |
@@ -317,8 +277,6 @@ Example table:
 The goal is to create a mental model before the reader encounters implementation steps.
 
 This section is especially useful for AI-assisted documentation review because it provides explicit terminology and relationships.
-
----
 
 ### 8. Authentication Model
 
@@ -340,21 +298,15 @@ Depending on the API, this may include:
 - Certificates
 - Signatures
 
-The purpose of this section is conceptual clarity. Readers should understand the model before they copy a request.
-
-For example, if tokens are issued to applications rather than users, say so explicitly. If sandbox and production use separate credentials, explain that before showing examples.
+The purpose of this section is conceptual clarity. Readers should understand the model before they copy a request. For example, if tokens are issued to applications rather than users, say so explicitly. If sandbox and production use separate credentials, explain that before showing examples.
 
 The model section should also clarify what should not happen. For example:
 
 > Client credentials are used only when requesting an access token. After an access token has been obtained, the access token is the credential used for subsequent API requests. Applications should not send client secrets to business APIs.
 
----
-
 ### 9. Why This Authentication Method
 
-When a platform uses a specific authentication approach, briefly explain why.
-
-This is not a standards essay. It is a practical explanation of the tradeoff the developer needs to understand.
+When a platform uses a specific authentication approach, briefly explain why. This is not a standards essay. It is a practical explanation of the tradeoff the developer needs to understand.
 
 Example:
 
@@ -369,8 +321,6 @@ Useful points may include:
 - The method aligns with a familiar industry standard.
 
 This section helps developers understand the model rather than treating authentication as arbitrary syntax.
-
----
 
 ### 10. Choosing the Right Authentication Flow
 
@@ -397,8 +347,6 @@ Include examples of inappropriate application types when relevant:
 - Public clients that cannot protect a secret
 
 If another flow is required for those scenarios, link to the appropriate guide instead of explaining the whole alternate flow in the authentication page.
-
----
 
 ### 11. How Authentication Works
 
@@ -435,8 +383,6 @@ sequenceDiagram
 
 Diagrams should reinforce the implementation path. Avoid diagrams that introduce internal architecture the developer does not need.
 
----
-
 ### 12. Authentication Architecture
 
 When useful, show the separation between the authorization service and business APIs.
@@ -472,8 +418,6 @@ Useful points:
 
 Do not expose private infrastructure, internal validation services, network topology, or security-sensitive implementation details.
 
----
-
 ### 13. Environments
 
 Clearly distinguish sandbox, staging, and production behavior.
@@ -483,13 +427,11 @@ Authentication errors frequently occur when developers mix credentials and base 
 Example table:
 
 | Environment | Authorization Server | API Base URL | Credentials |
-|-------------|----------------------|--------------|-------------|
+|            -|                     -|            --|            -|
 | Sandbox | `https://auth.sandbox.example` | `https://api.sandbox.example` | Sandbox credentials only |
 | Production | `https://auth.example` | `https://api.example` | Production credentials only |
 
-Also document any differences in token lifetimes, scopes, approval workflows, test data, or credential provisioning.
-
-The environment section should make four relationships explicit:
+Also document any differences in token lifetimes, scopes, approval workflows, test data, or credential provisioning. The environment section should make four relationships explicit:
 
 1. Credentials belong to an environment.
 2. Tokens are issued for an environment.
@@ -498,13 +440,9 @@ The environment section should make four relationships explicit:
 
 If examples use sandbox endpoints, state that clearly.
 
----
-
 ### 14. Register the Application
 
-Explain how an application becomes known to the platform.
-
-This section should describe the external contract rather than internal provisioning details.
+Explain how an application becomes known to the platform. This section should describe the external contract rather than internal provisioning details.
 
 Include:
 
@@ -527,8 +465,6 @@ Each registered application receives:
 
 If application registration is handled by an onboarding team rather than self-service, say what the developer should request and from whom.
 
----
-
 ### 15. Application Credentials
 
 Explain each credential and whether it is secret.
@@ -536,7 +472,7 @@ Explain each credential and whether it is secret.
 Example table:
 
 | Credential | Purpose | Secret? |
-|------------|---------|:-------:|
+|            |         |:      -:|
 | Client ID | Identifies the application to the authorization server. | No |
 | Client Secret | Proves the identity of the application when requesting access tokens. | Yes |
 
@@ -550,8 +486,6 @@ This section should include clear security guidance for secrets:
 This section should also explain where credentials are used:
 
 > The client secret is used only when requesting an access token. It is not sent to business APIs after a token has been issued.
-
----
 
 ### 16. Get Credentials
 
@@ -567,8 +501,6 @@ This section may overlap with application registration. If so, combine them unde
 - How do I know which environment the credential belongs to?
 - How do I know which scopes or permissions are assigned?
 - What should I do if I need production credentials?
-
----
 
 ### 17. Request an Access Token
 
@@ -643,8 +575,6 @@ Content-Type: application/json
 
 The example should be complete enough that a developer can adapt it directly.
 
----
-
 ### 18. Understand Access Tokens
 
 Explain what access tokens are and how they should be treated.
@@ -663,8 +593,6 @@ Example:
 > Access tokens are temporary credentials that represent your application's authenticated identity. Unlike client secrets, access tokens are designed to be sent with API requests. Their limited lifetime reduces the security impact of accidental exposure.
 
 This section helps prevent developers from treating tokens as static configuration values.
-
----
 
 ### 19. Token Lifecycle
 
@@ -704,8 +632,6 @@ Request New Token
 ```
 
 Make the recommended behavior explicit. Authentication pages should not assume developers know whether to cache tokens, refresh tokens, or request a new token for every call.
-
----
 
 ### 20. Make an Authenticated Request
 
@@ -763,8 +689,6 @@ A successful authenticated request should confirm that:
 - The requested resource exists.
 - The application can communicate with the platform API.
 
----
-
 ### 21. Protected Request Validation
 
 When useful, explain what the API validates before executing business logic.
@@ -797,8 +721,6 @@ sequenceDiagram
 
 If the API validates tokens locally, phrase that carefully and only at the level the developer needs to understand. Avoid exposing internal implementation details.
 
----
-
 ### 22. Scopes and Permissions
 
 Explain what scopes, permissions, claims, roles, or grants mean in the context of the API.
@@ -816,7 +738,7 @@ Avoid listing internal permission names without explaining when developers need 
 Example table:
 
 | Scope | Allows | Typical use |
-|-------|--------|-------------|
+|      -|      --|            -|
 | `payments:read` | Read payment records | Retrieve payment status |
 | `payments:write` | Create and update payments | Create a payment or refund |
 | `customers:read` | Read customer records | Display customer details |
@@ -828,8 +750,6 @@ Explain the relationship between authentication and authorization:
 
 This distinction is important enough to include directly in the page, not only in an error-handling topic.
 
----
-
 ### 23. Authentication vs. Authorization
 
 Include a dedicated section if the distinction is likely to cause confusion.
@@ -837,7 +757,7 @@ Include a dedicated section if the distinction is likely to cause confusion.
 Example:
 
 | Scenario | Authentication | Authorization |
-|----------|---------------|---------------|
+|         -|               |               |
 | Valid token with required scope | ✓ | ✓ |
 | Expired token | ✗ | — |
 | Invalid token | ✗ | — |
@@ -850,8 +770,6 @@ Useful explanation:
 - `401 Unauthorized` usually means the request could not be authenticated.
 - `403 Forbidden` usually means the request was authenticated but not permitted.
 
----
-
 ### 24. Verify Authentication
 
 After the first authenticated request, help readers interpret the result.
@@ -859,15 +777,13 @@ After the first authenticated request, help readers interpret the result.
 Example table:
 
 | Status | Meaning |
-|--------|---------|
+|      --|         |
 | `200 OK` | Authentication succeeded and the request completed successfully. |
 | `201 Created` | Authentication succeeded and a resource was created. |
 | `401 Unauthorized` | Authentication failed. |
 | `403 Forbidden` | Authentication succeeded, but the application lacks required permissions. |
 
 This section creates a bridge from implementation to troubleshooting.
-
----
 
 ### 25. Credential Rotation and Revocation
 
@@ -894,8 +810,6 @@ Example rotation sequence:
 4. Revoke the previous secret.
 
 This section should help developers operate safely without revealing internal security procedures.
-
----
 
 ### 26. Error Responses
 
@@ -946,8 +860,6 @@ Recommended error examples:
 - Malformed signature, when applicable
 - Certificate validation failure, when applicable
 
----
-
 ### 27. Common Authentication Errors
 
 For guide-style pages, present the most common errors as named subsections.
@@ -992,8 +904,6 @@ Recommended action:
 
 > Verify that the request includes an `Authorization` header using the Bearer authentication scheme.
 
----
-
 ### 28. Security Guidance
 
 Provide practical security guidance without exposing sensitive internal implementation details.
@@ -1022,8 +932,6 @@ For guide-style pages, consider breaking security guidance into short subsection
 
 Security guidance should tell developers what to do, not merely warn them that authentication is sensitive.
 
----
-
 ### 29. Troubleshooting
 
 Include a focused troubleshooting section for common onboarding failures.
@@ -1031,7 +939,7 @@ Include a focused troubleshooting section for common onboarding failures.
 Common issues include:
 
 | Symptom | Possible cause | Recommended action |
-|---------|----------------|--------------------|
+|         |               -|                  --|
 | `401 Unauthorized` | Missing, expired, or malformed token | Request a new token and verify the `Authorization` header format. |
 | `403 Forbidden` | Token lacks required scope | Confirm that the application has the required scope. |
 | Token request fails | Invalid client credentials | Verify that the client ID and secret match the environment. |
@@ -1043,8 +951,6 @@ Troubleshooting sections should be based on real support patterns whenever possi
 Always include an environment-mismatch check when environments are isolated. A useful instruction is:
 
 > Verify that your credentials, authorization server, access token, and API endpoint all belong to the same environment.
-
----
 
 ### 30. Common Mistakes
 
@@ -1062,8 +968,6 @@ Examples:
 
 Common mistakes are especially valuable when they reflect actual support tickets or onboarding failures.
 
----
-
 ### 31. Frequently Asked Questions
 
 Add an FAQ when the authentication page needs to answer repeated implementation questions without interrupting the main flow.
@@ -1079,8 +983,6 @@ Useful FAQ questions include:
 - Why does the platform not require the client secret on every API request?
 
 FAQs should not replace the main implementation path. They should reinforce decisions that developers commonly question.
-
----
 
 ### 32. Related Topics
 
@@ -1106,13 +1008,11 @@ Cross-linking helps authentication remain a single authoritative capability whil
 Example table:
 
 | Guide | Description |
-|-------|-------------|
+|      -|            -|
 | Make Your First API Call | Learn how to send your first authenticated request. |
 | Error Handling | Learn how to diagnose and recover from API errors. |
 | Authorization and Scopes | Explore application permissions in greater detail. |
 | Webhooks | Learn how asynchronous notifications are authenticated or verified. |
-
----
 
 ### 33. Final Authentication Checklist
 
@@ -1137,8 +1037,6 @@ Before continuing, verify that your integration can successfully complete each o
 
 A checklist gives the reader a concrete sense of completion and creates a bridge to the next implementation guide.
 
----
-
 ### 34. Summary
 
 Close with a short summary that restates the implementation path and the security model.
@@ -1154,8 +1052,6 @@ The summary should answer:
 Example:
 
 > Authentication establishes the trusted relationship between your application and the platform. Your application exchanges its client credentials for a short-lived access token, then sends that token with each protected API request. By separating long-lived credentials from day-to-day API traffic, the platform reduces credential exposure while providing a familiar standards-based authentication model.
-
----
 
 ## Canonical Examples
 
@@ -1176,8 +1072,6 @@ Examples may include:
 Examples should be realistic, complete, and syntactically valid. Avoid placeholder-heavy examples unless placeholders are necessary to prevent misuse of fake credentials.
 
 Good examples show both the authentication step and a subsequent authenticated API call. A token request without a follow-up request leaves the developer with only half the implementation path.
-
----
 
 ## Example: OAuth Client Credentials Flow
 
@@ -1250,8 +1144,6 @@ Content-Type: application/json
 
 This example set is complete because it shows both sides of authentication: obtaining the token and using the token.
 
----
-
 ## Example: API Key Authentication
 
 If the platform uses API keys instead of bearer tokens, the page should show where the key goes and what not to do.
@@ -1275,8 +1167,6 @@ The page should specify:
 - Whether different keys should be used for different applications.
 
 Avoid vague instructions such as “include your API key with the request.”
-
----
 
 ## Example: Signed Request Authentication
 
@@ -1303,7 +1193,6 @@ Example outline:
 
 Request signing examples must be precise. Developers should not have to infer whitespace, newline, header order, or timestamp format.
 
----
 
 ## Example: Mutual TLS
 
@@ -1319,8 +1208,6 @@ Include:
 - What errors indicate certificate validation failures.
 
 Avoid exposing internal certificate validation infrastructure or private operational procedures.
-
----
 
 ## Common Mistakes
 
@@ -1368,8 +1255,6 @@ Sandbox and production separation should be repeated in credential, token, and t
 
 The authentication page should help the reader complete a real authenticated request. Without that step, the page stops before the developer has actually proven the integration works.
 
----
-
 ## AI Review Considerations
 
 AI-assisted documentation review can help validate authentication documentation against this pattern.
@@ -1412,8 +1297,6 @@ A v2 review should also check whether the page:
 - Includes common mistakes based on support patterns.
 - Includes FAQ entries for repeated implementation questions.
 - Ends with a practical authentication checklist.
-
----
 
 ## Pattern Applied: Atlas Commerce
 
@@ -1564,8 +1447,6 @@ Final checklist
 
 This structure gives developers both the conceptual model and the practical implementation path.
 
----
-
 ## Pattern Checklist
 
 Use this checklist when reviewing authentication documentation.
@@ -1598,14 +1479,12 @@ Use this checklist when reviewing authentication documentation.
 - [ ] Authentication content is not duplicated unnecessarily across product pages.
 - [ ] The page ends with a practical completion checklist or next step.
 
----
-
 ## Recommended Source-to-Page Mapping
 
 Use this table to decide where information belongs.
 
 | Information type | Belongs on authentication capability page? | Notes |
-|------------------|:------------------------------------------:|-------|
+|                  |:                                          :|      -|
 | Platform authentication model | Yes | This is core capability content. |
 | Credential acquisition | Yes | Explain external process or onboarding request. |
 | Token endpoint and token request example | Yes | Required for implementation. |
@@ -1618,8 +1497,6 @@ Use this table to decide where information belongs.
 | Support escalation procedures | Sometimes | Include only if the developer needs them. |
 | Webhook signature verification | Sometimes | Include summary and link to dedicated webhook authentication topic if substantial. |
 | SDK-specific initialization | Sometimes | Include minimal examples or link to SDK pages. |
-
----
 
 ## Page Quality Bar
 
@@ -1642,8 +1519,6 @@ A page following this pattern is ready for review when a developer can answer th
 
 If the page cannot answer these questions, it is probably incomplete.
 
----
-
 ## Future Improvements
 
 Future versions of this pattern may include:
@@ -1662,16 +1537,12 @@ Future versions of this pattern may include:
 - Environment modeling patterns
 - Credential rotation runbook patterns
 
----
-
 ## Summary
 
 Authentication documentation should help developers make a successful authenticated request with confidence.
 
 A strong authentication page explains the model, provides complete examples, describes permissions, addresses lifecycle behavior, and helps readers diagnose failures. It should be authoritative, discoverable, and reusable across the documentation system.
 
-Authentication is not merely a header format or token endpoint.
-
-It is one of the first developer experience moments in an API integration.
+Authentication is not merely a header format or token endpoint. It is one of the first developer experience moments in an API integration.
 
 In v2, the authentication pattern explicitly treats the page as both a capability reference and an onboarding guide. It preserves the original goal of centralizing authentication while adding practical guide elements: estimated time, learning objectives, “at a glance” summaries, flow selection, diagrams, token lifecycle, FAQ, common mistakes, and a final readiness checklist.
