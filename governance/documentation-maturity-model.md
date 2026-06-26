@@ -302,11 +302,11 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Documentation prevents common mistakes and minimizes support requests. |
 | 5 | Documentation becomes the trusted source of truth for developers and internal teams alike. |
 
-#@ Page Quality vs. System Quality
+## Page Quality vs. System Quality
 
 Documentation quality should be evaluated at two levels.
 
-##@ Page Quality
+### Page Quality
 
 Individual pages should be assessed for:
 
