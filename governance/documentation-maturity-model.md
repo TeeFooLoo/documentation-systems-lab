@@ -8,9 +8,7 @@ The Documentation Maturity Model provides a framework for evaluating the evoluti
 
 This model is technology-agnostic and applies equally to API documentation, SDK documentation, internal knowledge bases, developer portals, and AI-assisted documentation systems.
 
----
-
-# Purpose
+## Purpose
 
 The Documentation Maturity Model provides organizations with a common framework for understanding where their documentation program currently stands and what capabilities should be developed next.
 
@@ -24,9 +22,7 @@ It is intended to help documentation leaders answer questions such as:
 - How do we measure progress?
 - How do we compare our current state with industry best practices?
 
----
-
-# Maturity Levels
+## Maturity Levels
 
 The model defines five levels of documentation maturity.
 
@@ -34,9 +30,7 @@ Each level builds upon the capabilities established by previous levels.
 
 Organizations rarely move directly from one level to another. Instead, they gradually develop governance, architecture, tooling, and engineering practices that enable documentation to scale.
 
----
-
-# Level 1 — Documentation Exists
+### Level 1 — Documentation Exists
 
 Documentation exists primarily because it is required.
 
@@ -54,9 +48,7 @@ Characteristics include:
 
 Success at this level is measured by documentation coverage rather than documentation quality.
 
----
-
-# Level 2 — Documentation Is Managed
+### Level 2 — Documentation Is Managed
 
 Documentation becomes an intentional activity rather than an afterthought.
 
@@ -74,9 +66,7 @@ Typical capabilities include:
 
 The focus shifts from creating documentation to maintaining documentation.
 
----
-
-# Level 3 — Documentation Is Architected
+### Level 3 — Documentation Is Architected
 
 Documentation is recognized as a system rather than a collection of pages.
 
@@ -96,9 +86,7 @@ Typical capabilities include:
 
 At this level, architectural decisions become more important than individual writing decisions.
 
----
-
-# Level 4 — Documentation Is Engineered
+### Level 4 — Documentation Is Engineered
 
 Documentation becomes part of the software delivery lifecycle.
 
@@ -118,9 +106,7 @@ Typical capabilities include:
 
 The documentation program begins operating like an engineering discipline.
 
----
-
-# Level 5 — Documentation Is a Strategic Product
+### Level 5 — Documentation Is a Strategic Product
 
 Documentation is treated as a core product capability rather than a supporting artifact.
 
@@ -141,9 +127,7 @@ Typical capabilities include:
 
 At this level, documentation influences product adoption, developer experience, customer success, and engineering efficiency.
 
----
-
-# Capability Matrix
+## Capability Matrix
 
 | Capability | L1 | L2 | L3 | L4 | L5 |
 |------------|:--:|:--:|:--:|:--:|:--:|
@@ -160,9 +144,7 @@ At this level, documentation influences product adoption, developer experience, 
 | Documentation Metrics | | | | | ✓ |
 | Continuous Improvement | | | | | ✓ |
 
----
-
-# Using This Model
+## Using This Model
 
 Organizations should use this model as a roadmap rather than a scorecard.
 
@@ -170,9 +152,7 @@ Different teams may develop capabilities at different rates depending on product
 
 The objective is not to reach Level 5 as quickly as possible. Instead, the goal is to develop the capabilities that best support the organization's documentation strategy while maintaining high-quality developer experiences.
 
----
-
-# Relationship to Documentation Systems Lab
+## Relationship to Documentation Systems Lab
 
 The documents within Documentation Systems Lab collectively describe the capabilities represented by this maturity model.
 
@@ -186,9 +166,7 @@ For example:
 
 Together, these documents represent the building blocks of a mature documentation engineering program.
 
----
-
-# What Level 5 Looks Like
+## What Level 5 Looks Like
 
 Level 5 documentation is not measured by the number of pages published or the volume of content produced.
 
@@ -202,23 +180,13 @@ It is recognized as a strategic product capability that improves developer exper
 
 # Documentation Quality Rubric
 
-**Version:** 1.0  
-**Status:** Draft  
-**Repository:** Documentation Systems Lab
-
----
-
-# Purpose
-
 The Documentation Quality Rubric provides a structured method for evaluating the maturity of documentation.
 
 Unlike a publication checklist, which determines whether documentation is ready to publish, this rubric evaluates **how well** documentation serves its audience. It is intended for documentation architects, technical writers, Developer Experience teams, engineering reviewers, and AI-assisted documentation review systems.
 
 The rubric is designed to produce repeatable, evidence-based evaluations rather than subjective opinions.
 
----
-
-# How to Use This Rubric
+## How to Use This Rubric
 
 Each dimension is evaluated independently using five maturity levels.
 
@@ -232,11 +200,9 @@ Each dimension is evaluated independently using five maturity levels.
 
 A page does not need every category to reach the same level. Reviewers should score each dimension independently and provide recommendations for improvement.
 
----
-
 # Evaluation Dimensions
 
-## 1. Purpose
+### 1. Purpose
 
 | Level | Criteria |
 |------|----------|
@@ -246,9 +212,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Documentation is aligned with user goals and expected outcomes. |
 | 5 | Purpose is consistently reinforced through navigation, structure, and related documentation. |
 
----
-
-## 2. Content Completeness
+### 2. Content Completeness
 
 | Level | Criteria |
 |------|----------|
@@ -258,9 +222,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Answers common implementation and troubleshooting questions. |
 | 5 | Anticipates edge cases, decision points, and follow-up questions without overwhelming the reader. |
 
----
-
-## 3. Workflow Guidance
+### 3. Workflow Guidance
 
 | Level | Criteria |
 |------|----------|
@@ -270,9 +232,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Includes alternate paths, dependencies, and verification steps. |
 | 5 | Integrates multiple capabilities into complete implementation journeys. |
 
----
-
-## 4. Canonical Examples
+### 4. Canonical Examples
 
 | Level | Criteria |
 |------|----------|
@@ -282,9 +242,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Canonical examples covering recommended implementations and common errors. |
 | 5 | Complete examples across workflows, SDKs, CLI, OpenAPI, and related documentation, validated for accuracy. |
 
----
-
-## 5. Technical Accuracy
+### 5. Technical Accuracy
 
 | Level | Criteria |
 |------|----------|
@@ -294,9 +252,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Synchronized with implementation and examples. |
 | 5 | Continuously validated through automated checks and review processes. |
 
----
-
-## 6. Information Architecture
+### 6. Information Architecture
 
 | Level | Criteria |
 |------|----------|
@@ -306,9 +262,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Organized around user goals and capability-based navigation. |
 | 5 | Integrated knowledge system with authoritative sources, reusable content, and minimal duplication. |
 
----
-
-## 7. Discoverability
+### 7. Discoverability
 
 | Level | Criteria |
 |------|----------|
@@ -318,9 +272,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Strong cross-linking and contextual navigation. |
 | 5 | Optimized for navigation, search, metadata, and AI retrieval. |
 
----
-
-## 8. Maintainability
+### 8. Maintainability
 
 | Level | Criteria |
 |------|----------|
@@ -330,9 +282,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Reusable architecture with centralized concepts. |
 | 5 | Governed documentation system supporting scalable maintenance and automation. |
 
----
-
-## 9. AI Readiness
+### 9. AI Readiness
 
 | Level | Criteria |
 |------|----------|
@@ -342,9 +292,7 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Explicit relationships, workflows, and terminology support reliable AI reasoning. |
 | 5 | Structured for AI-assisted authoring, validation, search, and knowledge retrieval. |
 
----
-
-## 10. Developer Experience
+### 10. Developer Experience
 
 | Level | Criteria |
 |------|----------|
@@ -354,13 +302,11 @@ A page does not need every category to reach the same level. Reviewers should sc
 | 4 | Documentation prevents common mistakes and minimizes support requests. |
 | 5 | Documentation becomes the trusted source of truth for developers and internal teams alike. |
 
----
-
-# Page Quality vs. System Quality
+#@ Page Quality vs. System Quality
 
 Documentation quality should be evaluated at two levels.
 
-## Page Quality
+##@ Page Quality
 
 Individual pages should be assessed for:
 
@@ -372,7 +318,7 @@ Individual pages should be assessed for:
 - Style
 - Accessibility
 
-## System Quality
+### System Quality
 
 Documentation systems should additionally be assessed for:
 
@@ -387,9 +333,7 @@ Documentation systems should additionally be assessed for:
 
 Excellent pages cannot compensate for poor system architecture. Likewise, a strong documentation architecture cannot overcome incomplete or inaccurate content.
 
----
-
-# Example Assessment
+## Example Assessment
 
 | Dimension | Score |
 |----------|------:|
@@ -408,9 +352,7 @@ Excellent pages cannot compensate for poor system architecture. Likewise, a stro
 
 The documentation provides a strong conceptual model and workflow guidance but would benefit from additional canonical examples to improve implementation confidence and reduce support burden.
 
----
-
-# Future Evolution
+## Future Evolution
 
 Future versions of this rubric may include:
 
