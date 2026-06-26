@@ -10,8 +10,6 @@ These implementations are intended to answer an important question:
 
 > **What does a well-designed documentation system actually look like?**
 
----
-
 # Purpose
 
 Reference implementations exist to demonstrate the practical application of the Documentation Systems Lab framework.
@@ -28,8 +26,6 @@ They provide complete examples of how to:
 - Create documentation that is maintainable, discoverable, and reusable.
 
 Every document within a reference implementation should demonstrate—not merely describe—the principles documented elsewhere in this repository.
-
----
 
 # Current Reference Implementations
 
@@ -57,8 +53,6 @@ Atlas Commerce includes examples of:
 
 Although the APIs, payloads, and workflows are fictional, they are designed to reflect realistic implementation patterns commonly found in modern developer platforms.
 
----
-
 # Design Philosophy
 
 Reference implementations are not intended to showcase a fictional product.
@@ -75,8 +69,6 @@ Every page should demonstrate one or more concepts described elsewhere in this r
 - Documentation Maturity Model
 
 Readers should be able to move seamlessly between the framework documentation and the reference implementation to understand both the reasoning behind a documentation decision and its practical application.
-
----
 
 # Relationship to the Framework
 
@@ -105,8 +97,6 @@ The framework defines **how** documentation should be designed.
 
 The reference implementation demonstrates **what those design decisions produce**.
 
----
-
 # What Makes a Reference Implementation Different?
 
 A reference implementation is not simply a collection of sample pages.
@@ -126,8 +116,6 @@ Each implementation should demonstrate:
 
 Every documentation decision should be intentional and traceable back to the architectural and governance documents within this repository.
 
----
-
 # Future Reference Implementations
 
 Additional fictional platforms may be added over time to demonstrate different documentation challenges and architectural approaches.
@@ -142,8 +130,6 @@ Potential examples include:
 - Subscription billing platform
 
 Each implementation will focus on demonstrating reusable documentation engineering techniques rather than domain-specific functionality.
-
----
 
 # Guiding Principle
 
