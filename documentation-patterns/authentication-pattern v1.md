@@ -484,8 +484,6 @@ Future versions of this pattern may include:
 - AI validation rules for authentication completeness
 - Security review criteria for developer-facing documentation
 
-   
-
 ## Summary
 
 Authentication documentation should help developers make a successful authenticated request with confidence.
