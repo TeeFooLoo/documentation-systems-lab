@@ -10,9 +10,7 @@ This document defines the content model used throughout Documentation Systems La
 
 Although the examples in this repository are fictional, the principles described here are intended to apply broadly to developer documentation, API documentation, SDK documentation, knowledge bases, and internal engineering documentation.
 
----
-
-# 1. What Is a Content Model?
+## 1. What Is a Content Model?
 
 A content model defines the types of content that exist within a documentation system and the relationships between them.
 
@@ -29,9 +27,7 @@ A content model answers questions such as:
 
 Without a content model, documentation grows organically. Individual pages may still be well written, but the overall documentation system gradually becomes inconsistent, difficult to navigate, and expensive to maintain.
 
----
-
-# 2. Why Content Models Matter
+## 2. Why Content Models Matter
 
 Documentation often scales faster than the processes used to manage it.
 
@@ -52,9 +48,7 @@ Well-designed content models provide several benefits:
 
 Perhaps most importantly, content models shift documentation from page-by-page decisions to system-level design.
 
----
-
-# 3. Documentation as a Knowledge System
+## 3. Documentation as a Knowledge System
 
 Traditional documentation is often viewed as a collection of independent pages.
 
@@ -72,13 +66,11 @@ authors should ask:
 
 This distinction encourages reuse instead of duplication and allows documentation to evolve without creating conflicting sources of truth.
 
----
-
-# 4. Design Principles
+## 4. Design Principles
 
 The content model is built upon several core principles.
 
-## One page, one purpose
+### One page, one purpose
 
 Every page should have a clearly defined objective.
 
@@ -86,9 +78,7 @@ Readers should immediately understand why the page exists and what questions it 
 
 Pages attempting to serve multiple unrelated purposes often become difficult to navigate and difficult to maintain.
 
----
-
-## Shared concepts belong in one place
+### Shared concepts belong in one place
 
 Platform-wide concepts should be documented once.
 
@@ -104,9 +94,7 @@ Examples include:
 
 Product-specific pages should reference these concepts rather than recreating them.
 
----
-
-## Workflows before references
+### Workflows before references
 
 Reference documentation is valuable, but readers usually arrive with a task rather than a schema question.
 
@@ -116,9 +104,7 @@ Reference pages support workflows.
 
 They should not replace them.
 
----
-
-## Documentation answers questions
+### Documentation answers questions
 
 Good documentation anticipates the questions users will ask.
 
@@ -134,15 +120,13 @@ Every significant page should answer questions such as:
 
 Answering these questions consistently reduces uncertainty and decreases reliance on support teams.
 
----
-
-# 5. Standard Page Types
+## 5. Standard Page Types
 
 The Documentation Systems Lab content model defines several reusable page types.
 
 Each page type serves a specific purpose and follows a consistent structure.
 
-## Concept Page
+### Concept Page
 
 Purpose:
 
@@ -158,9 +142,7 @@ Typical sections include:
 - Key concepts
 - Related topics
 
----
-
-## Tutorial
+### Tutorial (Quickstart)
 
 Purpose:
 
@@ -176,9 +158,7 @@ Typical sections include:
 - Expected outcomes
 - Next steps
 
----
-
-## How-To Guide
+### How-To Guide
 
 Purpose:
 
@@ -195,9 +175,7 @@ Typical sections include:
 - Troubleshooting
 - Related topics
 
----
-
-## Reference Page
+### Reference Page
 
 Purpose:
 
@@ -215,9 +193,7 @@ Typical sections include:
 
 Reference pages should avoid lengthy tutorials while still providing sufficient context for correct implementation.
 
----
-
-## Capability Page
+### Capability Page
 
 Purpose:
 
@@ -233,9 +209,7 @@ Examples include:
 
 Capability pages become the authoritative source for cross-cutting concepts.
 
----
-
-## Workflow Page
+### Workflow Page
 
 Purpose:
 
@@ -243,7 +217,7 @@ Explain how multiple concepts interact to accomplish a business objective.
 
 Workflow pages typically connect multiple APIs, concepts, and capabilities into a cohesive implementation journey.
 
-## Documentation Annotations
+### Documentation Annotations
 
 Documentation annotations provide supplemental information that improves understanding without interrupting the primary narrative of the page.
 
@@ -251,7 +225,7 @@ Annotations should be concise, visually distinct, and consistently applied throu
 
 The following annotation types are defined by the Atlas Commerce documentation system.
 
-### Design Note
+#### Design Note
 
 Explains **why** an API, schema, workflow, or architectural decision was made.
 
@@ -269,7 +243,7 @@ Use Design Notes to explain:
 >
 > Atlas Commerce groups workflow metadata separately from business data so that operational concerns can evolve independently of payment schemas.
 
-### Implementation Note
+#### Implementation Note
 
 Provides practical guidance for successfully implementing a feature.
 
@@ -287,7 +261,7 @@ Use Implementation Notes to explain:
 >
 > Store the `paymentId` immediately after creating a payment. Most subsequent payment operations reference this identifier.
 
-### Best Practice
+#### Best Practice
 
 Describes the recommended approach when multiple valid implementation options exist.
 
@@ -305,7 +279,7 @@ Use Best Practices to recommend:
 >
 > Generate a new request identifier for every payment attempt rather than reusing identifiers across retries.
 
-### Security Note
+#### Security Note
 
 Highlights information that affects application security or protection of sensitive data.
 
@@ -324,8 +298,7 @@ Use Security Notes to explain:
 >
 > Never embed Client Secrets in browser applications, mobile applications, or publicly accessible source code repositories.
 
-
-### Sandbox Only
+#### Sandbox Only
 
 Identifies functionality, credentials, endpoints, or data that apply exclusively to non-production environments.
 
@@ -343,9 +316,7 @@ Use Sandbox Only annotations for:
 >
 > The payment card values shown throughout this guide are intended exclusively for the Atlas Commerce Sandbox environment.
 
----
-
-### Production Consideration
+#### Production Consideration
 
 Highlights operational guidance that becomes important when moving from development into production.
 
@@ -364,9 +335,7 @@ Use Production Considerations to explain:
 >
 > Monitor repeated authentication failures and implement automated credential rotation as part of your operational security strategy.
 
----
-
-## Annotation Principles
+### Annotation Principles
 
 Annotations should supplement—not replace—the primary documentation narrative.
 
@@ -380,8 +349,7 @@ Effective annotations should:
 
 Documentation should remain readable even when annotations are ignored, while annotations should provide additional value for readers seeking deeper understanding.
 
----
-# 6. Canonical Examples
+## 6. Canonical Examples
 
 Example payloads are among the most valuable assets in API documentation. While descriptive text explains concepts, working examples demonstrate how those concepts are applied in practice.
 
@@ -421,9 +389,7 @@ Examples are not supplemental documentation.
 
 For many readers, they *are* the documentation.
 
----
-
-# 7. Relationships Between Page Types
+## 7. Relationships Between Page Types
 
 Documentation should behave like a network rather than a hierarchy.
 
@@ -439,9 +405,7 @@ Reference pages rarely link "upward" except through related topics.
 
 This layered structure allows readers to enter the documentation at different levels depending on their experience.
 
----
-
-# 8. Metadata
+## 8. Metadata
 
 Every page should expose metadata beyond its visible content.
 
@@ -460,9 +424,7 @@ Recommended metadata includes:
 
 Structured metadata improves navigation, search, automation, and future AI-assisted retrieval.
 
----
-
-# 9. Reuse Strategy
+## 9. Reuse Strategy
 
 Documentation should reuse information rather than duplicate it.
 
@@ -478,9 +440,7 @@ Reusable content should include:
 
 Duplication should be treated as technical debt.
 
----
-
-# 10. AI and Content Models
+## 10. AI and Content Models
 
 Modern documentation increasingly serves two audiences:
 
@@ -500,9 +460,7 @@ A well-defined content model enables AI systems to:
 
 In this sense, a content model serves not only as guidance for authors but also as a schema that enables documentation automation.
 
----
-
-# 11. Future Evolution
+## 11. Future Evolution
 
 This content model represents the initial architectural framework for Documentation Systems Lab.
 
@@ -519,8 +477,6 @@ Future versions may introduce:
 As documentation tooling evolves, the underlying philosophy remains unchanged:
 
 Documentation should be designed as a scalable knowledge system rather than a collection of independent documents.
-
----
 
 # Conclusion
 
