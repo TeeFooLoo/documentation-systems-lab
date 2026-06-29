@@ -1,12 +1,4 @@
 # Documentation Engineering
-**Status:** Draft  
-**Audience:** Documentation Architects, Developer Experience Teams, Technical Writers, Engineering Leadership  
-**Document Type:** Architecture  
-**Last Updated:** June 2026
-
----
-
-# Executive Summary
 
 Modern software engineering has fundamentally changed.
 
