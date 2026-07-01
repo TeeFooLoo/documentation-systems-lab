@@ -1,99 +1,56 @@
+Here is the complete, simplified guide with both the **Endpoint Reference** and **Standard Settings** built into clean, robust tables designed to render flawlessly in GitHub.
+
+---
+
 # Session Initialization
 
-The transaction lifecycle begins on your backend server by initiating a secure checkout session. During initialization, Atlas Commerce establishes an isolated payment context that pre-configures and drives the frontend elements responsible for capturing sensitive cardholder data safely.
+The checkout process starts on your server by creating a secure checkout session. This setup step tells Atlas Commerce what payment options you want to show and prepares our system to safely handle your customer's card information.
 
-Initialization occurs exactly once per checkout session, prior to the customer interacting with any payment UI inputs.
+You only need to complete this setup once per checkout session, right before the customer sees the payment form.
 
-### Prerequisites
+### Before You Start
 
-Before invoking the initialization handshake, verify your backend integration satisfies the following constraints:
+Make sure your system has the following ready:
 
-* **API Authentication:** Your platform credentials (`store_id`, `terminal_id`) are configured securely environment side.
+* **Account Credentials:** You have your `store_id` and `terminal_id` saved safely on your server.
+* **Server Setup:** Your backend server is able to send requests to our API.
+* **HTML Pages:** Your website's checkout page has empty placeholder boxes (like `<div id="card-element-container"></div>`) ready for us to drop the payment fields into.
 
-
-* **Server Architecture:** Your system is prepared to handle upstream server to server HTTP POST actions.
-
-
-* **DOM Structure:** Target container wrapper hooks (like `#card-element-container`) are present in your client checkout markup layout.
-
-
-
-## The Session Handshake
+## How the Setup Works
 
 ```
 ┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
-│  1. Request Session    │ ───► │ 2. Create Secure Vault │ ───► │  3. Return Client Hook │
+│  1. Send Your Setup    │ ───► │   2. Secure the Session│ ───► │ 3. Get Your Launch Code│
 ├────────────────────────┤      ├────────────────────────┤      ├────────────────────────┤
-│ Backend sends metadata │      │ Atlas locks state data │      │ App obtains token and  │
-│ and component arrays   │      │ and structures routing │      │ dynamic render script  │
+│ Backend sends settings │      │ Atlas locks in rules   │      │ App gets a token and   │
+│ and card form rules    │      │ and saves the session  │      │ a script to load forms │
 └────────────────────────┘      └────────────────────────┘      └────────────────────────┘
 
 ```
 
-The initialization process moves through three structural steps:
+Setting up a session follows three simple steps:
 
-1. **Request Session:** Your backend submits a `POST /v1/checkout/sessions` payload specifying configuration overrides, localized text preferences, and element configurations.
-
-
-2. **Create Secure Vault:** The Atlas engine receives the payload schema contract, aggregates state rules, and provisions a unique backend transaction mapping context.
-
-
-3. **Return Client Hook:** The response returns a short lived `clientToken` and a dynamic `<script>` snippet (`renderScript`) containing custom delivery metadata tailored specifically for that merchant checkout attempt.
-
-
-
----
-Let's nail this table once and for all for GitHub. GitHub Flavored Markdown (GFM) requires a strict structure: cell pipes must align on every single line, there cannot be empty header cells, and any pipe characters *inside* descriptions must be backslash-escaped so GitHub doesn't confuse them with a new column.
-
-The previous failures happened because the inner pipes weren't escaped properly, which completely wrecked the column counts.
-
-Here is the clean, structurally bulletproof GFM table layout. It will render flawlessly on GitHub.
-
----
+1. **Send Your Setup:** Your server sends a `POST` request to `/v1/checkout/sessions` telling us your preferences, language choice, and how you want the payment form to look.
+2. **Secure the Session:** Our system reads your request, confirms the rules, and creates a unique, safe workspace for this specific purchase.
+3. **Get Your Launch Code:** Our system sends back a temporary `clientToken` and a snippet of code (`renderScript`) that your website will use to display the secure payment boxes.
 
 ## Endpoint Reference
 
 ### Create a Checkout Session
 
-`POST [https://api.atlascommerce.com/v1/checkout/sessions](https://api.atlascommerce.com/v1/checkout/sessions)`
+`POST https://api.atlascommerce.com/v1/checkout/sessions`
 
 #### Body Parameters
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `enabled` | boolean | **Yes** | Must be set to `true` to provision secure Element infrastructure for the transaction lifecycle.|
-| `cultureCode` | string | No | Standard locale formatting tag (like `en-US`) determining frontend message translation defaults.|
-| `controls` | array | No | An array of element target configurations mapping specific UI form components into designated frontend HTML DOM wrapper tags.|
+| `enabled` | boolean | **Yes** | Must be set to `true` to turn on the secure payment fields for this checkout. |
+| `cultureCode` | string | No | The language setting (like `en-US`) used for automatic error and status messages. |
+| `controls` | array | No | A list of settings that tells us which payment fields you want and where to place them on your page. |
 
----
+### Request Example
 
-## Default Configuration Fallbacks
-
-To minimize initial boilerplate code overhead, Atlas supports comprehensive component fallbacks. If you submit the baseline contract declaration (`"enabled": true`) while completely omitting the `controls` property block, Atlas generates a standard stacked layout using default target container mappings.
-
-| Override Path | Condition Trigger | Default Execution Behavior |
-| --- | --- | --- |
-| `enabled` | Completely omitted or declared `false` | System remains totally uninitialized. No secure elements render.
-
- |
-| `controls` | Array block omitted entirely | Renders a standard, fully optimized credit card form interface.
-
- |
-| `container` (Credit Card) | Array active, container property omitted | Targets default HTML selector string hook: `#credit-container`.
-
- |
-| `container` (Token View) | Array active, container property omitted | Targets default HTML selector string hook: `#token-container`.
-
- |
-| `fieldGroupingType` | Property absent inside `fieldOptions` | Defaults automatically to independent field context parsing (`"individual"`).
-
- |
- 
-
-
-### Request Payload Example
-
-This request showcases a comprehensive initialization configuring localized parameters, currency tracking layers, and structured field parameters mapping target elements directly into single frame container controls.
+This example shows a standard setup request. It turns on secure credit card fields, sets the language to English, and defines which card details to collect.
 
 ```json
 {
@@ -145,9 +102,9 @@ This request showcases a comprehensive initialization configuring localized para
 
 ```
 
-### Response Payload Example
+### Response Example
 
-Upon schema validation approval, the engine returns the session tokens and isolated execution markers required to handle rendering pipelines.
+When your request succeeds, our system returns the temporary security codes and script text needed to show the payment form on your website.
 
 ```json
 {
@@ -161,18 +118,16 @@ Upon schema validation approval, the engine returns the session tokens and isola
 
 ```
 
-## Frontend Script Injection
+## Adding the Script to Your Website
 
-The response payload yields a literal `renderScript` `<script>` tag element string block. To ensure client side isolation boundaries match strict compliance parameters, **your frontend code must inject this raw string block directly into the Document Object Model (DOM) exactly as provided**.
+The response from your server includes a piece of code called `renderScript`. To keep the payment form safe and secure, **your frontend website code must drop this exact script text directly onto your web page without changing it**.
 
-> ⚠️ **Critical Security Constraint:** Treat the script tag payload as an opaque, unmodifiable asset. Never parse or peel out the `src` attribute string manually, and do not strip or alter the security tags (`integrity`, `crossorigin`, or `referrerpolicy`), as missing headers will drop browser script authorization.
-> 
-> 
+> ⚠️ **Important Security Rule:** Treat this script text as a finished piece. Never change the web address inside it, and do not remove the security tags (like `integrity` or `crossorigin`). If any parts are missing, web browsers will block the script from loading.
 
-### Implementation Example
+### Code Example
 
 ```javascript
-// Server response consumption hook
+// This is the response data sent from your backend server
 const atlasResponse = {
   checkout_session: {
     hostedPaymentFields: {
@@ -181,50 +136,36 @@ const atlasResponse = {
   }
 };
 
-// Create an isolated injection shell element
+// Create a placeholder block to hold the script
 const scriptShell = document.createElement("div");
 scriptShell.innerHTML = atlasResponse.checkout_session.hostedPaymentFields.renderScript;
 
-// Append directly to document body context to trigger immediate runtime initialization
+// Add the script directly to your web page to load the secure fields immediately
 document.body.appendChild(scriptShell.firstChild);
 
 ```
 
-## Default Configuration Fallbacks
+## Standard Settings (Fallbacks)
 
-To minimize initial boilerplate code overhead, Atlas supports comprehensive component fallbacks. If you submit the baseline contract declaration (`"enabled": true`) while completely omitting the `controls` property block, Atlas generates a standard stacked layout using default target container mappings.
+To help you get started quickly with minimal code, Atlas has standard built-in options. If you simply send `"enabled": true` and leave out the custom `controls` list, our system automatically builds a standard form for you.
 
-| Override Path | Condition Trigger | Default Execution Behavior |
+| Settings Path | What Happened | How the System Responds |
 | --- | --- | --- |
-| `enabled` | Completely omitted or declared `false` | System remains totally uninitialized. No secure elements render.
-
- |
-| `controls` | Array block omitted entirely | Renders a standard, fully optimized credit card form interface.
-
- |
-| `container` (Credit Card) | Array active, container property omitted | Targets default HTML selector string hook: `#credit-container`.
-
- |
-| `container` (Token View) | Array active, container property omitted | Targets default HTML selector string hook: `#token-container`.
-
- |
-| `fieldGroupingType` | Property absent inside `fieldOptions` | Defaults automatically to independent field context parsing (`"individual"`).
-
- |
+| `enabled` | Left out completely or set to `false` | The system stays turned off. No payment fields will appear on your page. |
+| `controls` | The list is missing entirely | Renders a standard, clean credit card form automatically. |
+| `container` (Credit Card) | List is active, but a container box name is missing | Looks for a box on your page named `#credit-container`. |
+| `container` (Token View) | List is active, but a container box name is missing | Looks for a box on your page named `#token-container`. |
+| `fieldGroupingType` | Setting is missing inside `fieldOptions` | Places every input field into its own separate box automatically. |
 
 ## Next Integration Steps
 
-Explore subsequent guides to complete your UI implementation workflow:
+Move on to the following guides to finish setting up your payment page:
 
 | Guide | Description |
 | --- | --- |
-| **[UI & Layout Controls](https://www.google.com/search?q=%23)** | Map element configurations to advanced grids and learn layout container nesting overrides.
+| **[UI & Layout Controls](https://www.google.com/search?q=%23)** | Learn how to place your payment fields into grids and adjust form boxes on your page. |
+| **[Field Styling Rules](https://www.google.com/search?q=%23)** | Add custom text hints, change field borders, and control how boxes look when clicked. |
 
- |
-| **[Field Styling Rules](https://www.google.com/search?q=%23)** | Inject dynamic placeholder styles, customize field borders, and control focus behavior states.
+#### Need help?
 
- |
-
-#### Need help during integration?
-
-Reach out to the Developer Experience engineering desk at `dx-support@atlascommerce.com` for help evaluating sandbox context responses.
+Reach out to our developer support team at `dx-support@atlascommerce.com` for assistance with your test environment.
