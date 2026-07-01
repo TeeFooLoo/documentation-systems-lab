@@ -1,271 +1,278 @@
-Here is the complete, fully updated documentation page for **Atlas Element Flow**. All terminology, workflows, diagrams, and JSON payloads have been systematically scrubbed of legacy references and fully synchronized with your updated schema design.
-
-  
+---
+description: Learn how Atlas Hosted Elements are activated, configured,
+  and rendered within your checkout experience.
+title: Session Activation & Configuration
+---
 
 # Session Activation & Configuration
 
-## 1. Core Integration Concepts
+## Overview
 
-Before setting up your code, it helps to understand how these three core pieces work together to orchestrate your checkout page:
+Before Atlas can securely collect payment information, your application
+must create a checkout session. During session activation, your backend
+defines the checkout configuration, requests the Hosted Elements that
+should be rendered, and receives the information required to securely
+initialize the customer-facing payment experience.
 
-* **Elements:** These are the individual, secure UI components (such as the Card Number element, Expiration Date element, or Security Code element) where a customer types their billing details. Instead of being hosted directly on your website, these elements are securely served from an isolated environment inside an invisible wrapper (`iframe`). This keeps raw card data completely off your servers.
+This guide explains the complete activation lifecycle, how the request
+JSON is organized, and how each configuration property influences the
+behavior of Atlas Hosted Elements.
 
+------------------------------------------------------------------------
 
-* **Controls:** A control is a pre-configured *group* of elements bundled together for a specific workflow. For example, instead of forcing you to build an entire credit card form element-by-element, you simply request a `"credit"` control, and Atlas automatically packages and displays the necessary elements for you.
+# Core Integration Concepts
 
+Understanding the relationship between Hosted Elements, Controls,
+Containers, and Checkout Sessions makes the remaining documentation much
+easier to follow.
 
-* **Containers:** A container is an empty structural placeholder (like a standard HTML `<div>`) that you place directly into your website's layout template. During activation, the secure runtime script locates this specific element on your page and injects your requested control—and its underlying elements—right into it.
+## Hosted Elements
 
+Hosted Elements are secure payment inputs rendered inside isolated
+Atlas-hosted iframes. Examples include:
 
+  Hosted Element           Purpose
+  ------------------------ --------------------------
+  `Pan`                    Card Number
+  `ExpDate`                Combined Expiration Date
+  `ExpMonth` / `ExpYear`   Split Expiration Fields
+  `SecurityCode`           CVV / CVC
+  `RoutingNumber`          Bank Routing Number
+  `AccountNumber`          Bank Account Number
 
+Because Hosted Elements execute inside secure iframes, raw payment data
+never becomes accessible to your application.
+
+## Controls
+
+Controls are logical collections of Hosted Elements. Instead of
+requesting each Hosted Element individually, merchants request a Control
+such as `credit`, `giftcard`, or `token`.
+
+## Containers
+
+Containers are HTML placeholders that exist in your page before
+initialization.
+
+``` html
+<div id="credit-container"></div>
 ```
-[ Your Webpage Layout ]
-└── <div id="credit-container">  <   THE CONTAINER (Your empty placeholder)
-    └── [ Secure Iframe ]       <   THE CONTROL   (Injected bundle)
-        ├── Card Number         <   ELEMENT \
-        ├── Expiration Date     <   ELEMENT  |- Secure UI components
-        └── Security Code       <   ELEMENT /
 
-```
+Atlas injects Hosted Elements into these containers during activation.
 
-  
+## Element Options
 
-## 2. The Activation Workflow
+Each Control may include an `elementOptions` object. This object
+controls grouping, validation, masking, placeholders, labels, and other
+rendering behavior.
 
-Session activation is the behind-the-scenes handshake that happens every time a customer reaches your checkout page.
+------------------------------------------------------------------------
 
-Before showing any secure elements, your server talks to Atlas to register your layout choices, choose your security rules, and get a temporary, single-use security key. This ensures the checkout page environment is safely provisioned before the customer ever types a single digit.
+# Activation Workflow
 
-### Architectural Lifecycle
+Setting:
 
-The setup requires a quick three-step handoff between your server, the customer’s browser, and the payment system:
-
-```
-1. [ Your Server ] ─── Request Activation ───> [ Atlas Engine ]
-   Sends merchant credentials, selected controls, and container IDs.
-
-2. [ Your Server ] <─── Return Activation Key ─── [ Atlas Engine ]
-   Generates a single-use script block containing your secure key.
-
-3. [ Customer Browser ] <─── Run Activation Script ─── [ Your Server ]
-   Loads the script into the DOM, which injects the secure elements into your containers.
-
-```
-
-1. **The Request:** When your checkout page loads, your backend server sends a secure server-to-server `POST` request to Atlas. This payload defines what kind of control you want to activate and which placeholder containers on your page should hold them.
-
-
-2. **The Key:** Atlas registers your layout request and sends back a response containing a unique, one-time security script link powered by a temporary `activationKey`.
-
-
-3. **The Display:** Your website's frontend layout runs this script, which automatically targets your empty **containers** and hydrates the secure, isolated elements directly into them.
-
-
-
-  
-
-## 3. Configuration Profiles
-
-### Control Types (`cardType`)
-
-When setting up your session, you use the `controls` array to choose exactly what kind of payment experience to display to your customer. You map each control to its corresponding **container** element via its CSS selector.
-
-| Form Type | What It Does | JSON Property Value
-
- |
-|    |    |    |
-| **Credit Card Form** | Displays secure elements for standard credit and debit cards.
-
- | `"cardType": "credit"` |
-| **Token Update Form** | Displays a specialized configuration to update or refresh a card already saved on file.
-
- | `"cardType": "token"` |
-| **Gift Card Form** | Displays elements specifically formatted for gift card codes and balances.
-
- | `"cardType": "giftcard"` |
-| **Private Label Form** | Displays custom entry elements for store-branded or closed-loop credit cards.
-
- | `"cardType": "private"` |
-| **Loyalty Layout** | Displays an element for entering points cards, rewards profiles, or membership IDs.
-
- | `"cardType": "loyalty"` |
-
-### Element Types (`elementType`)
-
-When customizing your control's internal components, you can select from these specific input types inside your `elements` array configuration:
-
-* **`Pan` (Primary Account Number):** The core card number element. It automatically detects card brands (Visa, Mastercard, Amex, etc.) and runs mathematical validation checks. Supports masking properties (e.g., `maskOnBlur` using dots or asterisks to hide digits).
-
-
-* **`ExpDate` (Expiration Date):** The expiration date element. It can be configured as a single combined element or separated into individual month (`ExpMonth`) and year (`ExpYear`) components. Accepts layout configurations to match your preferred placeholder style (`MM/YY` or `MM/YYYY` formats).
-
-
-* **`SecurityCode` (Card Security Code):** The CVV/CVC security element. It automatically adjusts maximum character lengths (3 or 4 digits) based on the card brand detected in the `Pan` element.
-
-
-* **`RoutingNumber` (ABA Routing Number):** Used for electronic check (ACH) or direct-debit processing forms. Enforces standard 9-digit checking rules.
-
-
-* **`AccountNumber` (Bank Account Number):** The bank account entry element used alongside routing configurations for direct banking check paths.
-
-
-
-  
-
-## 4. Fine-Tuning Element Properties
-
-Every element object inside your layout can include optional properties to fine-tune validation, design rules, and masking behaviors. If omitted, Atlas automatically applies optimized standard fallbacks.
-
-### Grouping Style (`elementGroupingType`)
-
-Determines how elements are structurally packaged inside the container:
-
-* **`individual`:** Each input element gets its own independent secure iframe wrapper. This provides absolute freedom for custom responsive CSS layouts and grid placements.
-
-
-* **`grouped`:** Combines the elements together inside a single, pre-arranged iframe layout box to simplify implementation.
-
-### Label & Placeholder Alignment
-
-* **`controlLabelPosition`:** Choose where text labels reside. Options include `outlineLegend` (floating borders) or `inFieldTopAligned` (top-aligned inside the box bounds).
-
-
-* **`placeHolderType`:** Sets background hint text. Options include `default` (standard format guides like `MM/YY`), `blank` (clean elements), or specialized formatting guides like `cvc` or `message`.
-
-
-
-### Input Masking
-
-* **`maskingType`:** Controls how digits are hidden from view. Use `maskOnBlur` to turn sensitive numbers into symbols the moment a customer clicks out of an element.
-
-
-* **`maskingCharacter`:** Dictates the masking symbol. Choose between `dot` (●) or `asterisk` (*).
-
-
-
-### Error Display Styles
-
-* **`validationMessageDisplayType`:** Controls how immediate typing alerts are shown. Use `feedback` to output clear text alerts below the container, `tooltip` for popups, or `none` if you prefer to build your own custom error framework using client events.
-
-
-
-  
-
-## 5. Step-by-Step Implementation
-
-### Step 1: Your Server Requests Activation
-
-Your backend sends a JSON payload to request the activation session. This is where you declare your required controls, hook them to your placeholder container selectors, and style element rules.
-
-```json
-{
-  "eCommerce": {
-    "elementFlow": {
-      "enabled": true,
-      "controls": [
-        {
-          "cardType": "credit",
-          "container": "#credit-container",
-          "elementOptions": {
-            "elementGroupingType": "individual",
-            "elements": [
-              {
-                "elementType": "Pan",
-                "validationType": "required",
-                "maskingType": "maskOnBlur",
-                "maskingCharacter": "dot",
-                "placeHolderType": "message",
-                "controlLabelPosition": "outlineLegend",
-                "validationMessageDisplayType": "feedback"
-              },
-              {
-                "elementType": "ExpDate",
-                "validationType": "required",
-                "placeHolderType": "default",
-                "controlLabelPosition": "outlineLegend",
-                "validationMessageDisplayType": "feedback"
-              },
-              {
-                "elementType": "SecurityCode",
-                "validationType": "required",
-                "placeHolderType": "cvc",
-                "controlLabelPosition": "outlineLegend",
-                "validationMessageDisplayType": "feedback"
-              }
-            ]
-          }
-        }
-      ]
-    }
-  },
-  "credentials": {
-    "merchantId": "MERCH_99203",
-    "channelId": "CHN_88102"
-  }
+``` json
+"elementFlow": {
+  "enabled": true
 }
-
 ```
 
-### Step 2: Atlas Responds with the Activation Script
+activates Atlas Hosted Elements for the checkout session.
 
-When successful, your server receives a single-use script block from the engine containing your session's unique activation key:
+If omitted or set to `false`, Atlas performs payment processing without
+rendering Hosted Elements.
 
-```json
-{
-  "eCommerce": {
-    "activationKey": "ack_9876543210_alpha_omega",
-    "elementFlow": {
-      "renderScript": "<script src=\"https://hpx.atlascommerce.com/scripts/v1/render.js?activationKey=ack_9876543210_alpha_omega\"></script>"
-    }
-  }
-}
+## Request Breakdown
 
+  -----------------------------------------------------------------------
+  JSON Section                        Purpose
+  ----------------------------------- -----------------------------------
+  `eCommerce.elementFlow`             Enables Hosted Elements and defines
+                                      checkout behavior.
+
+  `controls[]`                        Specifies which Controls Atlas
+                                      should render.
+
+  `elementOptions`                    Customizes Hosted Element behavior.
+
+  `credentials`                       Authenticates the merchant.
+  -----------------------------------------------------------------------
+
+## Lifecycle
+
+1.  Your backend sends a Session Activation request.
+2.  Atlas validates credentials and creates a Checkout Session.
+3.  Atlas returns:
+    -   `activationKey`
+    -   `renderScript`
+4.  Your frontend executes `renderScript`.
+5.  Atlas renders Hosted Elements into the configured Containers.
+6.  Customers enter payment information.
+7.  Atlas emits lifecycle events such as `onPaymentReady`.
+
+> **Important**
+>
+> Always execute the returned `renderScript` exactly as received. Do not
+> construct the URL manually or extract the activation key yourself.
+
+------------------------------------------------------------------------
+
+# Configuration Reference
+
+## Controls (`cardType`)
+
+  Value        Description
+  ------------ ------------------------------
+  `credit`     Credit and debit card form
+  `token`      Update stored payment method
+  `giftcard`   Gift card entry
+  `private`    Private-label cards
+  `loyalty`    Loyalty identifiers
+
+## Validation (`validationType`)
+
+Determines whether a Hosted Element must contain valid data before
+checkout may proceed.
+
+Supported values:
+
+-   `required`
+-   `optional`
+-   `optionalExplicit`
+
+## Grouping (`elementGroupingType`)
+
+  -----------------------------------------------------------------------
+  Value                               Description
+  ----------------------------------- -----------------------------------
+  `individual`                        Each Hosted Element renders inside
+                                      its own iframe. Used by the sample
+                                      configuration.
+
+  `grouped`                           Atlas groups multiple Hosted
+                                      Elements into a single iframe.
+  -----------------------------------------------------------------------
+
+## Labels
+
+`controlLabelPosition` controls where labels appear.
+
+## Placeholders
+
+`placeHolderType` controls placeholder text.
+
+## Masking
+
+`maskingType` controls when values are masked.
+
+`maskingCharacter` controls which masking character is used.
+
+## Validation Feedback
+
+`validationMessageDisplayType` controls how validation errors are
+displayed.
+
+------------------------------------------------------------------------
+
+# Merchant Credentials
+
+  Property       Description
+  -------------- ------------------------------------------
+  `merchantId`   Merchant account identifier.
+  `channelId`    Checkout channel or integration profile.
+
+------------------------------------------------------------------------
+
+# Walking Through the Sample Request
+
+The activation request is organized into four logical layers.
+
+``` text
+eCommerce
+└── elementFlow
+    ├── enabled
+    ├── controls[]
+    │   ├── cardType
+    │   ├── container
+    │   └── elementOptions
+    │       ├── elementGroupingType
+    │       └── elements[]
+    │           ├── elementType
+    │           ├── validationType
+    │           ├── maskingType
+    │           ├── maskingCharacter
+    │           ├── placeHolderType
+    │           ├── controlLabelPosition
+    │           └── validationMessageDisplayType
+└── credentials
 ```
 
-> ### ⚠️ Critical Integration Rules
-> 
-> 
-> * **Do Not Alter the Script:** Treat the returned `renderScript` string as completely unchangeable. Do not try to extract pieces of it or pull out the key manually; injecting the raw script exactly as given is required for security integrity checks to pass.
-> 
-> 
-> * **One-Time Use Only:** An activation key is only good for a single checkout attempt. If a transaction fails or is declined by the bank, your server must request a brand-new activation payload before the customer tries again.
-> 
-> 
-> 
-> 
+The sample configuration requests a **Credit Card Control** that renders
+three Hosted Elements (`Pan`, `ExpDate`, and `SecurityCode`) inside
+`#credit-container`.
 
-### Step 3: Your Frontend Displays the Elements
+Each Hosted Element:
 
-First, create an empty HTML **container** placeholder on your checkout page matching the exact CSS selector ID string you provided in Step 1:
+-   is required,
+-   displays outline labels,
+-   provides inline validation,
+-   uses appropriate placeholder behavior,
+-   and applies masking where appropriate.
 
-```html
-<form id="checkout-form">
-  <!-- THE CONTAINER: Secure elements will be injected directly inside here -->
-  <div id="credit-container"></div>
+------------------------------------------------------------------------
 
-  <button type="submit" id="submit-btn" disabled>Pay Now</button>
-</form>
+# Rendering the Checkout
 
+Create the required HTML container.
+
+``` html
+<div id="credit-container"></div>
 ```
 
-Next, use JavaScript to take the `renderScript` string provided by your server and append it to your document body. This instantly runs the script, completes token provisioning, and loads the secure elements into your placeholder layout:
+Execute the returned `renderScript`.
 
-```javascript
-function loadPaymentForm(apiResponse) {
-  const scriptMarkup = apiResponse.eCommerce.elementFlow.renderScript;
-  
-  // Create a temporary staging element
-  const wrapper = document.createElement("div");
-  wrapper.innerHTML = scriptMarkup;
-  
-  // Append to document body to run the activation loader
-  document.body.appendChild(wrapper.firstChild);
-}
+Atlas locates every configured Container and injects the requested
+Hosted Elements.
 
-```
+------------------------------------------------------------------------
 
-## 6. Real-Time Element Validation
+# Real-Time Validation
 
-The script continuously monitors typing inputs inside your containers in real time. It checks formatting rules, valid date configurations, and card-brand numbering formulas before allowing checkout forms to submit.
+Atlas validates Hosted Elements continuously while customers type.
 
-The runtime library broadcasts a green-light lifecycle event called `onPaymentReady` the exact moment all element parameters are completely and accurately filled out. It is a recommended practice to keep your checkout "Pay Now" button locked (`disabled`) until this event fires, ensuring customers don't submit empty or broken entries.
+When all required Hosted Elements contain valid values, Atlas emits
+`onPaymentReady`.
+
+A common implementation pattern is to disable the checkout button until
+`onPaymentReady` is received.
+
+------------------------------------------------------------------------
+
+# Best Practices
+
+> **Tip**
+>
+> Start with a single `credit` Control using default behavior before
+> introducing custom layouts.
+
+> **Note**
+>
+> Hosted Elements form a security boundary. Never attempt to inspect
+> iframe contents or intercept sensitive payment values.
+
+> **Warning**
+>
+> Activation keys are single-use. Always request a new Checkout Session
+> after a failed or abandoned checkout.
+
+------------------------------------------------------------------------
+
+# Next Steps
+
+-   Initialize a Checkout Session
+-   Controls and Rendering
+-   Hosted Element Properties
+-   Client Events
+-   3D Secure
+-   Error Handling
