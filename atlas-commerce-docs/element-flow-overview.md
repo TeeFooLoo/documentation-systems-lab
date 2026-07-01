@@ -6,7 +6,7 @@ Instead of collecting cardholder data within your own application, Atlas renders
 
 Whether you're building a simple payment page or a highly customized checkout, Atlas Element Flow provides a secure, API-driven framework for rendering payment Elements, validating customer input, performing optional authentication, and submitting transactions.
 
----
+
 
 # Why Use Atlas Element Flow?
 
@@ -22,7 +22,7 @@ Your application remains responsible for the customer experience, while the Atla
 | **API-Driven Configuration** | Configure Elements, validation, layouts, and optional services during activation. |
 | **Built-In Security** | Supports 3D Secure (3DS), Strong Customer Authentication (SCA), fraud services, and secure tokenization. |
 
----
+
 
 # Global Coverage & Channels
 
@@ -34,54 +34,38 @@ Atlas Element Flow is designed for merchants operating across multiple regions a
 | **Multi-Currency Support** | Supports localized payment experiences and international payment processing. |
 | **Responsive Checkout** | Compatible with desktop, mobile web, tablet, and responsive checkout experiences. |
 
----
+
 
 # Integration Workflow
 
 Every checkout follows the same three-stage lifecycle.
 
 ```text
-                Atlas Element Flow Lifecycle
-
-┌────────────────────┐
-│ 1. Activation      │
-└─────────┬──────────┘
-          │
-          │ Merchant backend sends an activation request
-          ▼
-      Atlas Platform
-          │
-          │ Returns:
-          │ • activationKey
-          │ • renderScript
-          ▼
-
-┌────────────────────┐
-│ 2. Render          │
-└─────────┬──────────┘
-          │
-          │ Browser executes renderScript
-          │
-          ▼
-     Secure Elements
-     rendered into
-     merchant containers
-
-┌────────────────────┐
-│ 3. Pay             │
-└─────────┬──────────┘
-          │
-          │ Customer enters payment information
-          │
-          │ Atlas validates Elements
-          │
-          │ onPaymentReady
-          ▼
-     Merchant submits
-     payment request
+Merchant Backend          Atlas Platform           Customer Browser            Elements
+       |                        |                         |                      |
+       |-- Activation Request ->|                         |                      |
+       |                        |                         |                      |
+       |<- activationKey -------|                         |                      |
+       |<- renderScript --------|                         |                      |
+       |                        |                         |                      |
+       |---------------------- Checkout Page ----------->|                      |
+       |                        |                         |                      |
+       |                        |<---- Execute Script -------------------------->|
+       |                        |                         |                      |
+       |                        |<------ Render Elements ------------------------|
+       |                        |                         |                      |
+       |                        |<----- Customer Input --------------------------|
+       |                        |<----- Secure Card Data ------------------------|
+       |                        |                         |                      |
+       |                        |------ onPaymentReady ------------------------->|
+       |                        |                         |                      |
+       |-- Payment Request ---->|                         |                      |
+       |                        |                         |                      |
+       |<- Payment Response ----|                         |                      |
+       |                        |                         |                      |
+       |-------------------- Display Result ------------>|                      |
 ```
 
----
 
 ## Phase 1 — Activation
 
@@ -96,9 +80,9 @@ During activation, Atlas:
 - Returns an `activationKey`.
 - Returns the `renderScript` required by the frontend.
 
-For implementation details, continue to **Session Activation & Configuration**.
+For implementation details, continue to **Activation**.
 
----
+
 
 ## Phase 2 — Render
 
@@ -112,7 +96,7 @@ Because Elements execute inside isolated iframes:
 - Atlas controls validation and formatting.
 - Sensitive payment information remains isolated from merchant systems.
 
----
+
 
 ## Phase 3 — Pay
 
@@ -126,7 +110,7 @@ After the customer completes the checkout form:
 
 This separation allows merchants to maintain complete control over the checkout experience while Atlas manages payment security.
 
----
+
 
 # Documentation Guide
 
@@ -139,7 +123,7 @@ The Atlas Element Flow documentation follows the same lifecycle used during ever
 | **Optional Features** | Extend your checkout experience with localization, Dynamic Currency Conversion (DCC), fraud services, digital wallets, and other optional capabilities. |
 | **3D Secure (3DS)** | Configure browser-based cardholder authentication, understand frictionless and challenge flows, and integrate 3DS into the payment lifecycle. |
 
----
+
 
 # Security Model
 
@@ -147,18 +131,18 @@ Atlas Element Flow uses a secure iframe architecture to isolate payment data fro
 
 Key characteristics include:
 
-- Payment information is captured only inside Atlas-hosted Elements.
+- Payment information is captured only inside Atlas-hosted elements.
 - Raw cardholder data is never exposed to the merchant application.
-- Validation occurs within the secure Element runtime.
-- Communication between Elements and your application occurs through a controlled event model.
+- Validation occurs within the secure element runtime.
+- Communication between elements and your application occurs through a controlled event model.
 - Merchants receive only non-sensitive status information required to manage the checkout experience.
 
 This architecture significantly reduces PCI DSS scope while maintaining a flexible, fully customizable checkout experience.
 
----
+
 
 # Next Steps
 
-If you're integrating Atlas Element Flow for the first time, continue with **Session Activation & Configuration**.
+If you're integrating Atlas Element Flow for the first time, continue with **Activation**.
 
-The next guide explains how to create an activation request, configure Controls and Elements, receive an activation key, and render secure payment Elements within your checkout page.
+The next guide explains how to create an activation request, configure controls and elements, receive an activation key, and render secure payment Elements within your checkout page.
