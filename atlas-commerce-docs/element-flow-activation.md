@@ -1,4 +1,4 @@
-# Session Activation & Configuration
+# Session Activation
 
 
 ## 1. Core Integration Concepts
