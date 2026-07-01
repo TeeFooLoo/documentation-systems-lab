@@ -34,25 +34,21 @@ Before showing any secure elements, your server talks to Atlas to register your 
 
 The setup requires a quick three-step handoff between your server, the customer’s browser, and the payment system:
 
-sequenceDiagram
-    autonumber
-    participant Server as Your Server
-    participant Atlas as Atlas Engine
-    participant Browser as Customer's Browser
+```
+1. [ Your Server ] ─── Request Activation ───> [ Atlas Engine ]
+   Sends merchant credentials, selected controls, and container IDs.
 
-    Server->>Atlas: POST /activation (Payload configurations & containers)
-    Atlas-->>Server: Return renderScript & activationKey
-    Server->>Browser: Inject script block into checkout page DOM
-    Browser->>Atlas: Hydrate elements inside target containers
+2. [ Your Server ] <─── Return Activation Key ─── [ Atlas Engine ]
+   Generates a single-use script block containing your secure key.
 
+3. [ Customer Browser ] <─── Run Activation Script ─── [ Your Server ]
+   Loads the script into the DOM, which injects the secure elements into your containers.
 
-1. **The Request:** When your checkout page loads, your backend server sends a secure server-to-server `POST` request to Atlas. This payload defines what kind of control you want to activate and which placeholder elements on your page should hold them.
+```
 
-
-2. **The Key:** Atlas registers your layout request and sends back a response containing a unique, one-time security script link powered by a temporary `clientPaymentKey`.
-
-
-3. **The Display:** Your website's frontend layout runs this script, which automatically targets your empty **containers** and hydrates the secure, isolated elements directly into them.
+1. **The Request:** When your checkout page loads, your backend server sends a secure server-to-server `POST` request to Atlas. This payload defines what kind of control you want to activate and which placeholder containers on your page should hold them.
+2. **The Key:** Atlas registers your layout request and sends back a response containing a unique, one-time security script link powered by a temporary `activationKey`.
+3. **The Display:** Your website's frontend layout runs this script, which automatically targets your empty containers and hydrates the secure, isolated elements directly into them.
 
 
 ## 3. Configuration Profiles
