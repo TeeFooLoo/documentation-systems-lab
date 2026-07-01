@@ -1,7 +1,3 @@
-Here is the updated **Overview** page. The tech jargon has been dialed back into clear, simple language, and a new section has been added to highlight our supported markets (including the US, UK, and EU), channels, and built-in features like 3D Secure (3DS).
-
----
-
 # Atlas Element Flow Overview
 
 Atlas Element Flow lets you add secure payment boxes directly to your website's checkout page. While you retain complete control over how your checkout looks and feels, our secure platform handles all the sensitive card data in the background.
