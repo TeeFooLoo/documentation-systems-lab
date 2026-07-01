@@ -280,8 +280,6 @@ function loadPaymentForm(apiResponse) {
 
 ```
 
----
-
 ## 6. Real-Time Element Validation
 
 The script continuously monitors typing inputs inside your containers in real time. It checks formatting rules, valid date configurations, and card-brand numbering formulas before allowing checkout forms to submit.
