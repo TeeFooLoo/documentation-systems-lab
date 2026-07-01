@@ -42,24 +42,12 @@ The initialization process moves through three structural steps:
 
 
 
-Ah, looking closely at how the table is displaying, the markdown parser is choking because there are no blank lines around the table blocks. Markdown processors are notorious for failing to parse a grid if the table syntax is running right against headers or raw prose text.
-
-Let's fix that by adding explicit block line breaks above and below the tables to force the markdown parser to compile them properly.
-
-Here is the updated **Endpoint Reference** and **Default Configuration Fallbacks** text blocks with isolated formatting:
-
 ---
-Looking at `image_094d7c.png`, I see exactly why it's still breaking. The issue isn't white space around the block—it's that the double leading pipes (`||`) are still corrupting rows 2 and 3. In Markdown table syntax, rows must start with a *single* vertical pipe (`|`), not a double pipe (`||`). When a markdown parser sees `||`, it completely drops out of table layout mode and drops back into raw text.
+Let's nail this table once and for all for GitHub. GitHub Flavored Markdown (GFM) requires a strict structure: cell pipes must align on every single line, there cannot be empty header cells, and any pipe characters *inside* descriptions must be backslash-escaped so GitHub doesn't confuse them with a new column.
 
-Let's clean that syntax constraint up completely. Here are the fully corrected raw blocks with single leading pipes.
+The previous failures happened because the inner pipes weren't escaped properly, which completely wrecked the column counts.
 
----
-
-Ah, GitHub Markdown! That explains it perfectly. GitHub uses its own specific flavor of Markdown (GFM), and its rendering engine can sometimes get incredibly stubborn if there is a tiny formatting mismatch or if it tries to render inside certain nested preview tools.
-
-Since you are writing documentation directly for a GitHub repo (or a tool like GitHub Pages/Wiki), let's pivot away from standard lists and build a high-end layout using **HTML `<details>` blocks** and **bold description text**.
-
-This gives a beautiful, clean presentation that is native to GitHub, completely bulletproof against rendering bugs, and reads like premium documentation.
+Here is the clean, structurally bulletproof GFM table layout. It will render flawlessly on GitHub.
 
 ---
 
@@ -69,73 +57,20 @@ This gives a beautiful, clean presentation that is native to GitHub, completely 
 
 `POST [https://api.atlascommerce.com/v1/checkout/sessions](https://api.atlascommerce.com/v1/checkout/sessions)`
 
-**Body Parameters**
+#### Body Parameters
 
-**enabled** | *boolean* | **Required**
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `enabled` | boolean | **Yes** | Must be set to `true` to provision secure Element infrastructure for the transaction lifecycle.
 
+ |
+| `cultureCode` | string | No | Standard locale formatting tag (like `en-US`) determining frontend message translation defaults.
 
+ |
+| `controls` | array | No | An array of element target configurations mapping specific UI form components into designated frontend HTML DOM wrapper tags.
 
+ |
 
-Must be set to `true` to provision secure Element infrastructure for the transaction lifecycle.
-
-**cultureCode** | *string* | *Optional*
-
-
-
-
-Standard locale formatting tag (like `en-US`) determining frontend message translation defaults.
-
-**controls** | *array* | *Optional*
-
-
-
-
-An array of element target configurations mapping specific UI form components into designated frontend HTML DOM wrapper tags.
-
----
-
-## Default Configuration Fallbacks
-
-To minimize initial boilerplate code overhead, Atlas supports comprehensive component fallbacks. If you submit the baseline contract declaration (`"enabled": true`) while completely omitting the `controls` property block, Atlas generates a standard stacked layout using default target container mappings.
-
-**Initialization Trigger**
-
-
-
-
-When `enabled` is completely omitted or declared `false`, the system remains totally uninitialized and no secure elements render.
-
-**Controls Array Omission**
-
-
-
-
-When the `controls` array block is omitted entirely, a standard, fully optimized credit card form interface renders.
-
-**Credit Card Container Fallback**
-
-
-
-
-If a credit control is provided without an explicit container property, it targets the default HTML selector string hook `#credit-container`.
-
-**Token View Container Fallback**
-
-
-
-
-If a token control is provided without an explicit container property, it targets the default HTML selector string hook `#token-container`.
-
-**Field Grouping Default**
-
-
-
-
-If the `fieldGroupingType` property is absent inside `fieldOptions`, the system defaults automatically to independent field context parsing (`"individual"`).
-
----
-
-Because this relies on simple `<br>` and bold text instead of markdown grid structures, it will render exactly like this in your GitHub repository without breaking. Should we apply this same native style to the rest of the file layout?
 ---
 
 ## Default Configuration Fallbacks
@@ -159,7 +94,8 @@ To minimize initial boilerplate code overhead, Atlas supports comprehensive comp
 | `fieldGroupingType` | Property absent inside `fieldOptions` | Defaults automatically to independent field context parsing (`"individual"`).
 
  |
----
+ 
+
 
 ### Request Payload Example
 
