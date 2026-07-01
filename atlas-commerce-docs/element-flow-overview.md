@@ -119,8 +119,8 @@ The Atlas Element Flow documentation follows the same lifecycle used during ever
 | Guide | Description |
 |-------|-------------|
 | **Activation** | Create an activation request, configure Controls and Elements, receive an activation key, and initialize the checkout experience. |
-| **Pay** | Learn how Atlas validates customer input, emits the `onPaymentDataCollected` event, and submits payment requests for authorization and processing. |
 | **Render** | Learn how to build the checkout page, create HTML Containers, load the Atlas `renderScript`, render secure Elements, configure your Pay button, and implement frontend best practices for a responsive checkout experience. |
+| **Pay** | Learn how Atlas validates customer input, emits the `onPaymentDataCollected` event, and submits payment requests for authorization and processing. |
 | **Optional Features** | Extend your checkout experience with localization, Dynamic Currency Conversion (DCC), fraud services, digital wallets, and other optional capabilities. |
 | **3D Secure (3DS)** | Configure browser-based cardholder authentication, understand frictionless and challenge flows, and integrate 3DS into the payment lifecycle. |
 
