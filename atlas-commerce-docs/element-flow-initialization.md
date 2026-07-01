@@ -1,3 +1,7 @@
+Here is the complete, fully updated documentation page for **Atlas Element Flow**. All terminology, workflows, diagrams, and JSON payloads have been systematically scrubbed of legacy references and fully synchronized with your updated schema design.
+
+  
+
 # Session Activation & Configuration
 
 ## 1. Core Integration Concepts
@@ -16,13 +20,15 @@ Before setting up your code, it helps to understand how these three core pieces 
 
 ```
 [ Your Webpage Layout ]
-└── <div id="credit-container">  <--- THE CONTAINER (Your empty placeholder)
-    └── [ Secure Iframe ]       <--- THE CONTROL   (Injected bundle)
-        ├── Card Number         <--- ELEMENT \
-        ├── Expiration Date     <--- ELEMENT  |- Secure UI components
-        └── Security Code       <--- ELEMENT /
+└── <div id="credit-container">  <   THE CONTAINER (Your empty placeholder)
+    └── [ Secure Iframe ]       <   THE CONTROL   (Injected bundle)
+        ├── Card Number         <   ELEMENT \
+        ├── Expiration Date     <   ELEMENT  |- Secure UI components
+        └── Security Code       <   ELEMENT /
 
 ```
+
+  
 
 ## 2. The Activation Workflow
 
@@ -47,9 +53,16 @@ The setup requires a quick three-step handoff between your server, the customer�
 ```
 
 1. **The Request:** When your checkout page loads, your backend server sends a secure server-to-server `POST` request to Atlas. This payload defines what kind of control you want to activate and which placeholder containers on your page should hold them.
-2. **The Key:** Atlas registers your layout request and sends back a response containing a unique, one-time security script link powered by a temporary `activationKey`.
-3. **The Display:** Your website's frontend layout runs this script, which automatically targets your empty containers and hydrates the secure, isolated elements directly into them.
 
+
+2. **The Key:** Atlas registers your layout request and sends back a response containing a unique, one-time security script link powered by a temporary `activationKey`.
+
+
+3. **The Display:** Your website's frontend layout runs this script, which automatically targets your empty **containers** and hydrates the secure, isolated elements directly into them.
+
+
+
+  
 
 ## 3. Configuration Profiles
 
@@ -57,33 +70,53 @@ The setup requires a quick three-step handoff between your server, the customer�
 
 When setting up your session, you use the `controls` array to choose exactly what kind of payment experience to display to your customer. You map each control to its corresponding **container** element via its CSS selector.
 
-| Form Type | What It Does | JSON Property Value|
-| --- | --- | --- |
-| **Credit Card Form** | Displays secure elements for standard credit and debit cards.| `"cardType": "credit"` |
-| **Token Update Form** | Displays a specialized configuration to update or refresh a card already saved on file.| `"cardType": "token"` |
-| **Gift Card Form** | Displays elements specifically formatted for gift card codes and balances.| `"cardType": "giftcard"` |
-| **Private Label Form** | Displays custom entry elements for store-branded or closed-loop credit cards.| `"cardType": "private"` |
-| **Loyalty Layout** | Displays an element for entering points cards, rewards profiles, or membership IDs.| `"cardType": "loyalty"` |
+| Form Type | What It Does | JSON Property Value
 
-### Element Types (`fieldType`)
+ |
+|    |    |    |
+| **Credit Card Form** | Displays secure elements for standard credit and debit cards.
 
-When customizing your control's internal components, you can select from these specific input types inside your `fields` array configuration:
+ | `"cardType": "credit"` |
+| **Token Update Form** | Displays a specialized configuration to update or refresh a card already saved on file.
+
+ | `"cardType": "token"` |
+| **Gift Card Form** | Displays elements specifically formatted for gift card codes and balances.
+
+ | `"cardType": "giftcard"` |
+| **Private Label Form** | Displays custom entry elements for store-branded or closed-loop credit cards.
+
+ | `"cardType": "private"` |
+| **Loyalty Layout** | Displays an element for entering points cards, rewards profiles, or membership IDs.
+
+ | `"cardType": "loyalty"` |
+
+### Element Types (`elementType`)
+
+When customizing your control's internal components, you can select from these specific input types inside your `elements` array configuration:
 
 * **`Pan` (Primary Account Number):** The core card number element. It automatically detects card brands (Visa, Mastercard, Amex, etc.) and runs mathematical validation checks. Supports masking properties (e.g., `maskOnBlur` using dots or asterisks to hide digits).
 
+
 * **`ExpDate` (Expiration Date):** The expiration date element. It can be configured as a single combined element or separated into individual month (`ExpMonth`) and year (`ExpYear`) components. Accepts layout configurations to match your preferred placeholder style (`MM/YY` or `MM/YYYY` formats).
+
 
 * **`SecurityCode` (Card Security Code):** The CVV/CVC security element. It automatically adjusts maximum character lengths (3 or 4 digits) based on the card brand detected in the `Pan` element.
 
+
 * **`RoutingNumber` (ABA Routing Number):** Used for electronic check (ACH) or direct-debit processing forms. Enforces standard 9-digit checking rules.
 
+
 * **`AccountNumber` (Bank Account Number):** The bank account entry element used alongside routing configurations for direct banking check paths.
+
+
+
+  
 
 ## 4. Fine-Tuning Element Properties
 
 Every element object inside your layout can include optional properties to fine-tune validation, design rules, and masking behaviors. If omitted, Atlas automatically applies optimized standard fallbacks.
 
-### Grouping Style (`fieldGroupingType`)
+### Grouping Style (`elementGroupingType`)
 
 Determines how elements are structurally packaged inside the container:
 
@@ -116,7 +149,7 @@ Determines how elements are structurally packaged inside the container:
 
 
 
----
+  
 
 ## 5. Step-by-Step Implementation
 
@@ -170,11 +203,12 @@ Your backend sends a JSON payload to request the activation session. This is whe
     "channelId": "CHN_88102"
   }
 }
+
 ```
 
 ### Step 2: Atlas Responds with the Activation Script
 
-When successful, your server receives a single-use script block from the engine containing your session's signature key:
+When successful, your server receives a single-use script block from the engine containing your session's unique activation key:
 
 ```json
 {
@@ -194,7 +228,7 @@ When successful, your server receives a single-use script block from the engine 
 > * **Do Not Alter the Script:** Treat the returned `renderScript` string as completely unchangeable. Do not try to extract pieces of it or pull out the key manually; injecting the raw script exactly as given is required for security integrity checks to pass.
 > 
 > 
-> * **One-Time Use Only:** A session key is only good for a single checkout attempt. If a transaction fails or is declined by the bank, your server must request a brand-new activation payload before the customer tries again.
+> * **One-Time Use Only:** An activation key is only good for a single checkout attempt. If a transaction fails or is declined by the bank, your server must request a brand-new activation payload before the customer tries again.
 > 
 > 
 > 
@@ -218,7 +252,7 @@ Next, use JavaScript to take the `renderScript` string provided by your server a
 
 ```javascript
 function loadPaymentForm(apiResponse) {
-  const scriptMarkup = apiResponse.eCommerce.hostedPaymentFields.renderScript;
+  const scriptMarkup = apiResponse.eCommerce.elementFlow.renderScript;
   
   // Create a temporary staging element
   const wrapper = document.createElement("div");
@@ -229,8 +263,6 @@ function loadPaymentForm(apiResponse) {
 }
 
 ```
-
----
 
 ## 6. Real-Time Element Validation
 
