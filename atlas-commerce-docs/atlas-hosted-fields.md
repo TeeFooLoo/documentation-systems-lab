@@ -48,21 +48,11 @@ Explore the individual implementation guides to build, style, and launch your ch
 
 | Guide | Description |
 | --- | --- |
-| **[Session Initialization](https://www.google.com/search?q=%23)** | Learn how to request an upstream checkout token from your server and customize the session scope.
-
- |
-| **[UI & Layout Controls](https://www.google.com/search?q=%23)** | Explore responsive layout approaches, grid mapping, and styling your secure fields.
-
- |
-| **[Client-Side Event Handling](https://www.google.com/search?q=%23)** | Hook into non-sensitive state updates, manage custom masks, and capture the validation loop.
-
- |
-| **[Advanced Features & 3DS](https://www.google.com/search?q=%23)** | Implement dynamic currency features, localized language engines, and native 3D Secure challenge workflows.
-
- |
-| **[Error Framework Reference](https://www.google.com/search?q=%23)** | Debug schema exceptions, layout mapping drops, and backend processing rejections.
-
- |
+| **[Session Initialization](https://www.google.com/search?q=%23)** | Learn how to request an upstream checkout token from your server and customize the session scope[cite: 1]. |
+| **[UI & Layout Controls](https://www.google.com/search?q=%23)** | Explore responsive layout approaches, grid mapping, and styling your secure fields[cite: 1]. |
+| **[Client-Side Event Handling](https://www.google.com/search?q=%23)** | Hook into non-sensitive state updates, manage custom masks, and capture the validation loop[cite: 1]. |
+| **[Advanced Features & 3DS](https://www.google.com/search?q=%23)** | Implement dynamic currency features, localized language engines, and native 3D Secure challenge workflows[cite: 1]. |
+| **[Error Framework Reference](https://www.google.com/search?q=%23)** | Debug schema exceptions, layout mapping drops, and backend processing rejections[cite: 1]. |
 
 #### Need help during integration?
 
