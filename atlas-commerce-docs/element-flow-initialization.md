@@ -145,9 +145,6 @@ The `validationType` property determines whether a Element must contain a valid 
 * **`validationMessageDisplayType`:** Controls how immediate typing alerts are shown. Use `feedback` to output clear text alerts below the container, `tooltip` for popups, or `none` if you prefer to build your own custom error framework using client events.
 
 
-
----
-
 ## 5. Step-by-Step Implementation
 
 ## Merchant Credentials
@@ -159,7 +156,6 @@ The activation request authenticates your integration using the `credentials` ob
 | `merchantId` | Identifies the merchant account. |
 | `channelId` | Identifies the channel used for this activation. |
 
----
 
 ### Step 1: Your Server Requests Activation
 
