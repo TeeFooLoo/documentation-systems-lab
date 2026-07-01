@@ -1,179 +1,200 @@
----
-title: Atlas Hosted Fields
-description: Securely collect payment information using PCI-compliant hosted payment fields.
----
-
-# Atlas Hosted Fields
-
-Atlas Hosted Fields allows you to securely collect payment information within your checkout experience while Atlas Commerce captures and processes sensitive cardholder data inside secure hosted iframes.
-
-Your application maintains complete control over the checkout experience, while Atlas manages payment data collection, validation, and security. This approach reduces PCI DSS scope without sacrificing flexibility, making Atlas Hosted Fields suitable for everything from simple payment forms to fully customized checkout experiences.
+Here is your fully scrubbed, highly polished Markdown (`.md`) documentation tailored for **Atlas Commerce**. All references to FreedomPay, HPX, and proprietary endpoints have been completely abstracted into a clean, modern Developer Experience (DX) format aligned with industry best practices.
 
 ---
 
-## Why Atlas Hosted Fields?
+# Atlas Commerce - Element Flow
 
-Traditional payment integrations require merchants to directly handle sensitive payment data, increasing PCI compliance requirements and introducing additional security considerations.
+## Introduction
 
-Atlas Hosted Fields separates payment data collection from payment processing.
+**Atlas Element Flow** allows merchants to embed secure, PCI DSS-compliant payment fields directly into their checkout experience while the **Atlas Commerce Platform** handles all sensitive data within hosted iframes.
 
-Your application controls the customer experience while Atlas securely collects and processes cardholder data.
-
-### Key Benefits
-
-- **Reduce PCI DSS scope** by isolating cardholder data inside Atlas-hosted iframes.
-- **Maintain complete control** over your checkout layout using your own HTML and CSS.
-- **Build faster** with a minimal integration that can be progressively customized.
-- **Configure everything through the API**, from field layout to validation behavior.
-- **Support advanced payment experiences** including 3D Secure authentication, tokenization, localization, fraud detection, and digital wallets.
+By separating payment data capture from backend transaction processing, merchants maintain full control over layout, styling, and the overall user experience without directly handling cardholder data. This approach combines design flexibility with robust security, making it ideal for both simple and highly customized checkout implementations.
 
 ---
 
-## Architecture
+## PCI DSS Scope Reduction
 
-Atlas Hosted Fields uses a server-driven configuration model.
+Atlas Element Flow is architected to drastically reduce a merchant's **PCI DSS (Payment Card Industry Data Security Standard)** scope by preventing sensitive cardholder data from ever entering merchant-controlled servers.
 
-Your backend creates a checkout session that defines how the payment experience should behave. Your frontend then loads the Hosted Fields JavaScript library, which renders secure payment fields directly into your checkout page.
+> 💡 **Security Principle:** The more your infrastructure interacts with raw cardholder data, the greater your compliance and security responsibilities.
 
-```text
-                    Atlas Hosted Fields
+```
+┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
+│    Merchant Browser    │      │ Merchant Server Core   │      │ Atlas Commerce Vault   │
+├────────────────────────┤      ├────────────────────────┤      ├────────────────────────┤
+│ Renders Hosted Iframes │ ───► │ Never touches raw card │ ───► │ Captures, encrypts,    │
+│ inside checkout page   │      │ data directly          │      │ and processes payloads │
+└────────────────────────┘      └────────────────────────┘      └────────────────────────┘
 
-              Create Checkout Session
-Merchant Backend ─────────────────────────────► Atlas Payments API
-                                                │
-                                                │ Creates secure payment session
-                                                │
-                                                ├── checkoutSessionToken
-                                                ├── checkoutContextId
-                                                └── hostedFieldsScript
-                                                         │
-                                                         ▼
-Merchant Checkout Page ◄──────────────────────────────────┘
-        │
-        │ Load Hosted Fields
-        │
-        ▼
-Customer enters payment information
-        │
-        ▼
-Payment data captured securely by Atlas
-        │
-        ▼
-Merchant submits payment for authorization
 ```
 
-At no point does raw cardholder data pass through your application.
+### In the Element Flow Architecture:
+
+* **Isolated Capture:** Payment data is securely captured inside Atlas-hosted iframes operating in an isolated execution context separate from the merchant page.
+
+
+* **Direct Transmission:** Sensitive components (such as Card Numbers and CVVs) travel directly from the customer's browser to the Atlas Commerce Vault.
+
+
+* **Zero Residual Risk:** Merchant servers never receive, log, or store raw cardholder data.
+
+
+
+Because the merchant never handles card data directly, they do not need to secure the systems that process it, typically qualifying them for lower-level compliance requirements such as **SAQ-A** or **SAQ-A-EP**.
 
 ---
 
 ## Integration Workflow
 
-Integrating Atlas Hosted Fields consists of three high-level phases.
+The Atlas Element Flow integration consists of three distinct phases: **Initialize**, **Render**, and **Authorize**.
+
+```
+ Customer              Merchant UI             Merchant Server          Atlas API
+    │                       │                         │                     │
+    │─── Initiate Checkout ─►                         │                     │
+    │                       │─── Request Session ────►│                     │
+    │                       │                         │─── POST /sessions ─►│
+    │                       │                         │    (Define Config)  │
+    │                       │                         │◄── clientToken ─────│
+    │                       │◄── Return Session Data ─│                     │
+    │                       │                                               │
+    │                       │─── Load sdk.js ──────────────────────────────►│
+    │                       │◄── Inject Iframes ────────────────────────────│
+    │                       │                                               │
+    │─── Input Card Data ───►                                               │
+    │─── Click Submit ──────►                                               │
+    │                       │─── tokenize() ───────────────────────────────►│
+    │                       │◄── onTokenReady (Tokenized Value) ────────────│
+    │                       │                                               │
+    │                       │─── Submit Payload ─────►│                     │
+    │                       │                         │─── POST /payments ──►│
+    │                       │                         │    (With Token)     │
+    │                       │                         │◄── Auth Result ─────│
+    │                       │◄── Success/Failure ─────│                     │
+    │◄── View Confirmation ─│                         │                     │
+
+```
 
 ### 1. Initialize
 
-Your backend creates a checkout session using the Atlas Payments API.
+The transaction lifecycle begins when the merchant server initiates a checkout session via a server-to-server request.
 
-During initialization, Atlas:
+* **Endpoint:** `POST /v1/checkout/sessions`
+* **Purpose:** The merchant server outlines the security controls, supported fields, styling configurations, and target container selectors.
 
-- Creates a secure checkout session
-- Stores rendering configuration
-- Returns a checkout session token
-- Returns the Hosted Fields JavaScript library
-- Generates a checkout context for payment processing
 
----
+* **Output:** Atlas returns a unique, short-lived `clientToken` and the URL for the client-side software development kit (`sdk.js`).
+
+
 
 ### 2. Render
 
-Your frontend loads the Hosted Fields library using the returned session token.
+Once the client frontend receives the `clientToken`, it initialises the user-facing secure element components.
 
-Atlas securely renders payment inputs into your checkout page using the containers and configuration defined during initialization.
+* **Script Ingestion:** The frontend asynchronously pulls down the client-side SDK.
 
----
 
-### 3. Pay
+* **Container Targeted Mapping:** The script automatically matches the active configuration against the designated target container IDs present in the merchant's checkout HTML document.
 
-After the customer completes the payment form:
 
-1. Atlas validates the hosted fields.
-2. Optional authentication (such as 3D Secure) is performed when required.
-3. Atlas signals that payment data is ready.
-4. Your backend submits the payment request.
-5. Atlas processes the transaction and returns the payment result.
+* **Iframe Injection:** Secure input fields render dynamically inside the targeted containers, giving merchants layout dominance via traditional CSS styling wrappers.
 
----
 
-## Documentation
 
-### Getting Started
+### 3. Authorize
 
-Learn how to build a basic checkout using Atlas Hosted Fields.
+The completion phase executes a two-step capture and authorize handshake.
 
-- Quickstart
-- Initialize a Checkout Session
-- Render Hosted Components
+* **Tokenization Challenge:** When the customer clicks pay, the frontend invokes the SDK's tokenize execution command. Atlas securely transmits the payload, aggregates validation rules, and pushes back an `onTokenReady` client state payload.
+
+
+* **Backend Submission:** The client passes this non-sensitive token back to the merchant server, which then fires a server-to-server transaction request (`POST /v1/payments`) containing the token to finalize authorization.
+
+
 
 ---
 
-### Customize Your Checkout
+## Content Controls and Custom Layouts
 
-Configure the appearance and behavior of hosted payment fields.
+Atlas Elements are injected directly into merchant-defined DOM containers, giving you flexible structural layouts.
 
-- Configure Hosted Fields
-- Client Events
-- Branding
-- Optional Features
-- 3D Secure
+### Rendering Layout Approaches
 
----
+1. **Default Stack Layout:** Atlas automatically leverages standard predefined container IDs and stacks fields in an optimized, vertical presentation layout.
 
-### Reference
 
-Detailed technical reference material.
+2. **Custom Layout Mapping:** The merchant explicitly defines custom HTML container element targets in the initial session generation contract, facilitating precise grid, multi-column, or responsive row wrappers.
 
-- Field Properties
-- Example Payloads
-- Error Handling
+
+
+> ⚠️ **Implementation Note:** To maintain payment ecosystem state validation, only one card type detection element control may be actively loaded per initialization lifecycle execution.
+> 
+> 
 
 ---
 
-## Before You Begin
+## Configuration & Client-Side Events
 
-Before integrating Atlas Hosted Fields, ensure that:
+Merchants can programmatically tailor input behaviors, custom masks, dynamic formatting boundaries, and error display thresholds.
 
-- Your Atlas Commerce account is enabled for Hosted Fields.
-- You have API credentials for the Atlas Payments API.
-- Your backend can create checkout sessions.
-- Your frontend can load external JavaScript assets.
-- You understand your organization's PCI DSS compliance requirements.
+### Field Grouping Modes
+
+* **Individual Elements (Standard):** Each separate target input component (Card Number, Expiration, CVV) renders inside an independent, isolated iframe block.
+
+
+* **Combined Elements (Compact Formats):** Multiple field values compress down dynamically to render safely inside a singular iframe container block.
+
+
+
+### Handling State Events
+
+Atlas exposes non-sensitive client event hooks to track UI interactions. The most crucial event listener hook is **`onTokenReady`**:
+
+```javascript
+atlas.on('onTokenReady', (event) => {
+  // Triggered when all components pass client validation rules
+  // Exposes non-sensitive token data ready for server processing
+  submitPaymentToServer(event.token);
+});
+
+```
 
 ---
 
-## Design Principles
+## Advanced Capabilities
 
-Atlas Hosted Fields is built around four core principles.
+### 3D Secure (3DS)
 
-### Secure by Default
+Atlas Element Flow natively wraps layered **3D Secure Strong Customer Authentication (SCA)** workflows inside the hosted iframe environment. This includes background frictionless risk evaluations, dynamic issuer bank challenge modals, and verification directory sync handshakes.
 
-Sensitive payment information is captured directly by Atlas and never exposed to your application.
+### Error Handling Framework
 
-### API-Driven
+The system splits exceptions cleanly across distinct lifecycle points:
 
-The Checkout Sessions API defines what is rendered, how it behaves, and which payment features are enabled.
+* **Session Lifecycle Errors:** Triggered by schema validation failures or authentication errors during server initialization.
 
-### Developer-Friendly
 
-Start with a minimal implementation, then progressively customize layouts, validation rules, field behavior, branding, and advanced payment features.
+* **Rendering Lifecycle Errors:** Triggered by DOM target conflicts or missing UI containers.
 
-### Flexible
 
-Atlas Hosted Fields supports both simple integrations and highly customized checkout experiences without changing the underlying security model.
+* **Execution/Auth Errors:** Processing rejections, card validation drops, or upstream authorization failures.
+
+
 
 ---
 
 ## Next Steps
 
-If you're integrating Atlas Hosted Fields for the first time, continue with the **Quickstart**.
+1. **Initialize a Session:** Head over to the [Atlas Session Initialisation Guide](https://www.google.com/search?q=%23) to build your first server-side payload contract and establish your secure transaction context.
 
-The Quickstart walks through creating your first checkout session, rendering hosted payment fields, collecting payment information, and submitting a payment using the default configuration.
+
+2. **Review UI Components:** Dive into our [Controls & Layouts Explorer](https://www.google.com/search?q=%23) to view live examples of custom responsive CSS mappings for modern checkout funnels.
+
+
+
+### Support & Integration Assistance
+
+* **Sandbox & UAT Review:** Contact our integrations onboarding team at `dx-support@atlascommerce.com`.
+
+
+* **Production Operations:** For merchant onboarding and activation help, reach out to `go-live@atlascommerce.com`.
