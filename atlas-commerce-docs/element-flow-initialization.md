@@ -131,17 +131,17 @@ Your backend sends a JSON payload to request the activation session. This is whe
 ```json
 {
   "eCommerce": {
-    "hostedPaymentFields": {
+    "elementFlow": {
       "enabled": true,
       "controls": [
         {
           "cardType": "credit",
           "container": "#credit-container",
-          "fieldOptions": {
-            "fieldGroupingType": "individual",
-            "fields": [
+          "elementOptions": {
+            "elementGroupingType": "individual",
+            "elements": [
               {
-                "fieldType": "Pan",
+                "elementType": "Pan",
                 "validationType": "required",
                 "maskingType": "maskOnBlur",
                 "maskingCharacter": "dot",
@@ -150,14 +150,14 @@ Your backend sends a JSON payload to request the activation session. This is whe
                 "validationMessageDisplayType": "feedback"
               },
               {
-                "fieldType": "ExpDate",
+                "elementType": "ExpDate",
                 "validationType": "required",
                 "placeHolderType": "default",
                 "controlLabelPosition": "outlineLegend",
                 "validationMessageDisplayType": "feedback"
               },
               {
-                "fieldType": "SecurityCode",
+                "elementType": "SecurityCode",
                 "validationType": "required",
                 "placeHolderType": "cvc",
                 "controlLabelPosition": "outlineLegend",
@@ -170,11 +170,10 @@ Your backend sends a JSON payload to request the activation session. This is whe
     }
   },
   "credentials": {
-    "storeId": "STR_99203",
-    "terminalId": "TRM_88102"
+    "merchantId": "MERCH_99203",
+    "channelId": "CHN_88102"
   }
 }
-
 ```
 
 ### Step 2: Atlas Responds with the Activation Script
@@ -184,9 +183,9 @@ When successful, your server receives a single-use script block from the engine 
 ```json
 {
   "eCommerce": {
-    "clientPaymentKey": "cpk_9876543210_alpha_omega",
-    "hostedPaymentFields": {
-      "renderScript": "<script src=\"https://hpx.atlascommerce.com/scripts/v1/render.js?clientPaymentKey=cpk_9876543210_alpha_omega\"></script>"
+    "activationKey": "ack_9876543210_alpha_omega",
+    "elementFlow": {
+      "renderScript": "<script src=\"https://hpx.atlascommerce.com/scripts/v1/render.js?activationKey=ack_9876543210_alpha_omega\"></script>"
     }
   }
 }
