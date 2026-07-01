@@ -1,11 +1,3 @@
-How about **Session Activation** or **Session Provisioning**?
-
-If we look at the narrative of **Atlas Element Flow**, **Session Activation** pairs beautifully because it implies you are turning on the secure pipe and preparing the environment to let the elements stream in. Another great technical-but-approachable alternative is **Session Setup**.
-
-Here is the document fully updated using **Session Activation** as the primary term.
-
----
-
 # Session Activation & Configuration
 
 ## 1. Core Integration Concepts
