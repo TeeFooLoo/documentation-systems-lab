@@ -60,7 +60,7 @@ Explore our setup guides to build, style, and launch your payment experience.
 
 | Guide | Description |
 | --- | --- |
-| **[Session Initialization](https://www.google.com/search?q=%23)** | Learn how to request a temporary session token from your server and set your basic preferences.|
+| **[Session Initialization](https://github.com/TeeFooLoo/documentation-systems-lab/blob/main/atlas-commerce-docs/element-flow-initialization.md)** | Learn how to request a temporary session token from your server and set your basic preferences.|
 | **[UI & Layout Controls](https://www.google.com/search?q=%23)** | See how to arrange form fields, use custom grids, and map layouts on your page.|
 | **[Client-Side Event Handling](https://www.google.com/search?q=%23)** | Find out how to catch input mistakes, show error messages, and track when fields are filled out.|
 | **[Advanced Features & 3DS](https://www.google.com/search?q=%23)** | Turn on dynamic currency choices, change languages, and set up 3D Secure identity checks.|
