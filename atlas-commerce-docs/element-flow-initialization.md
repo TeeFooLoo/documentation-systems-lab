@@ -8,13 +8,13 @@ Initialization occurs exactly once per checkout session, prior to the customer i
 
 Before invoking the initialization handshake, verify your backend integration satisfies the following constraints:
 
-* **API Authentication:** Your platform credentials (`store_id`, `terminal_id`) are configured securely environment-side.
+* **API Authentication:** Your platform credentials (`store_id`, `terminal_id`) are configured securely environment side.
 
 
-* **Server Architecture:** Your system is prepared to handle upstream server-to-server HTTP POST actions.
+* **Server Architecture:** Your system is prepared to handle upstream server to server HTTP POST actions.
 
 
-* **DOM Structure:** Target container wrapper hooks (e.g., `#card-element-container`) are present in your client checkout markup layout.
+* **DOM Structure:** Target container wrapper hooks (like `#card-element-container`) are present in your client checkout markup layout.
 
 
 
@@ -38,7 +38,7 @@ The initialization process moves through three structural steps:
 2. **Create Secure Vault:** The Atlas engine receives the payload schema contract, aggregates state rules, and provisions a unique backend transaction mapping context.
 
 
-3. **Return Client Hook:** The response returns a short-lived `clientToken` and a dynamic `<script>` snippet (`renderScript`) containing custom delivery metadata tailored specifically for that merchant checkout attempt.
+3. **Return Client Hook:** The response returns a short lived `clientToken` and a dynamic `<script>` snippet (`renderScript`) containing custom delivery metadata tailored specifically for that merchant checkout attempt.
 
 
 
@@ -55,18 +55,16 @@ The initialization process moves through three structural steps:
 | `enabled` | boolean | **Yes** | Must be set to `true` to provision secure Element infrastructure for the transaction lifecycle.
 
  |
-| `cultureCode` | string | No | Standard locale formatting tag (e.g., `en-US`) determining frontend message translation defaults.
+| `cultureCode` | string | No | Standard locale formatting tag (like `en-US`) determining frontend message translation defaults.
 
  |
 | `controls` | array | No | An array of element target configurations mapping specific UI form components into designated frontend HTML DOM wrapper tags.
 
  |
 
----
-
 ### Request Payload Example
 
-This request showcases a comprehensive initialization configuring localized parameters, currency tracking layers, and structured field parameters mapping target elements directly into single-frame container controls.
+This request showcases a comprehensive initialization configuring localized parameters, currency tracking layers, and structured field parameters mapping target elements directly into single frame container controls.
 
 ```json
 {
@@ -118,8 +116,6 @@ This request showcases a comprehensive initialization configuring localized para
 
 ```
 
----
-
 ### Response Payload Example
 
 Upon schema validation approval, the engine returns the session tokens and isolated execution markers required to handle rendering pipelines.
@@ -138,13 +134,13 @@ Upon schema validation approval, the engine returns the session tokens and isola
 
 ## Frontend Script Injection
 
-The response payload yields a literal `renderScript` `<script>` tag element string block. To ensure client-side isolation boundaries match strict compliance parameters, **your frontend code must inject this raw string block directly into the Document Object Model (DOM) exactly as provided**.
+The response payload yields a literal `renderScript` `<script>` tag element string block. To ensure client side isolation boundaries match strict compliance parameters, **your frontend code must inject this raw string block directly into the Document Object Model (DOM) exactly as provided**.
 
 > ⚠️ **Critical Security Constraint:** Treat the script tag payload as an opaque, unmodifiable asset. Never parse or peel out the `src` attribute string manually, and do not strip or alter the security tags (`integrity`, `crossorigin`, or `referrerpolicy`), as missing headers will drop browser script authorization.
 > 
 > 
 
-### Implementation Example:
+### Implementation Example
 
 ```javascript
 // Server response consumption hook
