@@ -1,11 +1,3 @@
-Yes, absolutely! Plaid’s actual documentation handles sections exactly like that—they avoid heavy page-wide borders and instead use subtle, minimalist visual accents, or generous white space coupled with clean typographic hierarchy.
-
-To create that distinct, airy Plaid aesthetic, we can replace the standard markdown rules with a **centered, fractional layout divider** or a **left-aligned accent block** using light HTML tags.
-
-Here is how the overview looks using a crisp, 1/4-length minimalist divider (`<hr style="width: 25%; margin: 2rem auto; border: 0; border-top: 1px solid #e2e8f0;">`) to create distinct, high-end visual transitions.
-
----
-
 # Atlas Element Flow Overview
 
 Atlas Element Flow allows merchants to embed secure, PCI DSS-compliant payment fields directly into their checkout experience while the Atlas Commerce Platform handles all sensitive data within hosted iframes.
