@@ -67,13 +67,9 @@ The Atlas Commerce documentation is organized around the developer integration l
 
 # About Documentation Systems Lab
 
-Documentation Systems Lab is a personal portfolio project exploring modern approaches to developer documentation, API usability, AI-assisted documentation workflows, and developer experience (DevEx).
-
-The goal is to demonstrate not only technical writing, but also the broader discipline of designing documentation systems that help developers successfully adopt complex APIs.
+Documentation Systems Lab is a personal portfolio project exploring modern approaches to developer documentation, API usability, AI-assisted documentation workflows, and developer experience (DevEx). The goal is to demonstrate not only technical writing, but also the broader discipline of designing documentation systems that help developers successfully adopt complex APIs.
 
 
 ## Disclaimer
 
-Atlas Commerce is a fictional platform created solely for educational and portfolio purposes.
-
-No proprietary documentation, source code, APIs, or confidential information from any employer has been used in the creation of this project.
+Atlas Commerce is a fictional platform created solely for educational and portfolio purposes. No proprietary documentation, source code, APIs, or confidential information from any employer has been used in the creation of this project.
