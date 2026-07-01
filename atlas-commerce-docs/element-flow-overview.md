@@ -1,6 +1,6 @@
-# Atlas Element Flow Overview
+# Atlas Platform Element Flow Overview
 
-Atlas Element Flow lets you add secure payment boxes directly to your website's checkout page. While you retain complete control over how your checkout looks and feels, our secure platform handles all the sensitive card data in the background.
+Atlas Element Flow lets you add secure payment Elements directly to your website's checkout page. While you retain complete control over how your checkout looks and feels, the Atlas platform handles all the sensitive card data in the background.
 
 By keeping card data completely separate from your server, you can design a seamless shopping experience without having to handle or store risky credit card numbers yourself.
 
@@ -12,7 +12,7 @@ By keeping card data completely separate from your server, you can design a seam
 * **Complete Design Freedom:** You are never locked into rigid, blocky forms. You can completely customize the layout, text, and design to match your brand using standard web styles.
 
 
-* **Built-In Protection:** Advanced security rules, like 3D Secure (3DS) and Strong Customer Authentication (SCA), work automatically right inside the payment boxes to keep transactions safe.
+* **Built-In Protection:** Advanced security rules, like 3D Secure (3DS) and Strong Customer Authentication (SCA), work automatically right inside the Elements to keep transactions safe.
 
 
 
@@ -38,17 +38,17 @@ The payment process moves through three simple phases.
 
 ```
 
-#### 1. Setup
+#### 1. Activation
 
-Your backend server sends a request to Atlas (`POST /v1/checkout/sessions`) to start a new purchase session. You send along your basic preferences and layout rules, and Atlas sends back a temporary `clientToken`.
+Your backend server sends a request to Atlas (`POST /v1/checkout/sessions`) to start a new activation. You send along your basic preferences and layout rules, and Atlas sends back a temporary `activationKey` together with a `renderScript`.
 
-#### 2. Display
+#### 2. Render
 
-Your website loads our simple JavaScript library using that `clientToken`. The library finds the empty placeholder boxes on your checkout page and safely drops our secure payment inputs right into your layout.
+Your website loads the Atlas rendering script using the returned `renderScript`. The library finds the empty placeholder boxes on your checkout page and safely drops secure Elements right into your layout.
 
 #### 3. Pay
 
-When your customer clicks the pay button, our script automatically packages the card data, saves it securely in our vault, and hands your website a safe, non-sensitive token text string. Your server then uses that safe token to complete the charge via `POST /v1/payments`.
+When your customer clicks the pay button, the Atlas rendering script securely captures payment data inside isolated Elements. Once all required Elements have been completed and validated, Atlas emits the `onPaymentReady` event, allowing your backend to submit the payment request using the established activation context.
 
 ## Dive into the Documentation
 
@@ -56,7 +56,7 @@ Explore our setup guides to build, style, and launch your payment experience.
 
 | Guide | Description |
 | --- | --- |
-| **[Session Initialization](https://github.com/TeeFooLoo/documentation-systems-lab/blob/main/atlas-commerce-docs/element-flow-initialization.md)** | Learn how to request a temporary session token from your server and set your basic preferences.|
+| **[Session Activation](https://github.com/TeeFooLoo/documentation-systems-lab/blob/main/atlas-commerce-docs/element-flow-initialization.md)** | Learn how to request a activation request from your server and set your activation configuration.|
 | **[UI & Layout Controls](https://www.google.com/search?q=%23)** | See how to arrange form fields, use custom grids, and map layouts on your page.|
 | **[Client-Side Event Handling](https://www.google.com/search?q=%23)** | Find out how to catch input mistakes, show error messages, and track when fields are filled out.|
 | **[Advanced Features & 3DS](https://www.google.com/search?q=%23)** | Turn on dynamic currency choices, change languages, and set up 3D Secure identity checks.|
