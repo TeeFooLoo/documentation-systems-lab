@@ -61,9 +61,7 @@ The setup requires a quick three-step handoff between your server, the customerâ
 
 When setting up your session, you use the `controls` array to choose exactly what kind of payment experience to display to your customer. You map each control to its corresponding **container** element via its CSS selector.
 
-| Form Type | What It Does | JSON Property Value
-
- |
+| Form Type | What It Does | JSON Property Value|
 | --- | --- | --- |
 | **Credit Card Form** | Displays secure elements for standard credit and debit cards.| `"cardType": "credit"` |
 | **Token Update Form** | Displays a specialized configuration to update or refresh a card already saved on file.| `"cardType": "token"` |
