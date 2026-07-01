@@ -37,11 +37,7 @@ A short developer onboarding video accompanies the written documentation and dem
 
 ▶ **YouTube Video**
 
-https://youtu.be/lmRqtJacrT4?si=YWencNmyPHFuDrbC
-
-Or click here:
-
-**https://youtu.be/lmRqtJacrT4?si=YWencNmyPHFuDrbC**
+[Atlas Commerce | Getting Started with Atlas Element Flow](https://youtu.be/WI7R5SI6N80)
 
 
 # Technologies Demonstrated
