@@ -1,7 +1,3 @@
-Here is the complete, simplified guide with both the **Endpoint Reference** and **Standard Settings** built into clean, robust tables designed to render flawlessly in GitHub.
-
----
-
 # Session Initialization
 
 The checkout process starts on your server by creating a secure checkout session. This setup step tells Atlas Commerce what payment options you want to show and prepares our system to safely handle your customer's card information.
