@@ -42,6 +42,14 @@ The initialization process moves through three structural steps:
 
 
 
+Ah, looking closely at how the table is displaying, the markdown parser is choking because there are no blank lines around the table blocks. Markdown processors are notorious for failing to parse a grid if the table syntax is running right against headers or raw prose text.
+
+Let's fix that by adding explicit block line breaks above and below the tables to force the markdown parser to compile them properly.
+
+Here is the updated **Endpoint Reference** and **Default Configuration Fallbacks** text blocks with isolated formatting:
+
+---
+
 ## Endpoint Reference
 
 ### Create a Checkout Session
@@ -61,6 +69,8 @@ The initialization process moves through three structural steps:
 | `controls` | array | No | An array of element target configurations mapping specific UI form components into designated frontend HTML DOM wrapper tags.
 
  |
+
+---
 
 ### Request Payload Example
 
