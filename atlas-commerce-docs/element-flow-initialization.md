@@ -61,15 +61,9 @@ Here is the clean, structurally bulletproof GFM table layout. It will render fla
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `enabled` | boolean | **Yes** | Must be set to `true` to provision secure Element infrastructure for the transaction lifecycle.
-
- |
-| `cultureCode` | string | No | Standard locale formatting tag (like `en-US`) determining frontend message translation defaults.
-
- |
-| `controls` | array | No | An array of element target configurations mapping specific UI form components into designated frontend HTML DOM wrapper tags.
-
- |
+| `enabled` | boolean | **Yes** | Must be set to `true` to provision secure Element infrastructure for the transaction lifecycle.|
+| `cultureCode` | string | No | Standard locale formatting tag (like `en-US`) determining frontend message translation defaults.|
+| `controls` | array | No | An array of element target configurations mapping specific UI form components into designated frontend HTML DOM wrapper tags.|
 
 ---
 
