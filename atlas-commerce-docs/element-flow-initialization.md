@@ -49,6 +49,11 @@ Let's fix that by adding explicit block line breaks above and below the tables t
 Here is the updated **Endpoint Reference** and **Default Configuration Fallbacks** text blocks with isolated formatting:
 
 ---
+Looking at `image_094d7c.png`, I see exactly why it's still breaking. The issue isn't white space around the block—it's that the double leading pipes (`||`) are still corrupting rows 2 and 3. In Markdown table syntax, rows must start with a *single* vertical pipe (`|`), not a double pipe (`||`). When a markdown parser sees `||`, it completely drops out of table layout mode and drops back into raw text.
+
+Let's clean that syntax constraint up completely. Here are the fully corrected raw blocks with single leading pipes.
+
+---
 
 ## Endpoint Reference
 
@@ -70,6 +75,29 @@ Here is the updated **Endpoint Reference** and **Default Configuration Fallbacks
 
  |
 
+---
+
+## Default Configuration Fallbacks
+
+To minimize initial boilerplate code overhead, Atlas supports comprehensive component fallbacks. If you submit the baseline contract declaration (`"enabled": true`) while completely omitting the `controls` property block, Atlas generates a standard stacked layout using default target container mappings.
+
+| Override Path | Condition Trigger | Default Execution Behavior |
+| --- | --- | --- |
+| `enabled` | Completely omitted or declared `false` | System remains totally uninitialized. No secure elements render.
+
+ |
+| `controls` | Array block omitted entirely | Renders a standard, fully optimized credit card form interface.
+
+ |
+| `container` (Credit Card) | Array active, container property omitted | Targets default HTML selector string hook: `#credit-container`.
+
+ |
+| `container` (Token View) | Array active, container property omitted | Targets default HTML selector string hook: `#token-container`.
+
+ |
+| `fieldGroupingType` | Property absent inside `fieldOptions` | Defaults automatically to independent field context parsing (`"individual"`).
+
+ |
 ---
 
 ### Request Payload Example
