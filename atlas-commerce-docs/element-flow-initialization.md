@@ -34,17 +34,17 @@ Before showing any secure elements, your server talks to Atlas to register your 
 
 The setup requires a quick three-step handoff between your server, the customer’s browser, and the payment system:
 
-```
-[ Your Server ] ----------------------------> [ Payment Engine ]
-  Asks for a secure session and                 Registers the setup and returns
-  sends checkout details (e.g., price).         a secure single-use script link.
-                                                        |
-                                                        v
-[ Customer's Browser ] <--------------------------------+
-  Loads the script link, which automatically activates 
-  the secure elements inside your target containers.
+sequenceDiagram
+    autonumber
+    participant Server as Your Server
+    participant Atlas as Atlas Engine
+    participant Browser as Customer's Browser
 
-```
+    Server->>Atlas: POST /activation (Payload configurations & containers)
+    Atlas-->>Server: Return renderScript & activationKey
+    Server->>Browser: Inject script block into checkout page DOM
+    Browser->>Atlas: Hydrate elements inside target containers
+
 
 1. **The Request:** When your checkout page loads, your backend server sends a secure server-to-server `POST` request to Atlas. This payload defines what kind of control you want to activate and which placeholder elements on your page should hold them.
 
