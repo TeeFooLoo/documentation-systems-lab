@@ -53,15 +53,13 @@ This repository contains original work covering:
 
 | Directory | Purpose |
 |-----------|---------|
-| `atlas-commerce/` | End-to-end fictional developer platform demonstrating documentation, onboarding, and DevEx. |
+| `atlas-commerce-docs/` | Fictional developer platform demonstrating documentation, onboarding, and DevEx. |
 | `architecture/` | Documentation architecture and system design. |
 | `documentation-patterns/` | Reusable documentation patterns and examples. |
 | `information-architecture/` | Navigation, organization, and discoverability. |
 | `governance/` | Documentation governance, standards, and lifecycle management. |
-| `ai-workflows/` | Human + AI documentation workflows. |
+| `ai-workflows/` (TBD) | Human + AI documentation workflows. |
 | `claude-skills/` | Claude Skills created for documentation engineering. |
-| `templates/` | Reusable documentation templates. |
-| `openapi/` | OpenAPI guidance and examples. |
 
 
 # Design Principles
