@@ -1,82 +1,87 @@
 # Documentation Systems Lab
-> "Developers think in code. Great documentation meets them there."
 
-**Documentation Systems Lab** is an open-source collection of documentation architectures, reusable patterns, AI-assisted workflows, and engineering practices for building and maintaining high-quality developer documentation.
+> *"Developers think in code. Great documentation meets them there."*
 
-The goal of this repository is to explore documentation as a system—not just a collection of pages. It focuses on the processes, information architecture, governance, and automation that help documentation scale alongside modern software development.
+Documentation Systems Lab is an open-source portfolio exploring modern approaches to developer documentation, information architecture, AI-assisted documentation workflows, and developer experience (DevEx).
 
-## Areas of Focus
+Rather than treating documentation as individual pages, this repository explores documentation as an engineering system—combining architecture, governance, reusable patterns, automation, and developer education.
 
-This repository includes original work covering topics such as:
 
-* Documentation Architecture
-* Information Architecture
-* API Documentation
-* OpenAPI Design
-* Documentation Governance
-* Documentation Patterns
-* Developer Onboarding
-* Developer Experience (DevEx)
-* AI-Assisted Documentation
-* Documentation Review Automation
-* Claude Skills for Documentation
-* Technical Writing Best Practices
+# ⭐ Featured Project
 
-## Repository Structure
+## Atlas Commerce
 
-| Directory                   | Purpose                                                                                 |
-| --------------------------- | --------------------------------------------------------------------------------------- |
-| `architecture/`             | Documentation system design, architecture, and decision-making                          |
-| `documentation-patterns/`   | Reusable documentation solutions for common technical scenarios                         |
-| `information-architecture/` | Organizing documentation for discoverability and usability                              |
-| `openapi/`                  | OpenAPI design guidance, examples, and best practices                                   |
-| `templates/`                | Reusable documentation templates and starter content                                    |
-| `ai-workflows/`             | Human + AI documentation workflows and review pipelines                                 |
-| `claude-skills/`            | Reusable Claude Skills for documentation engineering tasks                              |
-| `governance/`               | Documentation standards, lifecycle management, and quality practices                    |
-| `examples/`                 | Complete fictional documentation examples demonstrating the concepts in this repository |
+Atlas Commerce is a fictional payment platform created to demonstrate end-to-end developer documentation.
 
-## Design Principles
+It combines conceptual documentation, implementation guides, onboarding tutorials, and developer education into a cohesive documentation experience similar to what you would find for a modern API platform.
 
-Everything in this repository is built around a few core principles:
+### Documentation
 
-* Solve real documentation problems with reusable systems.
-* Prioritize maintainability over one-off solutions.
-* Treat AI as an accelerator—not a replacement—for sound documentation practices.
-* Design documentation that supports both developers and documentation teams.
-* Share practical patterns that can be adapted to different products and organizations.
+| Guide | Description |
+|-------|-------------|
+| [Atlas Element Flow Overview](atlas-commerce/docs/element-flow-overview.md) | Introduces the platform, architecture, integration lifecycle, and security model. |
+| [Session Activation](atlas-commerce/docs/element-flow-activation.md) | Complete implementation guide covering activation requests, responses, rendering, Elements, Controls, Containers, and payment readiness. |
 
-## Portfolio Statement
+### Video Walkthrough
 
-All content in this repository is original and created for educational, portfolio, and open-source purposes.
+🎥 **Getting Started with Atlas Element Flow**
 
-No proprietary employer, customer, or partner intellectual property is included. All products, APIs, workflows, examples, and documentation artifacts are fictional or intentionally generalized.
+https://youtu.be/WI7R5SI6N80
 
-## Roadmap
+This short onboarding video demonstrates how a developer would integrate Atlas Element Flow using the accompanying documentation.
 
-Over time, Documentation Systems Lab will expand to include:
 
-* Documentation architecture reference guides
-* API documentation design patterns
-* OpenAPI examples and review workflows
-* AI-assisted documentation systems
-* Documentation governance frameworks
-* Developer onboarding guides
-* Documentation automation pipelines
-* A fictional developer platform used consistently throughout the repository for realistic examples
+# Repository Areas
 
-## Current Progress
+This repository contains original work covering:
 
-✓ Documentation Principles
-✓ Documentation Style Guide
-✓ Content Model
-✓ Annotation Taxonomy
-✓ Documentation Maturity Model
-✓ Publication Review Framework
-✓ Authentication Guide
-✓ Accept Your First Payment
-✓ Payments API Reference
-✓ Documentation Delivery Architecture (In Progress)
+- Documentation Architecture
+- Information Architecture
+- API Documentation
+- OpenAPI Design
+- Documentation Governance
+- Documentation Patterns
+- Developer Onboarding
+- Developer Experience (DevEx)
+- AI-Assisted Documentation
+- Documentation Automation
+- Claude Skills
+- Technical Writing
+
+
+# Repository Structure
+
+| Directory | Purpose |
+|-----------|---------|
+| `atlas-commerce/` | End-to-end fictional developer platform demonstrating documentation, onboarding, and DevEx. |
+| `architecture/` | Documentation architecture and system design. |
+| `documentation-patterns/` | Reusable documentation patterns and examples. |
+| `information-architecture/` | Navigation, organization, and discoverability. |
+| `governance/` | Documentation governance, standards, and lifecycle management. |
+| `ai-workflows/` | Human + AI documentation workflows. |
+| `claude-skills/` | Claude Skills created for documentation engineering. |
+| `templates/` | Reusable documentation templates. |
+| `openapi/` | OpenAPI guidance and examples. |
+
+
+# Design Principles
+
+Everything in Documentation Systems Lab is built around a few core ideas:
+
+- Documentation should scale alongside software.
+- Information architecture matters as much as writing quality.
+- AI should accelerate—not replace—good documentation practices.
+- Great documentation teaches developers, not just references APIs.
+- Documentation is a product that deserves engineering discipline.
+
+
+# Portfolio Statement
+
+All content in this repository is original and created for educational, portfolio, and open-source purposes. No proprietary employer, customer, or partner intellectual property is included. Products, APIs, workflows, and documentation examples are fictional or intentionally generalized.
+
+
+
+
+---
 
 Contributions, discussions, and feedback are always welcome.
-
