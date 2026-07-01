@@ -1,5 +1,6 @@
 # Session Activation & Configuration
 
+
 ## 1. Core Integration Concepts
 
 Before setting up your code, it helps to understand how these three core pieces work together to orchestrate your checkout page:
@@ -23,6 +24,7 @@ Before setting up your code, it helps to understand how these three core pieces 
         └── Security Code       <--- ELEMENT /
 
 ```
+
 
 ## 2. The Activation Workflow
 
@@ -70,6 +72,8 @@ Each Control may optionally include an `elementOptions` object. This object owns
 | --- | --- |
 | `elementGroupingType` | Determines whether Elements are rendered individually or together. |
 | `elements[]` | Defines the Elements that belong to the Control. |
+
+
 
 ## 3. Configuration Profiles
 
