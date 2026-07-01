@@ -24,8 +24,6 @@ Before setting up your code, it helps to understand how these three core pieces 
 
 ```
 
----
-
 ## 2. The Activation Workflow
 
 Session activation is the behind-the-scenes handshake that happens every time a customer reaches your checkout page.
@@ -57,9 +55,6 @@ The setup requires a quick three-step handoff between your server, the customerâ
 3. **The Display:** Your website's frontend layout runs this script, which automatically targets your empty **containers** and hydrates the secure, isolated elements directly into them.
 
 
-
----
-
 ## 3. Configuration Profiles
 
 ### Control Types (`cardType`)
@@ -70,21 +65,11 @@ When setting up your session, you use the `controls` array to choose exactly wha
 
  |
 | --- | --- | --- |
-| **Credit Card Form** | Displays secure elements for standard credit and debit cards.
-
- | `"cardType": "credit"` |
-| **Token Update Form** | Displays a specialized configuration to update or refresh a card already saved on file.
-
- | `"cardType": "token"` |
-| **Gift Card Form** | Displays elements specifically formatted for gift card codes and balances.
-
- | `"cardType": "giftcard"` |
-| **Private Label Form** | Displays custom entry elements for store-branded or closed-loop credit cards.
-
- | `"cardType": "private"` |
-| **Loyalty Layout** | Displays an element for entering points cards, rewards profiles, or membership IDs.
-
- | `"cardType": "loyalty"` |
+| **Credit Card Form** | Displays secure elements for standard credit and debit cards.| `"cardType": "credit"` |
+| **Token Update Form** | Displays a specialized configuration to update or refresh a card already saved on file.| `"cardType": "token"` |
+| **Gift Card Form** | Displays elements specifically formatted for gift card codes and balances.| `"cardType": "giftcard"` |
+| **Private Label Form** | Displays custom entry elements for store-branded or closed-loop credit cards.| `"cardType": "private"` |
+| **Loyalty Layout** | Displays an element for entering points cards, rewards profiles, or membership IDs.| `"cardType": "loyalty"` |
 
 ### Element Types (`fieldType`)
 
@@ -92,21 +77,13 @@ When customizing your control's internal components, you can select from these s
 
 * **`Pan` (Primary Account Number):** The core card number element. It automatically detects card brands (Visa, Mastercard, Amex, etc.) and runs mathematical validation checks. Supports masking properties (e.g., `maskOnBlur` using dots or asterisks to hide digits).
 
-
 * **`ExpDate` (Expiration Date):** The expiration date element. It can be configured as a single combined element or separated into individual month (`ExpMonth`) and year (`ExpYear`) components. Accepts layout configurations to match your preferred placeholder style (`MM/YY` or `MM/YYYY` formats).
-
 
 * **`SecurityCode` (Card Security Code):** The CVV/CVC security element. It automatically adjusts maximum character lengths (3 or 4 digits) based on the card brand detected in the `Pan` element.
 
-
 * **`RoutingNumber` (ABA Routing Number):** Used for electronic check (ACH) or direct-debit processing forms. Enforces standard 9-digit checking rules.
 
-
 * **`AccountNumber` (Bank Account Number):** The bank account entry element used alongside routing configurations for direct banking check paths.
-
-
-
----
 
 ## 4. Fine-Tuning Element Properties
 
