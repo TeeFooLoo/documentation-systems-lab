@@ -61,7 +61,7 @@ The setup requires a quick three-step handoff between your server, the customerâ
 
 1. **The Request:** When your checkout page loads, your backend server sends a secure server-to-server `POST` request to Atlas. This payload defines what kind of control you want to activate and which placeholder containers on your page should hold them.
 2. **The Key:** Atlas registers your layout request and sends back a response containing a unique, one-time security script link powered by a temporary `activationKey`.
-3. **The Display:** Your website's frontend layout runs this script, which automatically targets your empty containers and hydrates the secure, isolated elements directly into them.
+3. **The Display:** Your website's frontend layout runs this script, which automatically targets your empty containers and injects the secure, isolated elements directly into them.
 
 
 ### Configuration Object (`elementOptions`)
